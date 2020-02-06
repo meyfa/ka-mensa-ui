@@ -1,13 +1,24 @@
 <template>
   <div id="app">
+    <app-header></app-header>
+
+    <app-footer class="footer"></app-footer>
   </div>
 </template>
 
 <script>
 import 'typeface-nunito'
 
+import AppHeader from '~/components/AppHeader'
+import AppFooter from '~/components/AppFooter'
+
 export default {
   name: 'App',
+
+  components: {
+    AppHeader,
+    AppFooter
+  }
 }
 </script>
 
@@ -28,7 +39,18 @@ body,
 }
 
 body {
-  background: #eaebed;
+  background: #dedddc;
   font-family: 'Nunito', sans-serif;
+}
+
+#app {
+  position: relative;
+  padding-bottom: 100px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 </style>

@@ -1,11 +1,3 @@
 extends:
   - standard
-  - plugin:vue/recommended
-
-rules:
-  vue/html-indent: ["error", 2, { attribute: 2, baseIndent: 1, closeBracket: 0, alignAttributesVertically: false }]
-  vue/max-attributes-per-line: 0
-  vue/singleline-html-element-content-newline: 0
-  vue/html-closing-bracket-newline: 0
-  vue/html-self-closing: [2, { html: { void: always, normal: never, component: never } }]
-  vue/component-name-in-template-casing: [2, kebab-case]
+  - "plugin:jsdoc/recommended"
