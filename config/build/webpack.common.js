@@ -2,11 +2,14 @@
 
 const path = require('path')
 
+const config = require('../')
+
+const { DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
-const BASE_DIR = path.join(__dirname, '..')
+const BASE_DIR = path.join(__dirname, '../..')
 const SRC_DIR = path.join(BASE_DIR, 'src')
 const DST_DIR = path.join(BASE_DIR, 'dist')
 
@@ -62,6 +65,9 @@ module.exports = {
       meta: {
         viewport: 'width=device-width, initial-scale=1'
       }
+    }),
+    new DefinePlugin({
+      API_ENDPOINT: JSON.stringify(config.api.endpoint)
     })
   ]
 }
