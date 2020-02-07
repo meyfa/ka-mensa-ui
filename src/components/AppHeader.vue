@@ -12,15 +12,17 @@ export default {
 <style scoped>
 .header {
   display: block;
+  height: 64px;
+  line-height: 64px;
   margin: 0 0 24px;
-  padding: 24px;
+  padding: 0 24px;
   background: #fff;
 }
 
 .title {
   font-size: 32px;
   font-weight: 400;
-  line-height: 1;
+  line-height: inherit;
   margin: 0;
 }
 </style>
