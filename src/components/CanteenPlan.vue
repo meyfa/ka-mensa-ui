@@ -36,13 +36,16 @@ export default {
 }
 
 .date {
+  margin: 32px 0;
   font-size: 24px;
   font-weight: bold;
+  text-align: center;
 }
 
 .lines {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .line {
