@@ -1,6 +1,10 @@
 <template>
   <header class="header">
     <h1 class="title">KA Mensa</h1>
+
+    <div class="settings">
+      <button type="button" class="settings-btn" @click="$emit('settingsOpen')">Settings</button>
+    </div>
   </header>
 </template>
 
@@ -11,7 +15,8 @@ export default {
 
 <style scoped>
 .header {
-  display: block;
+  display: flex;
+  justify-content: space-between;
   height: 64px;
   line-height: 64px;
   margin: 0 0 24px;
@@ -20,9 +25,34 @@ export default {
 }
 
 .title {
+  display: inline-block;
   font-size: 32px;
   font-weight: 400;
   line-height: inherit;
   margin: 0;
+}
+
+.settings {
+  display: inline-block;
+}
+
+.settings-btn {
+  display: inline-block;
+  margin: 0;
+  padding: 10px;
+  font: inherit;
+  font-size: 20px;
+  line-height: 1;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.settings-btn:focus,
+.settings-btn:hover {
+  background: #ddd;
+  border-color: #aaa;
 }
 </style>

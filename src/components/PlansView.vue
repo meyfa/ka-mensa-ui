@@ -13,6 +13,7 @@
 
 <script>
 import api from '~/api'
+import settings from '~/settings'
 
 import CanteenLines from '~/components/CanteenLines'
 
@@ -44,6 +45,12 @@ export default {
     if (this.date) {
       this.fetchData()
     }
+
+    settings.on('update', this.fetchData)
+  },
+
+  destroyed () {
+    settings.removeListener('update', this.fetchData)
   },
 
   methods: {
@@ -56,7 +63,7 @@ export default {
         return
       }
       this.plans = rawData.filter((item) => {
-        return item.canteen.id === 'adenauerring' || item.canteen.id === 'moltke'
+        return settings.canteens.includes(item.canteen.id)
       })
     }
   }

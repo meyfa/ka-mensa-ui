@@ -84,6 +84,7 @@ export default {
   border: 1px solid #888;
   border-radius: 50%;
   color: #888;
+  outline: none;
   cursor: pointer;
 }
 

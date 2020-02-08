@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <app-header></app-header>
+    <app-header @settingsOpen="showSettings = true"></app-header>
 
     <date-header :date="date" @next="nextDate" @previous="previousDate"></date-header>
     <plans-view :date="date"></plans-view>
+
+    <settings-dialog :visible.sync="showSettings"></settings-dialog>
 
     <app-footer class="footer"></app-footer>
   </div>
@@ -18,6 +20,7 @@ import AppHeader from '~/components/AppHeader'
 import AppFooter from '~/components/AppFooter'
 import DateHeader from '~/components/DateHeader'
 import PlansView from '~/components/PlansView'
+import SettingsDialog from '~/components/SettingsDialog'
 
 export default {
   name: 'App',
@@ -26,12 +29,28 @@ export default {
     AppHeader,
     AppFooter,
     DateHeader,
-    PlansView
+    PlansView,
+    SettingsDialog
   },
 
   data () {
     return {
+      showSettings: false,
       date: null
+    }
+  },
+
+  watch: {
+    showSettings (to) {
+      const width = document.body.offsetWidth
+      document.documentElement.classList.toggle('noscroll', to)
+      // adjust body padding to remove 'jumping' because of hidden scrollbar
+      if (to) {
+        const scrollbarWidth = document.body.offsetWidth - width
+        document.body.style.paddingRight = scrollbarWidth + 'px'
+        return
+      }
+      document.body.style.paddingRight = ''
     }
   },
 
@@ -64,10 +83,6 @@ export default {
   box-sizing: border-box;
 }
 
-html {
-  overflow-y: scroll;
-}
-
 html,
 body,
 #app {
@@ -75,6 +90,14 @@ body,
   padding: 0;
   width: 100%;
   min-height: 100vh;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+html.noscroll {
+  overflow-y: hidden;
 }
 
 body {

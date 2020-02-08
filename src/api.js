@@ -24,6 +24,16 @@ class API {
   }
 
   /**
+   * Fetch the set of available canteens.
+   *
+   * @returns {Promise} Resolves to an array of canteen objects.
+   */
+  async getCanteens () {
+    const { data } = await axios.get(this.endpoint + 'canteens')
+    return data
+  }
+
+  /**
    * Fetch the set of plans for the given date.
    *
    * @param {object} date A date object.
