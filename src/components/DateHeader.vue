@@ -2,7 +2,10 @@
   <div ref="container" class="container">
     <div class="panel" :class="{ sticky }">
       <button type="button" class="dir-btn" @click="$emit('previous')">❮</button>
-      <h2 class="date">{{ date | date }}</h2>
+      <div class="date">
+        <h2 class="date-title">{{ date | date }}</h2>
+        <div class="date-subtitle">{{ date | daysAgo }}</div>
+      </div>
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
   </div>
@@ -64,33 +67,46 @@ export default {
 
 .date {
   display: inline-block;
+  min-width: 150px;
+  margin: 0 20px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.date-title {
   margin: 0;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  text-align: center;
+}
+
+.date-subtitle {
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-weight: bold;
 }
 
 .dir-btn {
   display: inline-block;
   width: 32px;
   height: 32px;
-  font: inherit;
-  line-height: 32px;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 0 16px;
+  margin: 0;
   padding: 0;
+  vertical-align: middle;
+  font: inherit;
+  line-height: 30px;
+  font-size: 20px;
+  font-weight: bold;
   background: none;
-  border: 1px solid #888;
+  border: 2px solid transparent;
   border-radius: 50%;
-  color: #888;
+  color: #666;
   outline: none;
   cursor: pointer;
 }
 
 .dir-btn:focus,
 .dir-btn:hover {
-  border: 2px solid #000;
+  border-color: #000;
   color: #000;
 }
 </style>

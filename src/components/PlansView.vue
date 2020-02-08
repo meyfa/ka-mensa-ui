@@ -6,7 +6,7 @@
       <canteen-lines v-if="plan.lines" :lines="plan.lines"></canteen-lines>
     </div>
     <div v-if="!plans || !plans.length" class="no-data">
-      —— no data ——
+      (no data)
     </div>
   </div>
 </template>
@@ -83,7 +83,7 @@ export default {
 
 .no-data {
   margin: 48px 0;
-  font-size: 32px;
+  font-size: 24px;
   color: #999;
   text-align: center;
 }
