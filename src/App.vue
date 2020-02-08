@@ -3,10 +3,7 @@
     <app-header></app-header>
 
     <date-header :date="date" @next="nextDate" @previous="previousDate"></date-header>
-    <div v-if="!lines" class="no-lines">
-      —— no data ——
-    </div>
-    <canteen-plan v-if="lines" :lines="lines"></canteen-plan>
+    <plans-view :date="date"></plans-view>
 
     <app-footer class="footer"></app-footer>
   </div>
@@ -15,13 +12,12 @@
 <script>
 import 'typeface-nunito'
 
-import api from '~/api'
 import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from '~/util/date'
 
 import AppHeader from '~/components/AppHeader'
 import AppFooter from '~/components/AppFooter'
 import DateHeader from '~/components/DateHeader'
-import CanteenPlan from '~/components/CanteenPlan'
+import PlansView from '~/components/PlansView'
 
 export default {
   name: 'App',
@@ -30,52 +26,32 @@ export default {
     AppHeader,
     AppFooter,
     DateHeader,
-    CanteenPlan
+    PlansView
   },
 
   data () {
     return {
-      canteen: 'adenauerring',
-      date: null,
-      lines: null
+      date: null
     }
   },
 
   created () {
-    let toLoad = getCurrentDate()
-    if (!isWeekday(toLoad)) {
-      toLoad = getNextWeekday(toLoad)
+    let date = getCurrentDate()
+    if (!isWeekday(date)) {
+      date = getNextWeekday(date)
     }
-    this.date = toLoad
-    this.loadPlan(toLoad)
+    this.date = date
   },
 
   methods: {
-    async loadPlan (date) {
-      let rawData
-      try {
-        rawData = await api.getPlan(date)
-      } catch (e) {
-        this.date = date
-        this.lines = null
-        return false
-      }
-      const canteenPlan = rawData.find((item) => {
-        return item.canteen.id === this.canteen
-      })
-      this.date = date
-      this.lines = canteenPlan ? canteenPlan.lines : null
-      return true
+    nextDate () {
+      if (!this.date) return
+      this.date = getNextWeekday(this.date)
     },
 
-    async nextDate () {
+    previousDate () {
       if (!this.date) return
-      await this.loadPlan(getNextWeekday(this.date))
-    },
-
-    async previousDate () {
-      if (!this.date) return
-      await this.loadPlan(getPreviousWeekday(this.date))
+      this.date = getPreviousWeekday(this.date)
     }
   }
 }
@@ -109,13 +85,6 @@ body {
 #app {
   position: relative;
   padding-bottom: 100px;
-}
-
-.no-lines {
-  margin: 48px 0;
-  font-size: 32px;
-  color: #999;
-  text-align: center;
 }
 
 .footer {
