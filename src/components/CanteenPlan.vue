@@ -1,31 +1,25 @@
 <template>
-  <section class="plan">
-    <date-header :date="plan.date"></date-header>
+  <div class="lines">
+    <div v-for="line in lines" :key="line.id" class="line">
+      <h3 class="line-title">{{ line.name }}</h3>
 
-    <div class="lines">
-      <div v-for="line in plan.lines" :key="line.id" class="line">
-        <h3 class="line-title">{{ line.name }}</h3>
-
-        <meal-item v-for="(meal, index) in line.meals"
-            :key="index" :meal="meal"></meal-item>
-      </div>
+      <meal-item v-for="(meal, index) in line.meals"
+          :key="index" :meal="meal"></meal-item>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import DateHeader from '~/components/DateHeader'
 import MealItem from '~/components/MealItem'
 
 export default {
   components: {
-    DateHeader,
     MealItem
   },
 
   props: {
-    plan: {
-      type: Object,
+    lines: {
+      type: Array,
       required: true
     }
   }
@@ -33,14 +27,11 @@ export default {
 </script>
 
 <style scoped>
-.plan {
-  margin: 32px 0;
-}
-
 .lines {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 32px 0;
 }
 
 .line {
