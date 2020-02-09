@@ -45,10 +45,7 @@ class Settings extends EventEmitter {
   constructor () {
     super()
 
-    this._data = {
-      canteens: ['adenauerring']
-    }
-
+    this._data = {}
     if (!this.load()) {
       this.save()
     }
@@ -82,10 +79,22 @@ class Settings extends EventEmitter {
   }
 
   /**
+   * @returns {string} The page theme id.
+   */
+  get theme () {
+    return this._data.theme || 'light'
+  }
+
+  set theme (value) {
+    this._data.theme = value
+    this.save()
+  }
+
+  /**
    * @returns {string[]} The canteens selected for display.
    */
   get canteens () {
-    return [...this._data.canteens]
+    return this._data.canteens ? [...this._data.canteens] : ['adenauerring']
   }
 
   set canteens (value) {

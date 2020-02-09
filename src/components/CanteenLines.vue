@@ -39,7 +39,7 @@ export default {
   width: 320px;
   margin: 0 4px 8px 4px;
   padding: 16px 8px;
-  background: #fff;
+  background: var(--color-card-background);
   border-radius: 4px;
 }
 

@@ -21,16 +21,16 @@ export default {
   padding: 16px;
   line-height: 1.4;
   font-size: 12pt;
-  background: #333;
+  background: var(--color-footer-background);
 }
 
 .backlink {
-  color: #aaa;
+  color: var(--color-footer-text);
   text-decoration: none;
 }
 
 .backlink:focus,
 .backlink:hover {
-  color: #6af;
+  color: var(--color-footer-link);
 }
 </style>

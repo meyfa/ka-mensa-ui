@@ -11,6 +11,11 @@
             <canteens-settings class="panel"></canteens-settings>
           </div>
 
+          <div class="content-section">
+            <div class="label">Page Theme</div>
+            <theme-settings class="panel"></theme-settings>
+          </div>
+
           <div class="content-trailer"></div>
         </div>
       </div>
@@ -19,10 +24,12 @@
 </template>
 
 <script>
+import ThemeSettings from '~/components/settings/ThemeSettings'
 import CanteensSettings from '~/components/settings/CanteensSettings'
 
 export default {
   components: {
+    ThemeSettings,
     CanteensSettings
   },
 
@@ -59,11 +66,11 @@ export default {
   height: 100%;
   z-index: 100;
   padding: 24px;
-  background: rgba(40, 40, 40, 0.8);
+  background: rgba(30, 30, 30, 0.8);
 }
 
 .inner {
-  background: #fff;
+  background: var(--color-dialog-background);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -73,7 +80,7 @@ export default {
   min-height: 320px;
   max-width: 1600px;
   max-height: 1600px;
-  border: 1px solid #888;
+  border: 1px solid var(--color-divider);
   border-radius: 4px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
   transform: translate(-50%, -50%);
@@ -96,8 +103,7 @@ export default {
   line-height: 50px;
   margin: 0;
   padding: 0 24px;
-  border-bottom: 1px solid #ccc;
-  box-shadow: inset 0 -1px 0 0 #ddd;
+  border-bottom: 2px solid var(--color-divider);
 }
 
 .close-btn {
@@ -111,6 +117,7 @@ export default {
   font-size: 20px;
   line-height: 1;
   background: none;
+  color: inherit;
   border: 1px solid transparent;
   border-radius: 2px;
   outline: none;
@@ -119,8 +126,8 @@ export default {
 
 .close-btn:focus,
 .close-btn:hover {
-  background: #ddd;
-  border-color: #aaa;
+  background: var(--color-button-background);
+  border-color: var(--color-button-border);
 }
 
 .content {
@@ -136,7 +143,7 @@ export default {
   width: 320px;
   max-width: 480px;
   flex-grow: 1;
-  margin: 0 16px 16px 0;
+  margin: 0 32px 32px 0;
 }
 
 .label {

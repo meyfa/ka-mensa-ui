@@ -61,8 +61,8 @@ export default {
   top: 0;
   left: 0;
   z-index: 1;
-  background: #fffbfb;
-  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
+  background: var(--color-header-background);
+  box-shadow: var(--header-shadow);
 }
 
 .date {
@@ -99,14 +99,14 @@ export default {
   background: none;
   border: 2px solid transparent;
   border-radius: 50%;
-  color: #666;
+  color: var(--color-text-lighter);
   outline: none;
   cursor: pointer;
 }
 
 .dir-btn:focus,
 .dir-btn:hover {
-  border-color: #000;
-  color: #000;
+  border-color: var(--color-text);
+  color: var(--color-text);
 }
 </style>

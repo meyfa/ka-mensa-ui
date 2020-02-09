@@ -14,6 +14,7 @@
 <script>
 import 'typeface-nunito'
 
+import settings from '~/settings'
 import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from '~/util/date'
 
 import AppHeader from '~/components/AppHeader'
@@ -55,6 +56,9 @@ export default {
   },
 
   created () {
+    this.settingsUpdate()
+    settings.on('update', this.settingsUpdate)
+
     let date = getCurrentDate()
     if (!isWeekday(date)) {
       date = getNextWeekday(date)
@@ -62,7 +66,15 @@ export default {
     this.date = date
   },
 
+  destroyed () {
+    settings.removeListener('update', this.settingsUpdate)
+  },
+
   methods: {
+    settingsUpdate () {
+      document.documentElement.classList.toggle('theme-dark', settings.theme === 'dark')
+    },
+
     nextDate () {
       if (!this.date) return
       this.date = getNextWeekday(this.date)
@@ -77,6 +89,43 @@ export default {
 </script>
 
 <style>
+:root {
+  --font: 'Nunito', sans-serif;
+  --color-page-background: #dedddc;
+  --color-header-background: #fff;
+  --color-footer-background: #333;
+  --color-footer-text: #aaa;
+  --color-footer-link: #6af;
+  --color-dialog-background: #fff;
+  --color-card-background: #fff;
+  --color-text: #000;
+  --color-text-lighter: #666;
+  --color-button-background: #ddd;
+  --color-button-border: #aaa;
+  --color-divider: #ccc;
+  --color-warn-background: #fcc;
+  --color-warn-text: #d14;
+  --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+:root.theme-dark {
+  --color-page-background: #252424;
+  --color-header-background: #1c1c1c;
+  --color-footer-background: #101010;
+  --color-footer-text: #555;
+  --color-footer-link: #48d;
+  --color-dialog-background: #222;
+  --color-card-background: #1a1a1a;
+  --color-text: #fff;
+  --color-text-lighter: #666;
+  --color-button-background: #1a1b1c;
+  --color-button-border: #444;
+  --color-divider: #666;
+  --color-warn-background: #422;
+  --color-warn-text: #fab;
+  --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.75);
+}
+
 *,
 *::before,
 *::after {
@@ -101,8 +150,9 @@ html.noscroll {
 }
 
 body {
-  background: #dedddc;
-  font-family: 'Nunito', sans-serif;
+  background: var(--color-page-background);
+  font-family: var(--font);
+  color: var(--color-text);
 }
 
 #app {

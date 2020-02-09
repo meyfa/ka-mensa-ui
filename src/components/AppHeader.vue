@@ -21,7 +21,7 @@ export default {
   line-height: 64px;
   margin: 0 0 24px;
   padding: 0 24px;
-  background: #fff;
+  background: var(--color-header-background);
 }
 
 .title {
@@ -44,6 +44,7 @@ export default {
   font-size: 20px;
   line-height: 1;
   background: none;
+  color: inherit;
   border: 1px solid transparent;
   border-radius: 2px;
   outline: none;
@@ -52,7 +53,7 @@ export default {
 
 .settings-btn:focus,
 .settings-btn:hover {
-  background: #ddd;
-  border-color: #aaa;
+  background: var(--color-button-background);
+  border-color: var(--color-button-border);
 }
 </style>

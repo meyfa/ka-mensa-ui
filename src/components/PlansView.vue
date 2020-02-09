@@ -84,7 +84,7 @@ export default {
 .no-data {
   margin: 48px 0;
   font-size: 24px;
-  color: #999;
+  color: var(--color-text-lighter);
   text-align: center;
 }
 </style>

@@ -40,7 +40,7 @@ export default {
 .meal {
   position: relative;
   padding: 4px 60px 4px 4px;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--color-divider);
 }
 
 .meal.vegetarian {

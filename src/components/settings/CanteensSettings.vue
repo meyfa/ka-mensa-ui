@@ -23,7 +23,7 @@ export default {
   data () {
     return {
       canteens: [],
-      selected: []
+      selected: settings.canteens
     }
   },
 
@@ -34,7 +34,6 @@ export default {
   methods: {
     async fetchData () {
       this.canteens = await api.getCanteens()
-      this.selected = settings.canteens
     },
 
     isSelected (canteenId) {
@@ -70,8 +69,8 @@ export default {
   margin: 16px 0;
   padding: 8px;
   font-weight: bold;
-  color: #d14;
-  background: #fdb;
+  color: var(--color-warn-text);
+  background: var(--color-warn-background);
 }
 
 .canteen {
@@ -87,11 +86,11 @@ export default {
 }
 
 .canteen:hover {
-  border-color: #444;
+  border-color: var(--color-divider);
 }
 
 .canteen-lines {
   font-size: 14px;
-  color: #888;
+  color: var(--color-text-lighter);
 }
 </style>
