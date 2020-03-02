@@ -82,11 +82,11 @@ export default {
 }
 
 .canteen.selected {
-  background: rgba(0, 100, 255, 0.2);
+  background: var(--color-selection-background);
 }
 
 .canteen:hover {
-  border-color: var(--color-divider);
+  border-color: var(--color-selection-border);
 }
 
 .canteen-lines {

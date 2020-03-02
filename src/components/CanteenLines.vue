@@ -31,7 +31,7 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 32px 0;
+  margin: 0;
 }
 
 .line {
@@ -47,5 +47,18 @@ export default {
   margin: 0 4px 12px;
   font-size: 20px;
   font-weight: bold;
+}
+
+@media (max-width: 500px) {
+  .lines {
+    display: block;
+  }
+
+  .line {
+    display: block;
+    width: 100%;
+    margin: 8px 0;
+    border-radius: 0;
+  }
 }
 </style>

@@ -96,34 +96,44 @@ export default {
   --color-footer-background: #333;
   --color-footer-text: #aaa;
   --color-footer-link: #6af;
+  --color-dialog-veil: rgba(30, 30, 30, 0.8);
   --color-dialog-background: #fff;
+  --color-selection-border: #aaa;
+  --color-selection-background: #bbd0ff;
   --color-card-background: #fff;
   --color-text: #000;
   --color-text-lighter: #666;
   --color-button-background: #ddd;
   --color-button-border: #aaa;
-  --color-divider: #ccc;
+  --color-divider: #bbb;
   --color-warn-background: #fcc;
   --color-warn-text: #d14;
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
+  --color-meal-vegetarian: #fff4cc;
+  --color-meal-vegan: #cfc;
 }
 
 :root.theme-dark {
-  --color-page-background: #252424;
-  --color-header-background: #1c1c1c;
+  --color-page-background: #000;
+  --color-header-background: #222;
   --color-footer-background: #101010;
   --color-footer-text: #555;
   --color-footer-link: #48d;
+  --color-dialog-veil: rgba(4, 4, 4, 0.8);
   --color-dialog-background: #222;
+  --color-selection-border: #888;
+  --color-selection-background: #136;
   --color-card-background: #1a1a1a;
   --color-text: #fff;
-  --color-text-lighter: #666;
+  --color-text-lighter: #888;
   --color-button-background: #1a1b1c;
   --color-button-border: #444;
-  --color-divider: #666;
+  --color-divider: #000;
   --color-warn-background: #422;
   --color-warn-text: #fab;
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.75);
+  --color-meal-vegetarian: #504028;
+  --color-meal-vegan: #084824;
 }
 
 *,

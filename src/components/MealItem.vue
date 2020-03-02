@@ -44,11 +44,11 @@ export default {
 }
 
 .meal.vegetarian {
-  background: rgba(255, 200, 0, 0.2);
+  background: var(--color-meal-vegetarian);
 }
 
 .meal.vegan {
-  background: rgba(0, 255, 0, 0.2);
+  background: var(--color-meal-vegan);
 }
 
 .meal:last-child {

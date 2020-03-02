@@ -66,7 +66,7 @@ export default {
   height: 100%;
   z-index: 100;
   padding: 24px;
-  background: rgba(30, 30, 30, 0.8);
+  background: var(--color-dialog-veil);
 }
 
 .inner {
@@ -98,12 +98,12 @@ export default {
 }
 
 .title {
-  height: 50px;
+  height: 53px;
   font-size: 24px;
   line-height: 50px;
   margin: 0;
   padding: 0 24px;
-  border-bottom: 2px solid var(--color-divider);
+  border-bottom: 3px solid var(--color-divider);
 }
 
 .close-btn {
@@ -161,6 +161,26 @@ export default {
 @media (max-width: 720px) {
   .inner {
     width: calc(100% - 32px);
+  }
+
+  .title {
+    padding: 0 16px;
+  }
+
+  .close-btn {
+    right: 8px;
+  }
+
+  .content {
+    display: block;
+    padding: 8px 16px 0;
+  }
+
+  .content-section {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 32px;
   }
 }
 </style>

@@ -72,7 +72,7 @@ export default {
 
 <style scoped>
 .canteen-name {
-  margin: 32px 0;
+  margin: 0 0 32px;
   font-size: 24px;
   text-align: center;
 }
@@ -86,5 +86,15 @@ export default {
   font-size: 24px;
   color: var(--color-text-lighter);
   text-align: center;
+}
+
+@media (max-width: 500px) {
+  .canteen-name {
+    margin: 0 0 24px;
+  }
+
+  .plan {
+    margin: 24px 0 32px;
+  }
 }
 </style>
