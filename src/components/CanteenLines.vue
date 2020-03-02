@@ -28,16 +28,19 @@ export default {
 
   data () {
     return {
-      hideEmptyLines: settings.hideEmptyLines
+      hideEmptyLines: settings.hideEmptyLines,
+      eatingHabits: settings.eatingHabits
     }
   },
 
   computed: {
     filteredLines () {
-      if (!this.hideEmptyLines) {
-        return this.lines
-      }
-      return this.lines.filter(line => line.meals && line.meals.length > 0)
+      return this.lines.map(line => {
+        return {
+          ...line,
+          meals: line.meals.filter(this.isMealVisible)
+        }
+      }).filter(line => line.meals && line.meals.length)
     }
   },
 
@@ -52,6 +55,17 @@ export default {
   methods: {
     updateSettings () {
       this.hideEmptyLines = settings.hideEmptyLines
+      this.eatingHabits = settings.eatingHabits
+    },
+
+    isMealVisible (meal) {
+      if (settings.eatingHabits === 'vegan') {
+        return meal.classifiers.includes('VG')
+      }
+      if (settings.eatingHabits === 'vegetarian') {
+        return meal.classifiers.includes('VG') || meal.classifiers.includes('VEG')
+      }
+      return true
     }
   }
 }

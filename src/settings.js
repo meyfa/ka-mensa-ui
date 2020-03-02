@@ -109,11 +109,23 @@ class Settings extends EventEmitter {
   get hideEmptyLines () {
     return typeof this._data.hideEmptyLines === 'boolean'
       ? this._data.hideEmptyLines
-      : false
+      : true
   }
 
   set hideEmptyLines (value) {
     this._data.hideEmptyLines = value
+    this.save()
+  }
+
+  /**
+   * @returns {string} The eating habits ('all', 'vegetarian', or 'vegan').
+   */
+  get eatingHabits () {
+    return this._data.eatingHabits || 'all'
+  }
+
+  set eatingHabits (value) {
+    this._data.eatingHabits = value
     this.save()
   }
 }

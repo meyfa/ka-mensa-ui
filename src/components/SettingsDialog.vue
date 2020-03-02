@@ -12,6 +12,11 @@
           </div>
 
           <div class="content-section">
+            <div class="label">Filter</div>
+            <filter-settings class="panel"></filter-settings>
+          </div>
+
+          <div class="content-section">
             <div class="label">Appearance</div>
             <appearance-settings class="panel"></appearance-settings>
           </div>
@@ -24,13 +29,15 @@
 </template>
 
 <script>
-import AppearanceSettings from '~/components/settings/AppearanceSettings'
 import CanteensSettings from '~/components/settings/CanteensSettings'
+import FilterSettings from '~/components/settings/FilterSettings'
+import AppearanceSettings from '~/components/settings/AppearanceSettings'
 
 export default {
   components: {
-    AppearanceSettings,
-    CanteensSettings
+    CanteensSettings,
+    FilterSettings,
+    AppearanceSettings
   },
 
   props: {
