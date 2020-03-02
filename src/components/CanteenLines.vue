@@ -1,6 +1,6 @@
 <template>
   <div class="lines">
-    <div v-for="line in lines" :key="line.id" class="line">
+    <div v-for="line in filteredLines" :key="line.id" class="line">
       <h3 class="line-title">{{ line.name }}</h3>
 
       <meal-item v-for="(meal, index) in line.meals"
@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import settings from '~/settings'
+
 import MealItem from '~/components/MealItem'
 
 export default {
@@ -21,6 +23,35 @@ export default {
     lines: {
       type: Array,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      hideEmptyLines: settings.hideEmptyLines
+    }
+  },
+
+  computed: {
+    filteredLines () {
+      if (!this.hideEmptyLines) {
+        return this.lines
+      }
+      return this.lines.filter(line => line.meals && line.meals.length > 0)
+    }
+  },
+
+  created () {
+    settings.on('update', this.updateSettings)
+  },
+
+  destroyed () {
+    settings.removeListener('update', this.updateSettings)
+  },
+
+  methods: {
+    updateSettings () {
+      this.hideEmptyLines = settings.hideEmptyLines
     }
   }
 }

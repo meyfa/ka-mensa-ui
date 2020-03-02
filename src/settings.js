@@ -102,6 +102,20 @@ class Settings extends EventEmitter {
     this._data.canteens = [...new Set(value)]
     this.save()
   }
+
+  /**
+   * @returns {boolean} Whether canteen lines with no meals should be hidden.
+   */
+  get hideEmptyLines () {
+    return typeof this._data.hideEmptyLines === 'boolean'
+      ? this._data.hideEmptyLines
+      : false
+  }
+
+  set hideEmptyLines (value) {
+    this._data.hideEmptyLines = value
+    this.save()
+  }
 }
 
 // EXPORT

@@ -12,8 +12,8 @@
           </div>
 
           <div class="content-section">
-            <div class="label">Page Theme</div>
-            <theme-settings class="panel"></theme-settings>
+            <div class="label">Appearance</div>
+            <appearance-settings class="panel"></appearance-settings>
           </div>
 
           <div class="content-trailer"></div>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import ThemeSettings from '~/components/settings/ThemeSettings'
+import AppearanceSettings from '~/components/settings/AppearanceSettings'
 import CanteensSettings from '~/components/settings/CanteensSettings'
 
 export default {
   components: {
-    ThemeSettings,
+    AppearanceSettings,
     CanteensSettings
   },
 

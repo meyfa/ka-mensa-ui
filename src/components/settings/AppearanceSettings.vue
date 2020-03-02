@@ -1,7 +1,18 @@
 <template>
   <div class="panel">
+    Page theme
+
     <label v-for="(label, themeId) in themes" :key="themeId" class="theme">
       <input v-model="theme" type="radio" :value="themeId" /> {{ label }}
+    </label>
+
+    <br />
+
+    <label class="toggle">
+      <input type="checkbox"
+          :checked="hideEmptyLines"
+          @change="hideEmptyLines = !hideEmptyLines" />
+      Hide empty lines
     </label>
   </div>
 </template>
@@ -16,13 +27,18 @@ export default {
         light: 'Light',
         dark: 'Dark'
       },
-      theme: settings.theme
+      theme: settings.theme,
+      hideEmptyLines: settings.hideEmptyLines
     }
   },
 
   watch: {
     theme (to) {
       settings.theme = to
+    },
+
+    hideEmptyLines (to) {
+      settings.hideEmptyLines = to
     }
   }
 }
