@@ -14,6 +14,13 @@
           @change="hideEmptyLines = !hideEmptyLines" />
       Hide empty lines
     </label>
+
+    <label class="toggle">
+      <input type="checkbox"
+          :checked="enableHighlights"
+          @change="enableHighlights = !enableHighlights" />
+      Highlight vegetarian/vegan menus
+    </label>
   </div>
 </template>
 
@@ -28,7 +35,8 @@ export default {
         dark: 'Dark'
       },
       theme: settings.theme,
-      hideEmptyLines: settings.hideEmptyLines
+      hideEmptyLines: settings.hideEmptyLines,
+      enableHighlights: settings.enableHighlights
     }
   },
 
@@ -39,6 +47,10 @@ export default {
 
     hideEmptyLines (to) {
       settings.hideEmptyLines = to
+    },
+
+    enableHighlights (to) {
+      settings.enableHighlights = to
     }
   }
 }
@@ -48,5 +60,10 @@ export default {
 .theme {
   display: block;
   margin: 4px 0;
+}
+
+.toggle {
+  display: block;
+  margin: 8px 0;
 }
 </style>

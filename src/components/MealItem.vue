@@ -13,11 +13,19 @@
 </template>
 
 <script>
+import settings from '~/settings'
+
 export default {
   props: {
     meal: {
       type: Object,
       required: true
+    }
+  },
+
+  data () {
+    return {
+      enableHighlights: settings.enableHighlights
     }
   },
 
@@ -28,9 +36,24 @@ export default {
 
     mealClasses () {
       return {
+        highlight: this.enableHighlights,
         vegetarian: this.meal.classifiers.includes('VEG'),
         vegan: this.meal.classifiers.includes('VG')
       }
+    }
+  },
+
+  created () {
+    settings.on('update', this.updateSettings)
+  },
+
+  destroyed () {
+    settings.removeListener('update', this.updateSettings)
+  },
+
+  methods: {
+    updateSettings () {
+      this.enableHighlights = settings.enableHighlights
     }
   }
 }
@@ -43,11 +66,11 @@ export default {
   border-bottom: 1px solid var(--color-divider);
 }
 
-.meal.vegetarian {
+.meal.highlight.vegetarian {
   background: var(--color-meal-vegetarian);
 }
 
-.meal.vegan {
+.meal.highlight.vegan {
   background: var(--color-meal-vegan);
 }
 

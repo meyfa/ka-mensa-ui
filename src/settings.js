@@ -128,6 +128,20 @@ class Settings extends EventEmitter {
     this._data.eatingHabits = value
     this.save()
   }
+
+  /**
+   * @returns {boolean} Whether to highlight vegetarian + vegan menus.
+   */
+  get enableHighlights () {
+    return typeof this._data.enableHighlights === 'boolean'
+      ? this._data.enableHighlights
+      : true
+  }
+
+  set enableHighlights (value) {
+    this._data.enableHighlights = value
+    this.save()
+  }
 }
 
 // EXPORT
