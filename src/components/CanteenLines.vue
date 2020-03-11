@@ -40,7 +40,7 @@ export default {
           ...line,
           meals: line.meals.filter(this.isMealVisible)
         }
-      }).filter(line => line.meals && line.meals.length)
+      }).filter(line => !settings.hideEmptyLines || line.meals.length)
     }
   },
 
