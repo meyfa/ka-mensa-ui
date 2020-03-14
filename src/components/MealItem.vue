@@ -13,19 +13,15 @@
 </template>
 
 <script>
-import settings from '~/settings'
-
 export default {
   props: {
     meal: {
       type: Object,
       required: true
-    }
-  },
-
-  data () {
-    return {
-      enableHighlights: settings.enableHighlights
+    },
+    highlight: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -36,24 +32,10 @@ export default {
 
     mealClasses () {
       return {
-        highlight: this.enableHighlights,
+        highlight: this.highlight,
         vegetarian: this.meal.classifiers.includes('VEG'),
         vegan: this.meal.classifiers.includes('VG')
       }
-    }
-  },
-
-  created () {
-    settings.on('update', this.updateSettings)
-  },
-
-  destroyed () {
-    settings.removeListener('update', this.updateSettings)
-  },
-
-  methods: {
-    updateSettings () {
-      this.enableHighlights = settings.enableHighlights
     }
   }
 }

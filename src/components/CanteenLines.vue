@@ -3,8 +3,8 @@
     <div v-for="line in filteredLines" :key="line.id" class="line">
       <h3 class="line-title">{{ line.name }}</h3>
 
-      <meal-item v-for="(meal, index) in line.meals"
-          :key="index" :meal="meal"></meal-item>
+      <meal-item v-for="(meal, index) in line.meals" :key="index"
+          :meal="meal" :highlight="enableHighlights"></meal-item>
     </div>
   </div>
 </template>
@@ -29,7 +29,8 @@ export default {
   data () {
     return {
       hideEmptyLines: settings.hideEmptyLines,
-      eatingHabits: settings.eatingHabits
+      eatingHabits: settings.eatingHabits,
+      enableHighlights: settings.enableHighlights
     }
   },
 
@@ -56,6 +57,7 @@ export default {
     updateSettings () {
       this.hideEmptyLines = settings.hideEmptyLines
       this.eatingHabits = settings.eatingHabits
+      this.enableHighlights = settings.enableHighlights
     },
 
     isMealVisible (meal) {
