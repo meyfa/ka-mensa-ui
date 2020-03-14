@@ -11,6 +11,7 @@
 
 <script>
 import settings from '~/settings'
+import { isVegetarian, isVegan } from '~/util/meals'
 
 import MealItem from '~/components/MealItem'
 
@@ -62,10 +63,10 @@ export default {
 
     isMealVisible (meal) {
       if (settings.eatingHabits === 'vegan') {
-        return meal.classifiers.includes('VG')
+        return isVegan(meal)
       }
       if (settings.eatingHabits === 'vegetarian') {
-        return meal.classifiers.includes('VG') || meal.classifiers.includes('VEG')
+        return isVegan(meal) || isVegetarian(meal)
       }
       return true
     }

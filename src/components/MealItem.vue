@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { isVegetarian, isVegan } from '~/util/meals'
+
 export default {
   props: {
     meal: {
@@ -33,8 +35,8 @@ export default {
     mealClasses () {
       return {
         highlight: this.highlight,
-        vegetarian: this.meal.classifiers.includes('VEG'),
-        vegan: this.meal.classifiers.includes('VG')
+        vegetarian: isVegetarian(this.meal),
+        vegan: isVegan(this.meal)
       }
     }
   }
