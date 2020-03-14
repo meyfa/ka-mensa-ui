@@ -42,7 +42,7 @@ export default {
           ...line,
           meals: line.meals.filter(this.isMealVisible)
         }
-      }).filter(line => !settings.hideEmptyLines || line.meals.length)
+      }).filter(line => !this.hideEmptyLines || line.meals.length)
     }
   },
 
@@ -62,10 +62,10 @@ export default {
     },
 
     isMealVisible (meal) {
-      if (settings.eatingHabits === 'vegan') {
+      if (this.eatingHabits === 'vegan') {
         return isVegan(meal)
       }
-      if (settings.eatingHabits === 'vegetarian') {
+      if (this.eatingHabits === 'vegetarian') {
         return isVegan(meal) || isVegetarian(meal)
       }
       return true

@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div v-for="plan in plans" :key="plan.canteen.id" class="plan">
+    <div v-for="plan in filteredPlans" :key="plan.canteen.id" class="plan">
       <div class="canteen-name">{{ plan.canteen.name }}</div>
 
       <canteen-lines v-if="plan.lines" :lines="plan.lines"></canteen-lines>
     </div>
-    <div v-if="!plans || !plans.length" class="no-data">
+    <div v-if="!filteredPlans.length" class="no-data">
       (no data)
     </div>
   </div>
@@ -31,7 +31,16 @@ export default {
 
   data () {
     return {
-      plans: null
+      canteens: settings.canteens,
+      plans: []
+    }
+  },
+
+  computed: {
+    filteredPlans () {
+      return this.plans.filter((item) => {
+        return this.canteens.includes(item.canteen.id)
+      })
     }
   },
 
@@ -46,25 +55,24 @@ export default {
       this.fetchData()
     }
 
-    settings.on('update', this.fetchData)
+    settings.on('update', this.updateSettings)
   },
 
   destroyed () {
-    settings.removeListener('update', this.fetchData)
+    settings.removeListener('update', this.updateSettings)
   },
 
   methods: {
+    updateSettings () {
+      this.canteens = settings.canteens
+    },
+
     async fetchData () {
-      let rawData
       try {
-        rawData = await api.getPlan(this.date)
+        this.plans = await api.getPlan(this.date)
       } catch (e) {
-        this.plans = null
-        return
+        this.plans = []
       }
-      this.plans = rawData.filter((item) => {
-        return settings.canteens.includes(item.canteen.id)
-      })
     }
   }
 }

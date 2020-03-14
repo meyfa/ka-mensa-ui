@@ -56,8 +56,8 @@ export default {
   },
 
   created () {
-    this.settingsUpdate()
-    settings.on('update', this.settingsUpdate)
+    this.updateSettings()
+    settings.on('update', this.updateSettings)
 
     let date = getCurrentDate()
     if (!isWeekday(date)) {
@@ -67,11 +67,11 @@ export default {
   },
 
   destroyed () {
-    settings.removeListener('update', this.settingsUpdate)
+    settings.removeListener('update', this.updateSettings)
   },
 
   methods: {
-    settingsUpdate () {
+    updateSettings () {
       document.documentElement.classList.toggle('theme-dark', settings.theme === 'dark')
     },
 
