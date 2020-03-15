@@ -1,24 +1,22 @@
 <template>
   <transition name="fadein">
-    <div v-if="visible" class="outer">
+    <div v-if="meal" class="outer">
       <div class="inner">
-        <h2 class="title">Settings</h2>
+        <h2 class="title">Meal Information</h2>
         <button type="button" class="close-btn" @click="close()">✖</button>
 
         <div class="content">
-          <div class="content-section">
-            <div class="label">Canteens</div>
-            <canteens-settings></canteens-settings>
+          <div class="name">
+            {{ meal.name }}
           </div>
-
-          <div class="content-section">
-            <div class="label">Filter</div>
-            <filter-settings></filter-settings>
+          <div v-if="meal.price" class="price">
+            Price: {{ meal.price }}
           </div>
-
-          <div class="content-section">
-            <div class="label">Appearance</div>
-            <appearance-settings></appearance-settings>
+          <div class="classifiers">
+            <div v-for="classifier in classifiersAndAdditives" :key="classifier"
+                class="classifiers-item">
+              ({{ classifier }}) {{ legend ? legend[classifier] : '' }}
+            </div>
           </div>
 
           <div class="content-trailer"></div>
@@ -29,27 +27,32 @@
 </template>
 
 <script>
+import api from '~/api'
+
 import { disableScrolling, enableScrolling } from '~/global-scrolling'
 
-import CanteensSettings from '~/components/settings/CanteensSettings'
-import FilterSettings from '~/components/settings/FilterSettings'
-import AppearanceSettings from '~/components/settings/AppearanceSettings'
-
 export default {
-  components: {
-    CanteensSettings,
-    FilterSettings,
-    AppearanceSettings
+  props: {
+    meal: {
+      type: Object,
+      default: null
+    }
   },
 
-  props: {
-    visible: {
-      type: Boolean
+  data () {
+    return {
+      legend: null
+    }
+  },
+
+  computed: {
+    classifiersAndAdditives () {
+      return [...new Set([...this.meal.classifiers, ...this.meal.additives])]
     }
   },
 
   watch: {
-    visible (to) {
+    meal (to) {
       if (to) {
         disableScrolling()
       } else {
@@ -58,9 +61,27 @@ export default {
     }
   },
 
+  created () {
+    this.fetchData()
+  },
+
   methods: {
+    async fetchData () {
+      let data
+      try {
+        data = await api.getLegend()
+      } catch (e) {
+        this.legend = null
+        return
+      }
+      this.legend = {}
+      for (const { short, label } of data) {
+        this.legend[short] = label
+      }
+    },
+
     close () {
-      this.$emit('update:visible', false)
+      this.$emit('update:meal', null)
     }
   }
 }
@@ -94,11 +115,11 @@ export default {
   top: 50%;
   left: 50%;
   width: 80vw;
-  height: 90vh;
+  height: 50vh;
   min-width: 320px;
   min-height: 320px;
-  max-width: 1600px;
-  max-height: 1600px;
+  max-width: 480px;
+  max-height: 480px;
   border: 1px solid var(--color-divider);
   border-radius: 4px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.4);
@@ -150,34 +171,33 @@ export default {
 }
 
 .content {
-  display: flex;
-  flex-wrap: wrap;
   height: calc(100% - 50px - 4px);
   padding: 16px 24px 0;
   overflow-y: scroll;
 }
 
-.content-section {
-  display: inline-block;
-  width: 320px;
-  max-width: 480px;
-  flex-grow: 1;
-  margin: 0 32px 32px 0;
-}
-
-.label {
-  margin: 16px 0;
-  font-size: 20px;
+.name {
   font-weight: bold;
 }
 
+.price {
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+.classifiers {
+  margin: 16px 0 0;
+}
+
+.classifiers-item {
+  margin: 4px 0;
+}
+
 .content-trailer {
-  display: block;
-  width: 100%;
   height: 16px;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 480px) {
   .inner {
     width: calc(100% - 32px);
   }
@@ -188,18 +208,6 @@ export default {
 
   .close-btn {
     right: 8px;
-  }
-
-  .content {
-    display: block;
-    padding: 8px 16px 0;
-  }
-
-  .content-section {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 0 32px;
   }
 }
 </style>

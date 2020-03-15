@@ -3,11 +3,14 @@
     <div v-for="plan in filteredPlans" :key="plan.canteen.id" class="plan">
       <div class="canteen-name">{{ plan.canteen.name }}</div>
 
-      <canteen-lines v-if="plan.lines" :lines="plan.lines"></canteen-lines>
+      <canteen-lines v-if="plan.lines" :lines="plan.lines"
+          @details="detailsDialogMeal = $event"></canteen-lines>
     </div>
     <div v-if="!filteredPlans.length" class="no-data">
       (no data)
     </div>
+
+    <meal-details-dialog :meal.sync="detailsDialogMeal"></meal-details-dialog>
   </div>
 </template>
 
@@ -16,10 +19,12 @@ import api from '~/api'
 import settings from '~/settings'
 
 import CanteenLines from '~/components/CanteenLines'
+import MealDetailsDialog from '~/components/MealDetailsDialog'
 
 export default {
   components: {
-    CanteenLines
+    CanteenLines,
+    MealDetailsDialog
   },
 
   props: {
@@ -32,7 +37,8 @@ export default {
   data () {
     return {
       canteens: settings.canteens,
-      plans: []
+      plans: [],
+      detailsDialogMeal: null
     }
   },
 

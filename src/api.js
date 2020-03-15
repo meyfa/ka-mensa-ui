@@ -34,6 +34,16 @@ class API {
   }
 
   /**
+   * Fetch the set of legend entries containing 'short' and 'label' strings.
+   *
+   * @returns {Promise} Resolves to an array of legend objects.
+   */
+  async getLegend () {
+    const { data } = await axios.get(this.endpoint + 'meta/legend')
+    return data
+  }
+
+  /**
    * Fetch the set of plans for the given date.
    *
    * @param {object} date A date object.

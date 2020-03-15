@@ -41,20 +41,6 @@ export default {
     }
   },
 
-  watch: {
-    showSettings (to) {
-      const width = document.body.offsetWidth
-      document.documentElement.classList.toggle('noscroll', to)
-      // adjust body padding to remove 'jumping' because of hidden scrollbar
-      if (to) {
-        const scrollbarWidth = document.body.offsetWidth - width
-        document.body.style.paddingRight = scrollbarWidth + 'px'
-        return
-      }
-      document.body.style.paddingRight = ''
-    }
-  },
-
   created () {
     this.updateSettings()
     settings.on('update', this.updateSettings)
@@ -109,6 +95,7 @@ export default {
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
   --color-meal-vegetarian: #fff4cc;
   --color-meal-vegan: #cfc;
+  --meal-item-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
 }
 
 :root.theme-dark {
@@ -130,6 +117,7 @@ export default {
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.75);
   --color-meal-vegetarian: #504028;
   --color-meal-vegan: #084824;
+  --meal-item-shadow: 0 0 8px 0 rgba(0, 0, 0, 1);
 }
 
 *,

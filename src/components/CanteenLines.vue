@@ -4,7 +4,8 @@
       <h3 class="line-title">{{ line.name }}</h3>
 
       <meal-item v-for="(meal, index) in line.meals" :key="index"
-          :meal="meal" :highlight="enableHighlights"></meal-item>
+          :meal="meal" :highlight="enableHighlights"
+          @click="$emit('details', meal)"></meal-item>
     </div>
   </div>
 </template>
