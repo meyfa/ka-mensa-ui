@@ -55,10 +55,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.toggle {
-  display: block;
-  margin: 8px 0;
-}
-</style>

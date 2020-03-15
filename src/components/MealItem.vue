@@ -1,10 +1,7 @@
 <template>
   <div class="meal" :class="mealClasses">
     <div class="meal-classifiers">
-      <span v-for="cls in classifiersAndAdditives" :key="cls"
-          class="meal-classifier">
-        {{ cls }}
-      </span>
+      <span v-for="cls in classifiersAndAdditives" :key="cls">{{ cls }}</span>
     </div>
 
     <div class="meal-name">{{ meal.name }}</div>

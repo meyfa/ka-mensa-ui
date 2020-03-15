@@ -79,14 +79,14 @@ export default {
 </script>
 
 <style scoped>
+.plan {
+  margin: 32px 0 64px;
+}
+
 .canteen-name {
   margin: 0 0 32px;
   font-size: 24px;
   text-align: center;
-}
-
-.plan {
-  margin: 32px 0 64px;
 }
 
 .no-data {
@@ -97,12 +97,12 @@ export default {
 }
 
 @media (max-width: 500px) {
-  .canteen-name {
-    margin: 0 0 24px;
-  }
-
   .plan {
     margin: 24px 0 32px;
+  }
+
+  .canteen-name {
+    margin: 0 0 24px;
   }
 }
 </style>

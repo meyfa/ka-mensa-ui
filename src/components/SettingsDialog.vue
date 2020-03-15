@@ -8,17 +8,17 @@
         <div class="content">
           <div class="content-section">
             <div class="label">Canteens</div>
-            <canteens-settings class="panel"></canteens-settings>
+            <canteens-settings></canteens-settings>
           </div>
 
           <div class="content-section">
             <div class="label">Filter</div>
-            <filter-settings class="panel"></filter-settings>
+            <filter-settings></filter-settings>
           </div>
 
           <div class="content-section">
             <div class="label">Appearance</div>
-            <appearance-settings class="panel"></appearance-settings>
+            <appearance-settings></appearance-settings>
           </div>
 
           <div class="content-trailer"></div>
