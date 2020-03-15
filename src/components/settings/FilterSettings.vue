@@ -2,16 +2,20 @@
   <div class="panel">
     Show these meals:
 
-    <label v-for="(label, habits) in eatingHabitsOptions" :key="habits" class="habits">
-      <input v-model="eatingHabits" type="radio" :value="habits" /> {{ label }}
-    </label>
+    <choice-control v-model="eatingHabits" :options="eatingHabitsOptions"></choice-control>
   </div>
 </template>
 
 <script>
 import settings from '~/settings'
 
+import ChoiceControl from '~/components/controls/ChoiceControl'
+
 export default {
+  components: {
+    ChoiceControl
+  },
+
   data () {
     return {
       eatingHabitsOptions: {
@@ -30,10 +34,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.habits {
-  display: block;
-  margin: 4px 0;
-}
-</style>

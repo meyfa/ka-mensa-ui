@@ -4,14 +4,7 @@
       Select at least one canteen
     </div>
 
-    <label v-for="canteen in canteens" :key="canteen.id" class="canteen"
-        :class="{ selected: isSelected(canteen.id) }">
-      <input type="checkbox"
-          :checked="isSelected(canteen.id)"
-          @change="toggleSelection(canteen.id)" />
-      {{ canteen.name }}
-      <div class="canteen-lines">{{ formatLines(canteen.lines) }}</div>
-    </label>
+    <select-control :items="selectControlItems" :selection.sync="selected"></select-control>
   </div>
 </template>
 
@@ -19,11 +12,38 @@
 import settings from '~/settings'
 import api from '~/api'
 
+import SelectControl from '~/components/controls/SelectControl'
+
 export default {
+  components: {
+    SelectControl
+  },
+
   data () {
     return {
       canteens: [],
       selected: settings.canteens
+    }
+  },
+
+  computed: {
+    selectControlItems () {
+      const items = {}
+      for (const canteen of this.canteens) {
+        items[canteen.id] = {
+          label: canteen.name,
+          description: this.formatLines(canteen.lines)
+        }
+      }
+      return items
+    }
+  },
+
+  watch: {
+    selected (to) {
+      if (to.length > 0) {
+        settings.canteens = to
+      }
     }
   },
 
@@ -34,26 +54,6 @@ export default {
   methods: {
     async fetchData () {
       this.canteens = await api.getCanteens()
-    },
-
-    isSelected (canteenId) {
-      return this.selected.includes(canteenId)
-    },
-
-    setSelection (canteenId, select) {
-      if (select) {
-        this.selected.push(canteenId)
-      } else {
-        this.selected = this.selected.filter((id) => id !== canteenId)
-      }
-      // save only if anything is selected
-      if (this.selected.length > 0) {
-        settings.canteens = this.selected
-      }
-    },
-
-    toggleSelection (canteenId) {
-      this.setSelection(canteenId, !this.isSelected(canteenId))
     },
 
     formatLines (lines) {
@@ -71,26 +71,5 @@ export default {
   font-weight: bold;
   color: var(--color-warn-text);
   background: var(--color-warn-background);
-}
-
-.canteen {
-  display: block;
-  margin: 0 0 4px;
-  padding: 4px;
-  cursor: pointer;
-  border: 2px solid transparent;
-}
-
-.canteen.selected {
-  background: var(--color-selection-background);
-}
-
-.canteen:hover {
-  border-color: var(--color-selection-border);
-}
-
-.canteen-lines {
-  font-size: 14px;
-  color: var(--color-text-lighter);
 }
 </style>

@@ -98,11 +98,9 @@ export default {
   --color-footer-link: #6af;
   --color-dialog-veil: rgba(30, 30, 30, 0.8);
   --color-dialog-background: #fff;
-  --color-selection-border: #aaa;
-  --color-selection-background: #bbd0ff;
   --color-card-background: #fff;
   --color-text: #000;
-  --color-text-lighter: #666;
+  --color-text-lighter: #777;
   --color-button-background: #ddd;
   --color-button-border: #aaa;
   --color-divider: #bbb;
@@ -121,11 +119,9 @@ export default {
   --color-footer-link: #48d;
   --color-dialog-veil: rgba(4, 4, 4, 0.8);
   --color-dialog-background: #222;
-  --color-selection-border: #888;
-  --color-selection-background: #136;
   --color-card-background: #1a1a1a;
   --color-text: #fff;
-  --color-text-lighter: #888;
+  --color-text-lighter: #999;
   --color-button-background: #1a1b1c;
   --color-button-border: #444;
   --color-divider: #000;

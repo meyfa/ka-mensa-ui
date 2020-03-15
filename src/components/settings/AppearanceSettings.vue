@@ -2,32 +2,32 @@
   <div class="panel">
     Page theme
 
-    <label v-for="(label, themeId) in themes" :key="themeId" class="theme">
-      <input v-model="theme" type="radio" :value="themeId" /> {{ label }}
-    </label>
+    <choice-control v-model="theme" :options="themes"></choice-control>
 
     <br />
 
-    <label class="toggle">
-      <input type="checkbox"
-          :checked="hideEmptyLines"
-          @change="hideEmptyLines = !hideEmptyLines" />
+    <check-control v-model="hideEmptyLines">
       Hide empty lines
-    </label>
+    </check-control>
 
-    <label class="toggle">
-      <input type="checkbox"
-          :checked="enableHighlights"
-          @change="enableHighlights = !enableHighlights" />
+    <check-control v-model="enableHighlights">
       Highlight vegetarian/vegan menus
-    </label>
+    </check-control>
   </div>
 </template>
 
 <script>
 import settings from '~/settings'
 
+import ChoiceControl from '~/components/controls/ChoiceControl'
+import CheckControl from '~/components/controls/CheckControl'
+
 export default {
+  components: {
+    ChoiceControl,
+    CheckControl
+  },
+
   data () {
     return {
       themes: {
@@ -57,11 +57,6 @@ export default {
 </script>
 
 <style scoped>
-.theme {
-  display: block;
-  margin: 4px 0;
-}
-
 .toggle {
   display: block;
   margin: 8px 0;
