@@ -1,6 +1,6 @@
 <template>
   <transition name="fadein">
-    <div v-if="visible" class="outer">
+    <div v-if="visible" class="outer" @click.self="close()">
       <div class="inner">
         <h2 class="title">Settings</h2>
         <button type="button" class="close-btn" @click="close()">✖</button>
@@ -24,6 +24,8 @@
           <div class="content-trailer"></div>
         </div>
       </div>
+
+      <keydown-listener :keys="closeKeys" @triggered="close()"></keydown-listener>
     </div>
   </transition>
 </template>
@@ -35,16 +37,27 @@ import CanteensSettings from '~/components/settings/CanteensSettings'
 import FilterSettings from '~/components/settings/FilterSettings'
 import AppearanceSettings from '~/components/settings/AppearanceSettings'
 
+import KeydownListener from '~/components/functional/KeydownListener'
+
+const ESCAPE_KEY = 27
+
 export default {
   components: {
     CanteensSettings,
     FilterSettings,
-    AppearanceSettings
+    AppearanceSettings,
+    KeydownListener
   },
 
   props: {
     visible: {
       type: Boolean
+    }
+  },
+
+  data () {
+    return {
+      closeKeys: [ESCAPE_KEY]
     }
   },
 

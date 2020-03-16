@@ -1,6 +1,6 @@
 <template>
   <transition name="fadein">
-    <div v-if="meal" class="outer">
+    <div v-if="meal" class="outer" @click.self="close()">
       <div class="inner">
         <h2 class="title">Meal Information</h2>
         <button type="button" class="close-btn" @click="close()">✖</button>
@@ -22,16 +22,25 @@
           <div class="content-trailer"></div>
         </div>
       </div>
+
+      <keydown-listener :keys="closeKeys" @triggered="close()"></keydown-listener>
     </div>
   </transition>
 </template>
 
 <script>
 import api from '~/api'
-
 import { disableScrolling, enableScrolling } from '~/global-scrolling'
 
+import KeydownListener from '~/components/functional/KeydownListener'
+
+const ESCAPE_KEY = 27
+
 export default {
+  components: {
+    KeydownListener
+  },
+
   props: {
     meal: {
       type: Object,
@@ -41,6 +50,7 @@ export default {
 
   data () {
     return {
+      closeKeys: [ESCAPE_KEY],
       legend: null
     }
   },
