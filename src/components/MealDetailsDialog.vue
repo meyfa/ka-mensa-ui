@@ -23,6 +23,7 @@
         </div>
       </div>
 
+      <prevent-global-scrolling></prevent-global-scrolling>
       <keydown-listener :keys="closeKeys" @triggered="close()"></keydown-listener>
     </div>
   </transition>
@@ -30,14 +31,15 @@
 
 <script>
 import api from '~/api'
-import { disableScrolling, enableScrolling } from '~/global-scrolling'
 
+import PreventGlobalScrolling from '~/components/functional/PreventGlobalScrolling'
 import KeydownListener from '~/components/functional/KeydownListener'
 
 const ESCAPE_KEY = 27
 
 export default {
   components: {
+    PreventGlobalScrolling,
     KeydownListener
   },
 
@@ -58,16 +60,6 @@ export default {
   computed: {
     classifiersAndAdditives () {
       return [...new Set([...this.meal.classifiers, ...this.meal.additives])]
-    }
-  },
-
-  watch: {
-    meal (to) {
-      if (to) {
-        disableScrolling()
-      } else {
-        enableScrolling()
-      }
     }
   },
 

@@ -25,18 +25,18 @@
         </div>
       </div>
 
+      <prevent-global-scrolling></prevent-global-scrolling>
       <keydown-listener :keys="closeKeys" @triggered="close()"></keydown-listener>
     </div>
   </transition>
 </template>
 
 <script>
-import { disableScrolling, enableScrolling } from '~/global-scrolling'
-
 import CanteensSettings from '~/components/settings/CanteensSettings'
 import FilterSettings from '~/components/settings/FilterSettings'
 import AppearanceSettings from '~/components/settings/AppearanceSettings'
 
+import PreventGlobalScrolling from '~/components/functional/PreventGlobalScrolling'
 import KeydownListener from '~/components/functional/KeydownListener'
 
 const ESCAPE_KEY = 27
@@ -46,6 +46,7 @@ export default {
     CanteensSettings,
     FilterSettings,
     AppearanceSettings,
+    PreventGlobalScrolling,
     KeydownListener
   },
 
@@ -58,16 +59,6 @@ export default {
   data () {
     return {
       closeKeys: [ESCAPE_KEY]
-    }
-  },
-
-  watch: {
-    visible (to) {
-      if (to) {
-        disableScrolling()
-      } else {
-        enableScrolling()
-      }
     }
   },
 
