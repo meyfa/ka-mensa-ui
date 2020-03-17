@@ -8,6 +8,7 @@ const { DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPreconnectPlugin = require('html-webpack-preconnect-plugin')
 
 const BASE_DIR = path.join(__dirname, '../..')
 const SRC_DIR = path.join(BASE_DIR, 'src')
@@ -59,15 +60,16 @@ module.exports = {
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       hash: true,
-      xhtml: true,
       template: path.join(SRC_DIR, 'index.ejs'),
       title: 'KA Mensa',
       meta: {
         viewport: 'width=device-width, initial-scale=1'
-      }
+      },
+      preconnect: [config.api.endpoint]
     }),
     new DefinePlugin({
       API_ENDPOINT: JSON.stringify(config.api.endpoint)
-    })
+    }),
+    new HtmlWebpackPreconnectPlugin()
   ]
 }

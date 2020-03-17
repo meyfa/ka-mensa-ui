@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <a :href="url" target="_blank" class="backlink">{{ url }}</a>
+    <a :href="url" target="_blank" rel="noreferrer" class="backlink">{{ url }}</a>
   </footer>
 </template>
 
