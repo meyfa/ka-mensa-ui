@@ -1,6 +1,6 @@
 <template>
   <div class="panel">
-    Show these meals:
+    Diese Gerichte anzeigen:
 
     <choice-control v-model="eatingHabits" :options="eatingHabitsOptions"></choice-control>
   </div>
@@ -19,9 +19,9 @@ export default {
   data () {
     return {
       eatingHabitsOptions: {
-        all: 'Everything',
-        vegetarian: 'Vegetarian and Vegan',
-        vegan: 'Vegan only'
+        all: 'alles',
+        vegetarian: 'vegetarisch und vegan',
+        vegan: 'nur vegan'
       },
       eatingHabits: settings.eatingHabits
     }

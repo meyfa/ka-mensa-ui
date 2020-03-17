@@ -1,9 +1,9 @@
 <template>
-  <dialog-base title="Settings" size="full"
+  <dialog-base title="Optionen" size="full"
       :visible="visible" @close="$emit('update:visible', false)">
     <div class="columns">
       <div class="column">
-        <div class="column-title">Canteens</div>
+        <div class="column-title">Mensen</div>
         <canteens-settings></canteens-settings>
       </div>
 
@@ -13,7 +13,7 @@
       </div>
 
       <div class="column">
-        <div class="column-title">Appearance</div>
+        <div class="column-title">Darstellung</div>
         <appearance-settings></appearance-settings>
       </div>
     </div>

@@ -1,17 +1,17 @@
 <template>
   <div class="panel">
-    Page theme
+    Seiten-Stil
 
     <choice-control v-model="theme" :options="themes"></choice-control>
 
     <br />
 
     <check-control v-model="hideEmptyLines">
-      Hide empty lines
+      Leere Linien verstecken
     </check-control>
 
     <check-control v-model="enableHighlights">
-      Highlight vegetarian/vegan menus
+      Vegetarische/Vegane Gerichte hervorheben
     </check-control>
   </div>
 </template>
@@ -31,8 +31,8 @@ export default {
   data () {
     return {
       themes: {
-        light: 'Light',
-        dark: 'Dark'
+        light: 'hell',
+        dark: 'dunkel'
       },
       theme: settings.theme,
       hideEmptyLines: settings.hideEmptyLines,

@@ -3,7 +3,7 @@
     <h1 class="title">KA Mensa</h1>
 
     <div class="settings">
-      <button type="button" class="settings-btn" @click="$emit('settingsOpen')">Settings</button>
+      <button type="button" class="settings-btn" @click="$emit('settingsOpen')">Optionen</button>
     </div>
   </header>
 </template>

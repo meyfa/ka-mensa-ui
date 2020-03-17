@@ -1,12 +1,12 @@
 <template>
-  <dialog-base title="Meal Information"
+  <dialog-base title="Menü-Informationen"
       :visible="Boolean(meal)" @close="$emit('update:meal', null)">
     <template v-if="meal">
       <div class="name">
         {{ meal.name }}
       </div>
       <div v-if="meal.price" class="price">
-        Price: {{ meal.price }}
+        Preis: {{ meal.price }}
       </div>
       <div class="classifiers">
         <div v-for="classifier in classifiersAndAdditives" :key="classifier"

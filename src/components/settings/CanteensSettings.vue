@@ -1,7 +1,7 @@
 <template>
   <div class="panel">
     <div v-if="canteens.length && !selected.length" class="warning">
-      Select at least one canteen
+      Wähle mindestens eine Mensa aus
     </div>
 
     <select-control :items="selectControlItems" :selection.sync="selected"></select-control>

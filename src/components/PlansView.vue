@@ -7,7 +7,7 @@
           @details="detailsDialogMeal = $event"></canteen-lines>
     </div>
     <div v-if="!filteredPlans.length" class="no-data">
-      (no data)
+      (keine Daten)
     </div>
 
     <meal-details-dialog :meal.sync="detailsDialogMeal"></meal-details-dialog>
