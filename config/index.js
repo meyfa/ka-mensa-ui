@@ -8,5 +8,15 @@ module.exports = {
      * @type {string}
      */
     endpoint: ''
+  },
+
+  site: {
+    /**
+     * The URL of the privacy policy. If empty, no privacy policy link is shown;
+     * make sure to comply with privacy laws!
+     *
+     * @type {string}
+     */
+    privacyPolicyUrl: ''
   }
 }

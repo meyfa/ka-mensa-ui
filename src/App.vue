@@ -80,7 +80,7 @@ export default {
   --color-page-background: #dedddc;
   --color-header-background: #fff;
   --color-footer-background: #333;
-  --color-footer-text: #aaa;
+  --color-footer-text: #bbb;
   --color-footer-link: #6af;
   --color-dialog-veil: rgba(30, 30, 30, 0.8);
   --color-dialog-background: #fff;
@@ -102,7 +102,7 @@ export default {
   --color-page-background: #000;
   --color-header-background: #222;
   --color-footer-background: #101010;
-  --color-footer-text: #555;
+  --color-footer-text: #888;
   --color-footer-link: #48d;
   --color-dialog-veil: rgba(4, 4, 4, 0.8);
   --color-dialog-background: #222;
@@ -151,12 +151,12 @@ body {
 
 #app {
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
 }
 
 .footer {
   position: absolute;
-  bottom: 0;
+  top: calc(100% - 50px);
   width: 100%;
 }
 </style>

@@ -68,7 +68,8 @@ module.exports = {
       preconnect: [config.api.endpoint]
     }),
     new DefinePlugin({
-      API_ENDPOINT: JSON.stringify(config.api.endpoint)
+      API_ENDPOINT: JSON.stringify(config.api.endpoint),
+      PRIVACY_POLICY_URL: JSON.stringify(config.site.privacyPolicyUrl)
     }),
     new HtmlWebpackPreconnectPlugin()
   ]

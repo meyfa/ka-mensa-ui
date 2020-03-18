@@ -1,6 +1,11 @@
 <template>
   <footer class="footer">
-    <a :href="url" target="_blank" rel="noreferrer" class="backlink">{{ url }}</a>
+    Diese Website gehört nicht zum Studierendenwerk Karlsruhe und wird von diesem auch nicht unterstützt.
+    Alle Angaben ohne Gewähr.<br />
+    <a v-if="privacyPolicyUrl" :href="privacyPolicyUrl" class="link">Datenschutzerklärung</a>
+    <hr class="footer-rule" />
+    Mitwirken:
+    <a :href="url" target="_blank" rel="noreferrer" class="link">{{ url }}</a>
   </footer>
 </template>
 
@@ -8,6 +13,7 @@
 export default {
   data () {
     return {
+      privacyPolicyUrl: PRIVACY_POLICY_URL,
       url: 'https://github.com/meyfa/ka-mensa-ui'
     }
   }
@@ -18,19 +24,29 @@ export default {
 .footer {
   display: block;
   margin: 24px 0 0;
-  padding: 16px;
+  padding: 40px 16px;
   line-height: 1.4;
   font-size: 12pt;
+  color: var(--color-footer-text);
   background: var(--color-footer-background);
 }
 
-.backlink {
-  color: var(--color-footer-text);
-  text-decoration: none;
+.footer-rule {
+  display: block;
+  width: 32px;
+  height: 2px;
+  margin: 16px 0;
+  border: none;
+  background: var(--color-footer-text);
 }
 
-.backlink:focus,
-.backlink:hover {
+.link {
+  color: var(--color-footer-text);
+  text-decoration: underline;
+}
+
+.link:focus,
+.link:hover {
   color: var(--color-footer-link);
 }
 </style>
