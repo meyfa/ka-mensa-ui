@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App'
 
 import moment from 'moment'
+import 'moment/locale/de'
+
 import { getCurrentDate, formatDate } from '~/util/date'
 
 moment.locale('de')

@@ -4,7 +4,7 @@ const path = require('path')
 
 const config = require('../')
 
-const { DefinePlugin } = require('webpack')
+const { IgnorePlugin, DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
@@ -59,6 +59,8 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
+    // Ignore all locale files of moment.js
+    new IgnorePlugin(/^\.\/locale$/, /moment$/),
     new HtmlWebpackPlugin({
       hash: true,
       template: path.join(SRC_DIR, 'index.ejs'),
