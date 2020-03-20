@@ -23,7 +23,7 @@ module.exports = merge(common, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].style.css'
+      filename: '[name].[hash].css'
     }),
     new OptimizeCssAssetsPlugin()
   ]

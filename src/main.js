@@ -40,3 +40,9 @@ const vm = new Vue({
   render: h => h(App)
 })
 vm.$mount('#app')
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+  })
+}
