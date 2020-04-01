@@ -24,7 +24,7 @@ export default {
       // if this is the first instance, activate prevention
       if (preventCount === 1) {
         const previousBodyWidth = document.body.offsetWidth
-        document.documentElement.classList.add('noscroll')
+        document.documentElement.style.overflowY = 'hidden'
         // adjust body padding to remove 'jumping' because of hidden scrollbar
         const scrollbarWidth = document.body.offsetWidth - previousBodyWidth
         document.body.style.paddingRight = scrollbarWidth + 'px'
@@ -35,7 +35,7 @@ export default {
       --preventCount
       // if this was the last instance, deactivate prevention
       if (preventCount === 0) {
-        document.documentElement.classList.remove('noscroll')
+        document.documentElement.style.overflowY = ''
         document.body.style.paddingRight = ''
       }
     }

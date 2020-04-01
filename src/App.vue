@@ -139,10 +139,6 @@ html {
   overflow-y: scroll;
 }
 
-html.noscroll {
-  overflow-y: hidden;
-}
-
 body {
   background: var(--color-page-background);
   font-family: var(--font);

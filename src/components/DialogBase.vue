@@ -23,6 +23,7 @@ import PreventGlobalScrolling from '~/components/functional/PreventGlobalScrolli
 import KeydownListener from '~/components/functional/KeydownListener'
 
 const ESCAPE_KEY = 27
+const ENTER_KEY = 13
 
 const SIZE_OPTIONS = ['default', 'full']
 
@@ -49,7 +50,7 @@ export default {
 
   data () {
     return {
-      closeKeys: [ESCAPE_KEY]
+      closeKeys: [ESCAPE_KEY, ENTER_KEY]
     }
   },
 

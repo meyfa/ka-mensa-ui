@@ -20,6 +20,7 @@ export default {
   methods: {
     handleEvent (event) {
       if (!this.keys || !this.keys.length || this.keys.includes(event.keyCode)) {
+        event.preventDefault()
         this.$emit('triggered', event)
       }
     }
