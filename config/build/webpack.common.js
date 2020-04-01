@@ -39,7 +39,6 @@ module.exports = {
         test: /\.html$/,
         use: {
           loader: 'html-loader'
-          // options: { esModule: true }, // not yet supported
         }
       },
       { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
@@ -48,7 +47,7 @@ module.exports = {
         test: /\.(png|svg|jpg)$/,
         use: {
           loader: 'file-loader',
-          options: { esModule: false } // needs html-loader support
+          options: { esModule: false }
         }
       },
       {
