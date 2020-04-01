@@ -10,14 +10,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPreconnectPlugin = require('html-webpack-preconnect-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
-const WorkboxPlugin = require('workbox-webpack-plugin')
 
 const BASE_DIR = path.join(__dirname, '../..')
 const SRC_DIR = path.join(BASE_DIR, 'src')
 const DST_DIR = path.join(BASE_DIR, 'dist')
-
-// 5 MiB
-const SW_MAX_FILE_SIZE = 5 * 1024 * 1024
 
 module.exports = {
   context: BASE_DIR,
@@ -100,12 +96,6 @@ module.exports = {
       background_color: '#dedddc',
       theme_color: '#5f9e40',
       ios: true
-    }),
-    new WorkboxPlugin.GenerateSW({
-      clientsClaim: true,
-      skipWaiting: true,
-      maximumFileSizeToCacheInBytes: SW_MAX_FILE_SIZE,
-      ignoreURLParametersMatching: [/^source$/]
     })
   ]
 }

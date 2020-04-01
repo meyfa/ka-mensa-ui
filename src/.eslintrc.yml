@@ -2,6 +2,7 @@ extends:
   - plugin:vue/recommended
 
 globals:
+  process: readonly
   API_ENDPOINT: readonly
   PRIVACY_POLICY_URL: readonly
 
