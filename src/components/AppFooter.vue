@@ -13,6 +13,8 @@
 export default {
   data () {
     return {
+      // PRIVACY_POLICY_URL is configurable (config.site.privacyPolicyUrl)
+      // and defined via webpack
       privacyPolicyUrl: PRIVACY_POLICY_URL,
       url: 'https://github.com/meyfa/ka-mensa-ui'
     }

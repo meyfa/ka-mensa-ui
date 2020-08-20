@@ -30,7 +30,10 @@ class API {
    */
   async getCanteens () {
     const { data } = await axios.get(this.endpoint + 'canteens')
-    return data
+    if (!data.success) {
+      throw new Error(data.error)
+    }
+    return data.data
   }
 
   /**
@@ -40,7 +43,10 @@ class API {
    */
   async getLegend () {
     const { data } = await axios.get(this.endpoint + 'meta/legend')
-    return data
+    if (!data.success) {
+      throw new Error(data.error)
+    }
+    return data.data
   }
 
   /**
@@ -52,10 +58,14 @@ class API {
   async getPlan (date) {
     const dateStr = formatDate(date)
     const { data } = await axios.get(this.endpoint + 'plans/' + dateStr)
-    return data
+    if (!data.success) {
+      throw new Error(data.error)
+    }
+    return data.data
   }
 }
 
 // EXPORT
 
+// API_ENDPOINT is configurable (config.api.endpoint) and defined via webpack
 export default new API(API_ENDPOINT)
