@@ -50,6 +50,19 @@ class API {
   }
 
   /**
+   * Fetch the set of plan summaries.
+   *
+   * @returns {Promise} Resolves to an array of plan summary objects.
+   */
+  async getPlans () {
+    const { data } = await axios.get(this.endpoint + 'plans')
+    if (!data.success) {
+      throw new Error(data.error)
+    }
+    return data.data
+  }
+
+  /**
    * Fetch the set of plans for the given date.
    *
    * @param {object} date A date object.

@@ -25,7 +25,7 @@ import KeydownListener from '~/components/functional/KeydownListener'
 const ESCAPE_KEY = 27
 const ENTER_KEY = 13
 
-const SIZE_OPTIONS = ['default', 'full']
+const SIZE_OPTIONS = ['default', 'full', 'grow']
 
 export default {
   components: {
@@ -108,6 +108,12 @@ export default {
   max-height: 1600px;
 }
 
+.size-grow .inner {
+  height: auto;
+  min-height: 150px;
+  max-height: 1600px;
+}
+
 .fadein-enter-active > .inner,
 .fadein-leave-active > .inner {
   transition: all 0.2s 0.1s;
@@ -156,6 +162,11 @@ export default {
   height: calc(100% - 50px - 4px);
   padding: 16px 24px 0;
   overflow-y: scroll;
+}
+
+.size-grow .content {
+  height: auto;
+  max-height: calc(90vh - 50px - 4px);
 }
 
 .content-trailer {

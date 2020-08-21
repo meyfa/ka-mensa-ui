@@ -2,7 +2,8 @@
   <div id="app">
     <app-header @settingsOpen="showSettings = true"></app-header>
 
-    <date-header :date="date" @next="nextDate" @previous="previousDate"></date-header>
+    <date-header :date="date" @next="nextDate" @previous="previousDate"
+        @select="selectDate"></date-header>
     <plans-view :date="date"></plans-view>
 
     <settings-dialog :visible.sync="showSettings"></settings-dialog>
@@ -69,6 +70,11 @@ export default {
     previousDate () {
       if (!this.date) return
       this.date = getPreviousWeekday(this.date)
+    },
+
+    selectDate (date) {
+      if (!date) return
+      this.date = date
     }
   }
 }
@@ -92,6 +98,9 @@ export default {
   --color-divider: #bbb;
   --color-warn-background: #fcc;
   --color-warn-text: #d14;
+  --color-date-available: #bdf;
+  --color-date-current: #26f;
+  --color-date-current-text: #fff;
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
   --color-meal-vegetarian: #fff4cc;
   --color-meal-vegan: #cfc;
@@ -114,6 +123,9 @@ export default {
   --color-divider: #000;
   --color-warn-background: #422;
   --color-warn-text: #fab;
+  --color-date-available: #248;
+  --color-date-current: #8cf;
+  --color-date-current-text: #000;
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.75);
   --color-meal-vegetarian: #504028;
   --color-meal-vegan: #084824;

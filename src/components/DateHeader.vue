@@ -2,17 +2,26 @@
   <div ref="container" class="container">
     <div class="panel" :class="{ sticky }">
       <button type="button" class="dir-btn" @click="$emit('previous')">❮</button>
-      <div class="date">
+      <button class="date" @click="showDateSelection = true">
         <h2 class="date-title">{{ date | date }}</h2>
         <div class="date-subtitle">{{ date | daysAgo }}</div>
-      </div>
+      </button>
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
+
+    <date-selection-dialog :visible.sync="showDateSelection" :current="date"
+        @select="$emit('select', $event)"></date-selection-dialog>
   </div>
 </template>
 
 <script>
+import DateSelectionDialog from '~/components/DateSelectionDialog'
+
 export default {
+  components: {
+    DateSelectionDialog
+  },
+
   props: {
     date: {
       type: Object,
@@ -22,6 +31,7 @@ export default {
 
   data () {
     return {
+      showDateSelection: false,
       sticky: false
     }
   },
@@ -69,8 +79,20 @@ export default {
   display: inline-block;
   min-width: 150px;
   margin: 0 20px;
+  padding: 4px;
+  font: inherit;
+  color: inherit;
   line-height: 1;
   vertical-align: middle;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.date:focus,
+.date:hover {
+  border-color: var(--color-text);
 }
 
 .date-title {
