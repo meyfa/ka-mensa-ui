@@ -51,7 +51,7 @@ export default {
 
   computed: {
     weekdays () {
-      return moment.weekdaysMin()
+      return moment.weekdaysMin(true)
     },
 
     formattedMonth () {
