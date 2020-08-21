@@ -6,6 +6,19 @@
       <meal-item v-for="(meal, index) in line.meals" :key="index"
           :meal="meal" :highlight="enableHighlights"
           @click="$emit('details', meal)"></meal-item>
+
+      <div v-if="!line.meals.length" class="meals-noentries">
+        Keine passenden Menüs
+      </div>
+    </div>
+
+    <div v-if="!filteredLines.length" class="lines-noentries">
+      <template v-if="hasAnyMeal">
+        Hier gibt es kein Menü, das zu den gewählten Filtern passt.
+      </template>
+      <template v-else>
+        Hier wird an keiner Linie etwas angeboten.
+      </template>
     </div>
   </div>
 </template>
@@ -37,6 +50,10 @@ export default {
   },
 
   computed: {
+    hasAnyMeal () {
+      return this.lines.some(line => line.meals.length)
+    },
+
     filteredLines () {
       return this.lines.map(line => {
         return {
@@ -96,6 +113,21 @@ export default {
   margin: 0 4px 12px;
   font-size: 20px;
   font-weight: bold;
+}
+
+.meals-noentries {
+  margin: 0 4px;
+  font-size: 14px;
+  color: var(--color-text-lighter);
+}
+
+.lines-noentries {
+  margin: 0 8px 16px;
+  padding: 16px;
+  text-align: center;
+  color: var(--color-text-lighter);
+  border: 1px solid var(--color-text-lighter);
+  border-radius: 2px;
 }
 
 @media (max-width: 500px) {
