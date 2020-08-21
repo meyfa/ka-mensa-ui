@@ -75,35 +75,17 @@ export default {
       const first = moment([this.year, this.month])
       const last = first.clone().endOf('month')
 
-      const allDays = []
+      // a calendar should always contain exactly 6 rows with 7 days each
+      const rows = new Array(6).fill(null).map(row => new Array(7).fill(null))
 
-      // skip days not part of current month
-      for (let i = 1; i < first.isoWeekday(); ++i) {
-        allDays.push(null)
-      }
-
-      // add days of month
-      for (let dayNumber = 1, n = last.date(); dayNumber <= n; ++dayNumber) {
-        const date = moment([this.year, this.month, dayNumber])
-        allDays.push({
-          day: dayNumber,
-          enabled: this.dates.some(item => date.isSame(moment(item), 'day')),
-          current: date.isSame(current, 'day')
-        })
-      }
-
-      const rows = []
-      for (let i = 0; i < allDays.length; i += 7) {
-        const cols = allDays.slice(i, i + 7)
-        // ensure correct length
-        while (cols.length < 7) cols.push(null)
-        rows.push(cols)
-      }
-
-      // add dummy rows to get up to 6, which is the max possible,
-      // to prevent layout shifting
-      while (rows.length < 6) {
-        rows.push(new Array(7).fill(null))
+      let offset = first.isoWeekday() - 1
+      for (const cursor = first.clone(); last.isSameOrAfter(cursor); cursor.add(1, 'd')) {
+        rows[Math.trunc(offset / 7)][offset % 7] = {
+          day: cursor.date(),
+          enabled: this.dates.some(item => cursor.isSame(moment(item), 'day')),
+          current: cursor.isSame(current, 'day')
+        }
+        ++offset
       }
 
       return rows
