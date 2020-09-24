@@ -30,29 +30,24 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.vue$/, loader: 'vue-loader' },
       {
-        test: /\.html$/,
-        use: {
-          loader: 'html-loader'
-        }
+        test: /\.vue$/,
+        use: 'vue-loader'
       },
-      { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ },
-      // css is handled separately in dev/prod
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
       {
         test: /\.(png|svg|jpg)$/,
-        use: {
-          loader: 'file-loader',
-          options: { esModule: false }
-        }
+        use: 'file-loader'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: {
-          loader: 'file-loader',
-          options: { esModule: true }
-        }
+        use: 'file-loader'
       }
+      // css is handled separately in dev/prod
     ]
   },
   plugins: [

@@ -16,12 +16,20 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/,
-        use: [{
-          loader: MiniCssExtractPlugin.loader,
-          options: {
-            esModule: true
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: false
+            }
           }
-        }, 'css-loader']
+        ]
       }
     ]
   },
