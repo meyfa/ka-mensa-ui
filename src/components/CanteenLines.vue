@@ -25,7 +25,7 @@
 
 <script>
 import settings from '~/settings'
-import { isVegetarian, isVegan } from '~/util/meals'
+import { isVegetarian, isVegan, isInfo } from '~/util/meals'
 
 import MealItem from '~/components/MealItem'
 
@@ -80,6 +80,9 @@ export default {
     },
 
     isMealVisible (meal) {
+      if (isInfo(meal)) {
+        return true
+      }
       if (this.eatingHabits === 'vegan') {
         return isVegan(meal)
       }

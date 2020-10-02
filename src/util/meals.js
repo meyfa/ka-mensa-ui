@@ -27,3 +27,13 @@ export function isVegetarian (meal) {
 export function isVegan (meal) {
   return meal.classifiers.includes(CLASSIFIER_VEGAN)
 }
+
+/**
+ * Determine whether the given meal is an informational entry, i.e. not a meal.
+ *
+ * @param {object} meal The meal.
+ * @returns {boolean} Whether the meal is informational.
+ */
+export function isInfo (meal) {
+  return meal.classifiers.length === 0 && meal.additives.length === 0
+}
