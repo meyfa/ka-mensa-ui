@@ -87,7 +87,7 @@ class Settings extends EventEmitter {
    * @returns {string} The page theme ('light', 'dark' or 'auto').
    */
   get theme () {
-    return this._data.theme || 'light'
+    return this._data.theme || 'auto'
   }
 
   set theme (value) {
