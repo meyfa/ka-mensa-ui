@@ -3,13 +3,43 @@
     <h1 class="title">KA Mensa</h1>
 
     <div class="settings">
-      <button type="button" class="settings-btn" @click="$emit('settings-open')">Optionen</button>
+      <button type="button" class="settings-btn" :class="{ pulse: unseenSettingsAvailable }"
+          @click="openSettings()">
+        Optionen
+      </button>
     </div>
   </header>
 </template>
 
 <script>
+import settingsPulse from '~/settings-pulse'
+
 export default {
+  data () {
+    return {
+      unseenSettingsAvailable: false
+    }
+  },
+
+  created () {
+    this.updateSettingsPulse()
+    settingsPulse.on('mark', this.updateSettingsPulse)
+  },
+
+  destroyed () {
+    settingsPulse.removeListener('mark', this.updateSettingsPulse)
+  },
+
+  methods: {
+    openSettings () {
+      this.$emit('settings-open')
+      settingsPulse.markCurrent()
+    },
+
+    updateSettingsPulse () {
+      this.unseenSettingsAvailable = !settingsPulse.isCurrent
+    }
+  }
 }
 </script>
 
@@ -47,6 +77,7 @@ export default {
   color: inherit;
   border: 1px solid transparent;
   border-radius: 2px;
+  box-shadow: none;
   outline: none;
   cursor: pointer;
 }
@@ -55,5 +86,27 @@ export default {
 .settings-btn:hover {
   background: var(--color-button-background);
   border-color: var(--color-button-border);
+}
+
+.settings-btn.pulse {
+  animation-name: settings-pulse;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  box-shadow: 0 0 0 0 rgba(60, 120, 240, 0.75);
+}
+
+@keyframes settings-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(60, 120, 240, 0.75);
+  }
+
+  40% {
+    box-shadow: 0 0 2px 10px transparent;
+  }
+
+  100% {
+    box-shadow: 0 0 2px 10px transparent;
+  }
 }
 </style>
