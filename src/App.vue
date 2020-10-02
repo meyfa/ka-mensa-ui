@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <app-header @settingsOpen="showSettings = true"></app-header>
+    <app-header @settings-open="showSettings = true"></app-header>
 
     <date-header :date="date" @next="nextDate" @previous="previousDate"
         @select="selectDate"></date-header>
