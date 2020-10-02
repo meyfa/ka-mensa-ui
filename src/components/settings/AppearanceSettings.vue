@@ -32,7 +32,8 @@ export default {
     return {
       themes: {
         light: 'hell',
-        dark: 'dunkel'
+        dark: 'dunkel',
+        auto: 'an Systemeinstellungen anpassen'
       },
       theme: settings.theme,
       hideEmptyLines: settings.hideEmptyLines,

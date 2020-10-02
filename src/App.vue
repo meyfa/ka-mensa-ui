@@ -24,6 +24,8 @@ import DateHeader from '~/components/DateHeader'
 import PlansView from '~/components/PlansView'
 import SettingsDialog from '~/components/SettingsDialog'
 
+const prefersDarkScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null
+
 export default {
   name: 'App',
 
@@ -46,6 +48,10 @@ export default {
     this.updateSettings()
     settings.on('update', this.updateSettings)
 
+    if (prefersDarkScheme) {
+      prefersDarkScheme.addEventListener('change', this.updateSettings)
+    }
+
     let date = getCurrentDate()
     if (!isWeekday(date)) {
       date = getNextWeekday(date)
@@ -55,11 +61,19 @@ export default {
 
   destroyed () {
     settings.removeListener('update', this.updateSettings)
+
+    if (prefersDarkScheme) {
+      prefersDarkScheme.removeEventListener('change', this.updateSettings)
+    }
   },
 
   methods: {
     updateSettings () {
-      document.documentElement.classList.toggle('theme-dark', settings.theme === 'dark')
+      let darkTheme = settings.theme === 'dark'
+      if (settings.theme === 'auto') {
+        darkTheme = prefersDarkScheme && prefersDarkScheme.matches
+      }
+      document.documentElement.classList.toggle('theme-dark', darkTheme)
     },
 
     nextDate () {

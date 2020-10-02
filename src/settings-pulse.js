@@ -4,7 +4,7 @@ import { EventEmitter } from 'events'
 
 const LOCALSTORAGE_KEY = 'mensa-ui.settings-pulse'
 
-const VERSION = 1
+const VERSION = 2
 
 // CLASS DEFINITION
 
