@@ -83,10 +83,11 @@ export default {
       if (isInfo(meal)) {
         return true
       }
-      if (this.eatingHabits === 'vegan') {
-        return isVegan(meal)
-      }
-      if (this.eatingHabits === 'vegetarian') {
+      // Many vegetarian meals can be vegan with a different choice of dessert,
+      // or by kindly asking canteen staff to exclude certain ingredients
+      // (e.g. grated cheese).
+      // Hence, filtering for strictly vegan meals is too restrictive.
+      if (this.eatingHabits === 'vegetarian' || this.eatingHabits === 'vegan') {
         return isVegan(meal) || isVegetarian(meal)
       }
       return true

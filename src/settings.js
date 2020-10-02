@@ -49,6 +49,11 @@ class Settings extends EventEmitter {
     if (!this.load()) {
       this.save()
     }
+
+    // past versions provided both 'vegan' and 'vegetarian' settings
+    if (this.eatingHabits === 'vegan') {
+      this.eatingHabits = 'vegetarian'
+    }
   }
 
   /**
@@ -118,7 +123,7 @@ class Settings extends EventEmitter {
   }
 
   /**
-   * @returns {string} The eating habits ('all', 'vegetarian', or 'vegan').
+   * @returns {string} The eating habits ('all' or 'vegetarian').
    */
   get eatingHabits () {
     return this._data.eatingHabits || 'all'

@@ -20,8 +20,7 @@ export default {
     return {
       eatingHabitsOptions: {
         all: 'alles',
-        vegetarian: 'vegetarisch und vegan',
-        vegan: 'nur vegan'
+        vegetarian: 'vegetarisch/vegan'
       },
       eatingHabits: settings.eatingHabits
     }
