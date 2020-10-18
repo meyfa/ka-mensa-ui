@@ -15,15 +15,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/,
-        use: [
-          'vue-style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              esModule: false
-            }
-          }
-        ]
+        use: ['style-loader', 'css-loader']
       }
     ]
   }
