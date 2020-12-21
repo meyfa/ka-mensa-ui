@@ -11,11 +11,9 @@ const DATE_FORMAT = 'YYYY-MM-DD'
  * @returns {object} The conversion result.
  */
 function fromMoment (mnt) {
-  return mnt ? {
-    year: mnt.year(),
-    month: mnt.month(),
-    day: mnt.date()
-  } : null
+  return mnt
+    ? { year: mnt.year(), month: mnt.month(), day: mnt.date() }
+    : null
 }
 
 /**
