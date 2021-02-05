@@ -22,7 +22,7 @@ module.exports = {
   },
   output: {
     path: DST_DIR,
-    filename: '[name].[hash].js',
+    filename: '[name].[contenthash].js',
     publicPath: '/'
   },
   resolve: {
@@ -54,7 +54,10 @@ module.exports = {
     new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     // Ignore all locale files of moment.js
-    new IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
+    }),
     new HtmlWebpackPlugin({
       template: path.join(SRC_DIR, 'index.ejs'),
       title: 'KA Mensa',
