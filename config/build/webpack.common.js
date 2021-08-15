@@ -7,7 +7,7 @@ const config = require('../')
 const { IgnorePlugin, DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPreconnectPlugin = require('html-webpack-preconnect-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 
@@ -22,8 +22,7 @@ module.exports = {
   },
   output: {
     path: DST_DIR,
-    filename: '[name].[contenthash].js',
-    publicPath: '/'
+    filename: '[name].[contenthash].js'
   },
   resolve: {
     extensions: ['.js', '.json', '.vue']
@@ -41,11 +40,11 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg)$/,
-        use: 'file-loader'
+        type: 'asset/resource'
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: 'file-loader'
+        type: 'asset/resource'
       }
       // css is handled separately in dev/prod
     ]
