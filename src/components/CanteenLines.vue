@@ -3,9 +3,9 @@
     <div v-for="line in filteredLines" :key="line.id" class="line">
       <h3 class="line-title">{{ line.name }}</h3>
 
-      <meal-item v-for="(meal, index) in line.meals" :key="index"
+      <MealItem v-for="(meal, index) in line.meals" :key="index"
           :meal="meal" :highlight="enableHighlights"
-          @click="$emit('details', meal)"></meal-item>
+          @click="$emit('details', meal)" />
 
       <div v-if="line.meals.length === 0" class="meals-noentries">
         Keine passenden Menüs

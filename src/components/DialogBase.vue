@@ -6,14 +6,13 @@
         <button type="button" class="close-btn" @click="close()">✖</button>
 
         <div class="content">
-          <slot></slot>
-
-          <div class="content-trailer"></div>
+          <slot />
+          <div class="content-trailer" />
         </div>
       </div>
 
-      <prevent-global-scrolling></prevent-global-scrolling>
-      <keydown-listener :keys="closeKeys" @triggered="close()"></keydown-listener>
+      <PreventGlobalScrolling />
+      <KeydownListener :keys="closeKeys" @triggered="close()" />
     </div>
   </transition>
 </template>

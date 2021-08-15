@@ -2,8 +2,8 @@
   <div class="choice">
     <label v-for="(optionLabel, optionKey) in options" :key="optionKey" class="choice-item">
       <input type="radio" class="choice-input" :checked="modelValue === optionKey"
-          @change="$emit('update:modelValue', optionKey)" />
-      <span class="choice-box"></span>
+          @change="$emit('update:modelValue', optionKey)">
+      <span class="choice-box" />
       {{ optionLabel }}
     </label>
   </div>

@@ -1,23 +1,23 @@
 <template>
-  <dialog-base title="Optionen" size="full"
+  <DialogBase title="Optionen" size="full"
       :visible="visible" @close="$emit('update:visible', false)">
     <div class="columns">
       <div class="column">
         <div class="column-title">Mensen</div>
-        <canteens-settings></canteens-settings>
+        <CanteensSettings />
       </div>
 
       <div class="column">
         <div class="column-title">Filter</div>
-        <filter-settings></filter-settings>
+        <FilterSettings />
       </div>
 
       <div class="column">
         <div class="column-title">Darstellung</div>
-        <appearance-settings></appearance-settings>
+        <AppearanceSettings />
       </div>
     </div>
-  </dialog-base>
+  </DialogBase>
 </template>
 
 <script>

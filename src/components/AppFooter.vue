@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
     Diese Website gehört nicht zum Studierendenwerk Karlsruhe und wird von diesem auch nicht unterstützt.
-    Alle Angaben ohne Gewähr.<br />
+    Alle Angaben ohne Gewähr.<br>
     <a v-if="privacyPolicyUrl" :href="privacyPolicyUrl" target="_blank" class="link">Datenschutzerklärung</a>
-    <hr class="footer-rule" />
+    <hr class="footer-rule">
     Mitwirken:
     <a :href="url" target="_blank" rel="noreferrer" class="link">{{ url }}</a>
   </footer>
