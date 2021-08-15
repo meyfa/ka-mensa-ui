@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { ref, watch } from 'vue'
+
 import settings from '~/settings'
 
 import ChoiceControl from '~/components/controls/ChoiceControl'
@@ -16,19 +18,19 @@ export default {
     ChoiceControl
   },
 
-  data () {
+  setup () {
+    const eatingHabits = ref(settings.eatingHabits)
+
+    watch(eatingHabits, (value) => {
+      settings.eatingHabits = value
+    })
+
     return {
       eatingHabitsOptions: {
         all: 'alles',
         vegetarian: 'vegetarisch/vegan'
       },
-      eatingHabits: settings.eatingHabits
-    }
-  },
-
-  watch: {
-    eatingHabits (to) {
-      settings.eatingHabits = to
+      eatingHabits
     }
   }
 }

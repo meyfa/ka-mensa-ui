@@ -50,15 +50,10 @@ export default {
 
   emits: ['close'],
 
-  data () {
+  setup (props, { emit }) {
     return {
-      closeKeys: [ESCAPE_KEY, ENTER_KEY]
-    }
-  },
-
-  methods: {
-    close () {
-      this.$emit('close', false)
+      closeKeys: [ESCAPE_KEY, ENTER_KEY],
+      close: () => emit('close', false)
     }
   }
 }

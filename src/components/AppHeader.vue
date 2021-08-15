@@ -12,34 +12,33 @@
 </template>
 
 <script>
+import { onUnmounted, ref } from 'vue'
+
 import settingsPulse from '~/settings-pulse'
 
 export default {
   emits: ['settings-open'],
 
-  data () {
-    return {
-      unseenSettingsAvailable: false
+  setup (props, { emit }) {
+    const unseenSettingsAvailable = ref(!settingsPulse.isCurrent)
+
+    const updateSettingsPulse = () => {
+      unseenSettingsAvailable.value = !settingsPulse.isCurrent
     }
-  },
 
-  created () {
-    this.updateSettingsPulse()
-    settingsPulse.on('mark', this.updateSettingsPulse)
-  },
+    settingsPulse.on('mark', updateSettingsPulse)
+    onUnmounted(() => {
+      settingsPulse.removeListener('mark', updateSettingsPulse)
+    })
 
-  unmounted () {
-    settingsPulse.removeListener('mark', this.updateSettingsPulse)
-  },
-
-  methods: {
-    openSettings () {
-      this.$emit('settings-open')
+    const openSettings = () => {
+      emit('settings-open')
       settingsPulse.markCurrent()
-    },
+    }
 
-    updateSettingsPulse () {
-      this.unseenSettingsAvailable = !settingsPulse.isCurrent
+    return {
+      unseenSettingsAvailable,
+      openSettings
     }
   }
 }
