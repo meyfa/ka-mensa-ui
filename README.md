@@ -1,6 +1,6 @@
 # ka-mensa-ui
 
-[![Build Status](https://travis-ci.com/meyfa/ka-mensa-ui.svg?branch=master)](https://travis-ci.com/meyfa/ka-mensa-ui)
+[![CI](https://github.com/meyfa/ka-mensa-ui/actions/workflows/main.yml/badge.svg)](https://github.com/meyfa/ka-mensa-ui/actions/workflows/main.yml)
 
 
 ## Introduction
@@ -12,7 +12,7 @@ in ways superior to the official sources.
 **Disclaimer:** This project is neither affiliated with nor endorsed by the
 Studierendenwerk Karlsruhe or the Karlsruhe Institute of Technology.
 
-The entire project is written in JavaScript and is composed as follows:
+The entire project is written in JavaScript+TypeScript and is composed as follows:
 
 - [ka-mensa-fetch](https://github.com/meyfa/ka-mensa-fetch): library package
     responsible for the fetching of raw plan data and conversion into canonical,
@@ -49,7 +49,7 @@ Contributions are welcome. Guidelines:
     license of this project.
 - Please write unit tests for as much code as possible.
     * To run: `npm test`
-- Make sure to adhere to JS standard style.
+- Make sure to adhere to JS standard style and proper usage of TypeScript.
     * Linter: `npm run lint`
     * Automatic fixing of most style issues: `npm run lint-fix`
 
