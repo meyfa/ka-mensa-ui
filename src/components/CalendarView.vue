@@ -20,7 +20,7 @@
               :disabled="!col.enabled" @click="clickDate(col.day)">
             {{ col.day }}
           </button>
-          <span v-else class="cal-dummy"></span>
+          <span v-else class="cal-dummy" />
         </td>
       </tr>
     </table>

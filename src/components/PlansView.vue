@@ -1,16 +1,15 @@
 <template>
   <div class="container">
-    <div v-for="plan in filteredPlans" :key="plan.canteen.id" class="plan">
-      <div class="canteen-name">{{ plan.canteen.name }}</div>
-
-      <canteen-lines v-if="plan.lines" :lines="plan.lines"
-          @details="detailsDialogMeal = $event"></canteen-lines>
-    </div>
-    <div v-if="!filteredPlans.length" class="no-data">
+    <div v-if="filteredPlans.length === 0" class="no-data">
       (keine Daten)
     </div>
 
-    <meal-details-dialog :meal="detailsDialogMeal" @update:meal="detailsDialogMeal = $event"></meal-details-dialog>
+    <div v-for="plan in filteredPlans" :key="plan.canteen.id" class="plan">
+      <div class="canteen-name">{{ plan.canteen.name }}</div>
+      <CanteenLines v-if="plan.lines" :lines="plan.lines" @details="detailsDialogMeal = $event" />
+    </div>
+
+    <MealDetailsDialog :meal="detailsDialogMeal" @update:meal="detailsDialogMeal = $event" />
   </div>
 </template>
 

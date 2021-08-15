@@ -2,7 +2,7 @@
   <div class="panel">
     Diese Gerichte anzeigen:
 
-    <choice-control v-model="eatingHabits" :options="eatingHabitsOptions"></choice-control>
+    <ChoiceControl v-model="eatingHabits" :options="eatingHabitsOptions" />
   </div>
 </template>
 

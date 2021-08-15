@@ -1,12 +1,12 @@
 <template>
   <div class="select">
-    <check-control v-for="(item, itemKey) in items" :key="itemKey" class="select-item"
+    <CheckControl v-for="(item, itemKey) in items" :key="itemKey" class="select-item"
         :model-value="isSelected(itemKey)" @update:model-value="setSelected(itemKey, $event)">
       {{ item.label }}
       <div class="select-description">
         {{ item.description }}
       </div>
-    </check-control>
+    </CheckControl>
   </div>
 </template>
 

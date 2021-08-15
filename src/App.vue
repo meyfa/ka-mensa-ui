@@ -1,14 +1,13 @@
 <template>
   <div id="app">
-    <app-header @settings-open="showSettings = true"></app-header>
+    <AppHeader @settings-open="showSettings = true" />
 
-    <date-header :date="date" @next="nextDate" @previous="previousDate"
-        @select="selectDate"></date-header>
-    <plans-view :date="date"></plans-view>
+    <DateHeader :date="date" @next="nextDate" @previous="previousDate" @select="selectDate" />
+    <PlansView :date="date" />
 
-    <settings-dialog :visible="showSettings" @update:visible="showSettings = $event"></settings-dialog>
+    <SettingsDialog :visible="showSettings" @update:visible="showSettings = $event" />
 
-    <app-footer class="footer"></app-footer>
+    <AppFooter class="footer" />
   </div>
 </template>
 

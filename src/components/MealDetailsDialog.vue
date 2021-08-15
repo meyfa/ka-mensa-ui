@@ -1,6 +1,5 @@
 <template>
-  <dialog-base title="Menü-Informationen"
-      :visible="meal != null" @close="$emit('update:meal', null)">
+  <DialogBase title="Menü-Informationen" :visible="meal != null" @close="$emit('update:meal', null)">
     <template v-if="meal != null">
       <div class="name">
         {{ meal.name }}
@@ -9,13 +8,12 @@
         Preis: {{ meal.price }}
       </div>
       <div class="classifiers">
-        <div v-for="classifier in classifiersAndAdditives" :key="classifier"
-            class="classifiers-item">
+        <div v-for="classifier in classifiersAndAdditives" :key="classifier" class="classifiers-item">
           ({{ classifier }}) {{ legend ? legend[classifier] : '' }}
         </div>
       </div>
     </template>
-  </dialog-base>
+  </DialogBase>
 </template>
 
 <script>

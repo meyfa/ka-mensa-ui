@@ -3,8 +3,7 @@
     <h1 class="title">KA Mensa</h1>
 
     <div class="settings">
-      <button type="button" class="settings-btn" :class="{ pulse: unseenSettingsAvailable }"
-          @click="openSettings()">
+      <button type="button" class="settings-btn" :class="{ pulse: unseenSettingsAvailable }" @click="openSettings()">
         Optionen
       </button>
     </div>

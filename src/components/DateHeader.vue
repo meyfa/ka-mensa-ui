@@ -9,8 +9,8 @@
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
 
-    <date-selection-dialog :current="date" :visible="showDateSelection" @update:visible="showDateSelection = $event"
-        @select="$emit('select', $event)"></date-selection-dialog>
+    <DateSelectionDialog :current="date" :visible="showDateSelection" @update:visible="showDateSelection = $event"
+        @select="$emit('select', $event)" />
   </div>
 </template>
 

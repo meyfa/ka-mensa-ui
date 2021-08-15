@@ -1,11 +1,9 @@
 <template>
-  <dialog-base title="Datumsauswahl" size="grow"
-      :visible="visible" @close="close()">
+  <DialogBase title="Datumsauswahl" size="grow" :visible="visible" @close="close()">
     <template v-if="visible">
-      <calendar-view :dates="calendarDates" :current="current"
-          @select="close($event)"></calendar-view>
+      <CalendarView :dates="calendarDates" :current="current" @select="close($event)" />
     </template>
-  </dialog-base>
+  </DialogBase>
 </template>
 
 <script>

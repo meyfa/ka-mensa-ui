@@ -2,17 +2,16 @@
   <div class="panel">
     Seiten-Stil
 
-    <choice-control v-model="theme" :options="themes"></choice-control>
+    <ChoiceControl v-model="theme" :options="themes" />
+    <br>
 
-    <br />
-
-    <check-control v-model="hideEmptyLines">
+    <CheckControl v-model="hideEmptyLines">
       Leere Linien verstecken
-    </check-control>
+    </CheckControl>
 
-    <check-control v-model="enableHighlights">
+    <CheckControl v-model="enableHighlights">
       Vegetarische/Vegane Gerichte hervorheben
-    </check-control>
+    </CheckControl>
   </div>
 </template>
 
