@@ -2,7 +2,7 @@
   <button type="button" class="meal" :class="mealClasses" @click="$emit('click')">
     <div class="meal-classifiers">
       <span v-for="cls in classifiersAndAdditives" :key="cls">
-        {{ cls }}
+        {{ cls }}{{ ' ' }}
       </span>
     </div>
 
