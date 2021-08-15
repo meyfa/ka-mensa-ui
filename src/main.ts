@@ -6,7 +6,7 @@ import 'moment/locale/de'
 
 moment.locale('de')
 
-createApp(App as any).mount('#app')
+createApp(App as any).mount('body')
 
 if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
