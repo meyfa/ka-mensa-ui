@@ -42,6 +42,8 @@ export default {
     }
   },
 
+  emits: ['select'],
+
   data () {
     return {
       year: 0,
@@ -76,7 +78,7 @@ export default {
       const last = first.clone().endOf('month')
 
       // a calendar should always contain exactly 6 rows with 7 days each
-      const rows = new Array(6).fill(null).map(row => new Array(7).fill(null))
+      const rows = new Array(6).fill(null).map(() => new Array(7).fill(null))
 
       let offset = first.isoWeekday() - 1
       for (const cursor = first.clone(); last.isSameOrAfter(cursor); cursor.add(1, 'd')) {

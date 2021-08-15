@@ -73,7 +73,9 @@ module.exports = {
     }),
     new DefinePlugin({
       API_ENDPOINT: JSON.stringify(config.api.endpoint),
-      PRIVACY_POLICY_URL: JSON.stringify(config.site.privacyPolicyUrl)
+      PRIVACY_POLICY_URL: JSON.stringify(config.site.privacyPolicyUrl),
+      __VUE_OPTIONS_API__: true,
+      __VUE_PROD_DEVTOOLS__: false
     }),
     new HtmlWebpackPreconnectPlugin(),
     new WebpackPwaManifest({

@@ -14,7 +14,7 @@ export default {
     this.increment()
   },
 
-  destroyed () {
+  unmounted () {
     this.decrement()
   },
 

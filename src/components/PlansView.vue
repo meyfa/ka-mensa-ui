@@ -10,7 +10,7 @@
       (keine Daten)
     </div>
 
-    <meal-details-dialog :meal.sync="detailsDialogMeal"></meal-details-dialog>
+    <meal-details-dialog :meal="detailsDialogMeal" @update:meal="detailsDialogMeal = $event"></meal-details-dialog>
   </div>
 </template>
 
@@ -64,7 +64,7 @@ export default {
     settings.on('update', this.updateSettings)
   },
 
-  destroyed () {
+  unmounted () {
     settings.removeListener('update', this.updateSettings)
   },
 

@@ -17,12 +17,13 @@
 </template>
 
 <script>
+import { defineComponent } from 'vue'
 import settings from '~/settings'
 
 import ChoiceControl from '~/components/controls/ChoiceControl'
 import CheckControl from '~/components/controls/CheckControl'
 
-export default {
+export default defineComponent({
   components: {
     ChoiceControl,
     CheckControl
@@ -54,5 +55,5 @@ export default {
       settings.enableHighlights = to
     }
   }
-}
+})
 </script>

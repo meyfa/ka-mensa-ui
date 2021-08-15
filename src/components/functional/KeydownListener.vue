@@ -9,11 +9,13 @@ export default {
     }
   },
 
+  emits: ['triggered'],
+
   mounted () {
     window.addEventListener(EVENT_NAME, this.handleEvent)
   },
 
-  destroyed () {
+  unmounted () {
     window.removeEventListener(EVENT_NAME, this.handleEvent)
   },
 

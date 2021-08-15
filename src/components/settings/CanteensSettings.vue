@@ -4,7 +4,7 @@
       Wähle mindestens eine Mensa aus
     </div>
 
-    <select-control :items="selectControlItems" :selection.sync="selected"></select-control>
+    <select-control :items="selectControlItems" :selection="selected" @update:selection="selected = $event"></select-control>
   </div>
 </template>
 

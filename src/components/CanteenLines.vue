@@ -41,6 +41,8 @@ export default {
     }
   },
 
+  emits: ['details'],
+
   data () {
     return {
       hideEmptyLines: settings.hideEmptyLines,
@@ -68,7 +70,7 @@ export default {
     settings.on('update', this.updateSettings)
   },
 
-  destroyed () {
+  unmounted () {
     settings.removeListener('update', this.updateSettings)
   },
 
