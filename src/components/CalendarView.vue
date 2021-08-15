@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import { computed, ref } from 'vue'
+
 import moment from 'moment'
 
 export default {
@@ -44,37 +46,27 @@ export default {
 
   emits: ['select'],
 
-  data () {
-    return {
-      year: 0,
-      month: 0
-    }
-  },
+  setup (props, { emit }) {
+    const current = props.current != null ? moment(props.current) : moment()
+    const year = ref(current.year())
+    const month = ref(current.month())
 
-  computed: {
-    weekdays () {
-      return moment.weekdaysMin(true)
-    },
+    const formattedMonth = computed(() => moment([year.value, month.value]).format('MMMM'))
 
-    formattedMonth () {
-      return moment([this.year, this.month]).format('MMMM')
-    },
-
-    hasPreviousMonth () {
-      return this.dates.some(({ year, month }) => {
-        return year < this.year || (year === this.year && month < this.month)
+    const hasPreviousMonth = computed(() => {
+      return props.dates.some((date) => {
+        return date.year < year.value || (date.year === year && date.month < month.value)
       })
-    },
+    })
 
-    hasNextMonth () {
-      return this.dates.some(({ year, month }) => {
-        return year > this.year || (year === this.year && month > this.month)
+    const hasNextMonth = computed(() => {
+      return props.dates.some((date) => {
+        return date.year > year.value || (date.year === year.value && date.month > month.value)
       })
-    },
+    })
 
-    rows () {
-      const current = this.current ? moment(this.current) : moment()
-      const first = moment([this.year, this.month])
+    const rows = computed(() => {
+      const first = moment([year.value, month.value])
       const last = first.clone().endOf('month')
 
       // a calendar should always contain exactly 6 rows with 7 days each
@@ -84,41 +76,45 @@ export default {
       for (const cursor = first.clone(); last.isSameOrAfter(cursor); cursor.add(1, 'd')) {
         rows[Math.trunc(offset / 7)][offset % 7] = {
           day: cursor.date(),
-          enabled: this.dates.some(item => cursor.isSame(moment(item), 'day')),
+          enabled: props.dates.some(item => cursor.isSame(moment(item), 'day')),
           current: cursor.isSame(current, 'day')
         }
         ++offset
       }
 
       return rows
+    })
+
+    const clickDate = (day) => {
+      emit('select', { year: year.value, month: month.value, day })
     }
-  },
 
-  created () {
-    const current = this.current ? moment(this.current) : moment()
-    this.year = current.year()
-    this.month = current.month()
-  },
-
-  methods: {
-    clickDate (day) {
-      this.$emit('select', { year: this.year, month: this.month, day })
-    },
-
-    previousMonth () {
-      --this.month
-      if (this.month < 0) {
-        this.month = 11
-        --this.year
+    const previousMonth = () => {
+      --month.value
+      if (month.value < 0) {
+        month.value = 11
+        --year.value
       }
-    },
+    }
 
-    nextMonth () {
-      ++this.month
-      if (this.month > 11) {
-        this.month = 0
-        ++this.year
+    const nextMonth = () => {
+      ++month.value
+      if (month.value > 11) {
+        month.value = 0
+        ++year.value
       }
+    }
+
+    return {
+      year,
+      formattedMonth,
+      hasPreviousMonth,
+      hasNextMonth,
+      rows,
+      clickDate,
+      previousMonth,
+      nextMonth,
+      weekdays: moment.weekdaysMin(true)
     }
   }
 }

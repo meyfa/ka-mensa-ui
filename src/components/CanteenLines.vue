@@ -7,7 +7,7 @@
           :meal="meal" :highlight="enableHighlights"
           @click="$emit('details', meal)"></meal-item>
 
-      <div v-if="!line.meals.length" class="meals-noentries">
+      <div v-if="line.meals.length === 0" class="meals-noentries">
         Keine passenden Menüs
       </div>
     </div>
@@ -28,6 +28,7 @@ import settings from '~/settings'
 import { isVegetarian, isVegan, isInfo } from '~/util/meals'
 
 import MealItem from '~/components/MealItem'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 export default {
   components: {
@@ -43,45 +44,21 @@ export default {
 
   emits: ['details'],
 
-  data () {
-    return {
-      hideEmptyLines: settings.hideEmptyLines,
-      eatingHabits: settings.eatingHabits,
-      enableHighlights: settings.enableHighlights
+  setup (props) {
+    const hideEmptyLines = ref(settings.hideEmptyLines)
+    const eatingHabits = ref(settings.eatingHabits)
+    const enableHighlights = ref(settings.enableHighlights)
+
+    const updateSettings = () => {
+      hideEmptyLines.value = settings.hideEmptyLines
+      eatingHabits.value = settings.eatingHabits
+      enableHighlights.value = settings.enableHighlights
     }
-  },
 
-  computed: {
-    hasAnyMeal () {
-      return this.lines.some(line => line.meals.length)
-    },
+    onMounted(() => settings.on('update', updateSettings))
+    onUnmounted(() => settings.off('update', updateSettings))
 
-    filteredLines () {
-      return this.lines.map(line => {
-        return {
-          ...line,
-          meals: line.meals.filter(this.isMealVisible)
-        }
-      }).filter(line => !this.hideEmptyLines || line.meals.length)
-    }
-  },
-
-  created () {
-    settings.on('update', this.updateSettings)
-  },
-
-  unmounted () {
-    settings.removeListener('update', this.updateSettings)
-  },
-
-  methods: {
-    updateSettings () {
-      this.hideEmptyLines = settings.hideEmptyLines
-      this.eatingHabits = settings.eatingHabits
-      this.enableHighlights = settings.enableHighlights
-    },
-
-    isMealVisible (meal) {
+    const isMealVisible = (meal) => {
       if (isInfo(meal)) {
         return true
       }
@@ -89,10 +66,25 @@ export default {
       // or by kindly asking canteen staff to exclude certain ingredients
       // (e.g. grated cheese).
       // Hence, filtering for strictly vegan meals is too restrictive.
-      if (this.eatingHabits === 'vegetarian' || this.eatingHabits === 'vegan') {
+      if (eatingHabits.value === 'vegetarian' || eatingHabits.value === 'vegan') {
         return isVegan(meal) || isVegetarian(meal)
       }
       return true
+    }
+
+    const hasAnyMeal = computed(() => props.lines.some(line => line.meals.length > 0))
+
+    const filteredLines = computed(() => props.lines.map(line => {
+      return {
+        ...line,
+        meals: line.meals.filter(isMealVisible)
+      }
+    }).filter(line => !hideEmptyLines.value || line.meals.length))
+
+    return {
+      enableHighlights,
+      hasAnyMeal,
+      filteredLines
     }
   }
 }

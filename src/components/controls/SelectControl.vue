@@ -35,18 +35,16 @@ export default {
     const isSelected = (value) => props.selection.includes(value)
 
     const setSelected = (value, select) => {
-      const currentlySelected = isSelected(value)
       // only allow toggling
-      if (select === currentlySelected) {
-        return
+      if (select !== isSelected(value)) {
+        const newSelection = [...props.selection]
+        if (select) {
+          newSelection.push(value)
+        } else {
+          newSelection.splice(newSelection.indexOf(value), 1)
+        }
+        emit('update:selection', newSelection)
       }
-      const newSelection = [...props.selection]
-      if (currentlySelected) {
-        newSelection.splice(newSelection.indexOf(value), 1)
-      } else {
-        newSelection.push(value)
-      }
-      emit('update:selection', newSelection)
     }
 
     return {

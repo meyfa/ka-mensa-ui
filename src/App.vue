@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, ref } from 'vue'
+
 import 'typeface-nunito'
 
 import settings from '~/settings'
@@ -37,58 +39,60 @@ export default {
     SettingsDialog
   },
 
-  data () {
-    return {
-      showSettings: false,
-      date: null
-    }
-  },
-
-  created () {
-    this.updateSettings()
-    settings.on('update', this.updateSettings)
-
-    if (prefersDarkScheme) {
-      prefersDarkScheme.addEventListener('change', this.updateSettings)
+  setup () {
+    let currentDate = getCurrentDate()
+    if (!isWeekday(currentDate)) {
+      currentDate = getNextWeekday(currentDate)
     }
 
-    let date = getCurrentDate()
-    if (!isWeekday(date)) {
-      date = getNextWeekday(date)
-    }
-    this.date = date
-  },
+    const showSettings = ref(false)
+    const date = ref(currentDate)
 
-  unmounted () {
-    settings.removeListener('update', this.updateSettings)
-
-    if (prefersDarkScheme) {
-      prefersDarkScheme.removeEventListener('change', this.updateSettings)
-    }
-  },
-
-  methods: {
-    updateSettings () {
+    const updateSettings = () => {
       let darkTheme = settings.theme === 'dark'
       if (settings.theme === 'auto') {
-        darkTheme = prefersDarkScheme && prefersDarkScheme.matches
+        darkTheme = prefersDarkScheme != null ? prefersDarkScheme.matches : false
       }
       document.documentElement.classList.toggle('theme-dark', darkTheme)
-    },
+    }
 
-    nextDate () {
-      if (!this.date) return
-      this.date = getNextWeekday(this.date)
-    },
+    onMounted(() => {
+      updateSettings()
+      settings.on('update', updateSettings)
 
-    previousDate () {
-      if (!this.date) return
-      this.date = getPreviousWeekday(this.date)
-    },
+      if (prefersDarkScheme != null) {
+        prefersDarkScheme.addEventListener('change', updateSettings)
+      }
+    })
 
-    selectDate (date) {
-      if (!date) return
-      this.date = date
+    onUnmounted(() => {
+      settings.off('update', updateSettings)
+
+      if (prefersDarkScheme != null) {
+        prefersDarkScheme.removeEventListener('change', updateSettings)
+      }
+    })
+
+    const nextDate = () => {
+      date.value = getNextWeekday(date.value)
+    }
+
+    const previousDate = () => {
+      date.value = getPreviousWeekday(date.value)
+    }
+
+    const selectDate = (selected) => {
+      if (selected != null) {
+        date.value = selected
+      }
+    }
+
+    return {
+      showSettings,
+      date,
+      nextDate,
+      previousDate,
+      selectDate
     }
   }
 }
