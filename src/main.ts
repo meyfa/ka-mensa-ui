@@ -1,20 +1,20 @@
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 
 import moment from 'moment'
 import 'moment/locale/de'
 
-import { getCurrentDate, formatDate } from '~/util/date'
+import { getCurrentDate, formatDate } from './util/date'
 
 moment.locale('de')
 
-Vue.filter('date', value => {
+Vue.filter('date', (value: any) => {
   if (value) {
     return formatDate(value)
   }
 })
 
-Vue.filter('daysAgo', value => {
+Vue.filter('daysAgo', (value: any) => {
   if (value) {
     const mnt = moment(value)
     const calStr = mnt.calendar(null, {

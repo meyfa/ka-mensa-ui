@@ -1,4 +1,4 @@
-import moment from 'moment'
+import moment, { Moment } from 'moment'
 
 // CONSTANTS
 
@@ -10,29 +10,33 @@ const DATE_FORMAT = 'YYYY-MM-DD'
  * @param {object} mnt The moment to convert to a date object.
  * @returns {object} The conversion result.
  */
-function fromMoment (mnt) {
-  return mnt
-    ? { year: mnt.year(), month: mnt.month(), day: mnt.date() }
-    : null
+function fromMoment (mnt: Moment): DateSpec {
+  return { year: mnt.year(), month: mnt.month(), day: mnt.date() }
 }
 
 /**
  * @param {object} date The date object to convert to a moment.
  * @returns {object} The moment.
  */
-function toMoment (date) {
+function toMoment (date: DateSpec): Moment {
   // moment supports parse via object with compatible schema
   return moment(date)
 }
 
 // EXPORTS
 
+export interface DateSpec {
+  year: number
+  month: number
+  day: number
+}
+
 /**
  * Get a date object for the current date.
  *
  * @returns {object} A date object containing year, month, day properties.
  */
-export function getCurrentDate () {
+export function getCurrentDate (): DateSpec {
   return fromMoment(moment())
 }
 
@@ -42,7 +46,7 @@ export function getCurrentDate () {
  * @param {object} date The date.
  * @returns {string} The formatted string.
  */
-export function formatDate (date) {
+export function formatDate (date: DateSpec): string {
   return toMoment(date).format(DATE_FORMAT)
 }
 
@@ -52,7 +56,7 @@ export function formatDate (date) {
  * @param {object} date The date.
  * @returns {boolean} Whether the date is a weekday.
  */
-export function isWeekday (date) {
+export function isWeekday (date: DateSpec): boolean {
   return toMoment(date).isoWeekday() <= 5
 }
 
@@ -62,7 +66,7 @@ export function isWeekday (date) {
  * @param {object} date The date.
  * @returns {object} The date of the next weekday.
  */
-export function getNextWeekday (date) {
+export function getNextWeekday (date: DateSpec): DateSpec {
   // get moment for next day
   const mnt = toMoment(date).add(1, 'd')
   // if next day is a weekday, we are done
@@ -79,7 +83,7 @@ export function getNextWeekday (date) {
  * @param {object} date The date.
  * @returns {object} The date of the previous weekday.
  */
-export function getPreviousWeekday (date) {
+export function getPreviousWeekday (date: DateSpec): DateSpec {
   // get moment for next day
   const mnt = toMoment(date).subtract(1, 'd')
   // if previous day is a weekday, we are done

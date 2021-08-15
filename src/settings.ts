@@ -28,7 +28,7 @@ function readLocalStorage () {
  * @param {object} data The data.
  * @returns {void}
  */
-function writeLocalStorage (data) {
+function writeLocalStorage (data: Record<string, any>) {
   const json = JSON.stringify(data)
   localStorage.setItem(LOCALSTORAGE_KEY, json)
 }
@@ -39,13 +39,14 @@ function writeLocalStorage (data) {
  * Settings manager that persists user settings to local storage.
  */
 class Settings extends EventEmitter {
+  private _data: Record<string, any> = {}
+
   /**
    * Create a new settings manager. Data will be ready immediately.
    */
   constructor () {
     super()
 
-    this._data = {}
     if (!this.load()) {
       this.save()
     }
@@ -102,9 +103,9 @@ class Settings extends EventEmitter {
     return this._data.canteens ? [...this._data.canteens] : ['adenauerring']
   }
 
-  set canteens (value) {
+  set canteens (value: string[]) {
     // remove duplicates
-    this._data.canteens = [...new Set(value)]
+    this._data.canteens = Array.from(new Set(value))
     this.save()
   }
 
