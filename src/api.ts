@@ -23,13 +23,13 @@ class API {
     this.endpoint = endpoint
   }
 
-  private async _fetchApi (path: string) {
+  private async _fetchApi (path: string): Promise<any> {
     const response = await fetch(this.endpoint + path)
     if (!response.ok) {
       throw new Error(response.statusText)
     }
     const body = await response.json()
-    if (!body.success) {
+    if (body.success !== true) {
       throw new Error(body.error)
     }
     return body.data
@@ -40,7 +40,7 @@ class API {
    *
    * @returns {Promise} Resolves to an array of canteen objects.
    */
-  async getCanteens () {
+  async getCanteens (): Promise<any> {
     return await this._fetchApi('canteens')
   }
 
@@ -49,7 +49,7 @@ class API {
    *
    * @returns {Promise} Resolves to an array of legend objects.
    */
-  async getLegend () {
+  async getLegend (): Promise<any> {
     return await this._fetchApi('meta/legend')
   }
 
@@ -58,7 +58,7 @@ class API {
    *
    * @returns {Promise} Resolves to an array of plan summary objects.
    */
-  async getPlans () {
+  async getPlans (): Promise<any> {
     return await this._fetchApi('plans')
   }
 
@@ -68,7 +68,7 @@ class API {
    * @param {object} date A date object.
    * @returns {Promise} Resolves to an array of plans.
    */
-  async getPlan (date: DateSpec) {
+  async getPlan (date: DateSpec): Promise<any> {
     const dateStr = formatDate(date)
     return await this._fetchApi(`plans/${dateStr}`)
   }
@@ -76,7 +76,7 @@ class API {
 
 // EXPORT
 
+// API_ENDPOINT is configurable (config.api.endpoint) and defined via webpack
 declare const API_ENDPOINT: string
 
-// API_ENDPOINT is configurable (config.api.endpoint) and defined via webpack
 export default new API(API_ENDPOINT)
