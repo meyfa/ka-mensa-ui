@@ -3,8 +3,8 @@
     <div class="panel" :class="{ sticky }">
       <button type="button" class="dir-btn" @click="$emit('previous')">❮</button>
       <button class="date" @click="showDateSelection = true">
-        <h2 class="date-title">{{ formatDate(date) }}</h2>
-        <div class="date-subtitle">{{ filterDaysAgo(date) }}</div>
+        <h2 class="date-title">{{ formattedDate }}</h2>
+        <div class="date-subtitle">{{ formattedDateSubtitle }}</div>
       </button>
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 
 import DateSelectionDialog from '~/components/DateSelectionDialog'
 
@@ -36,7 +36,7 @@ export default {
 
   emits: ['next', 'previous', 'select'],
 
-  setup () {
+  setup (props) {
     const container = ref(null)
     const showDateSelection = ref(false)
     const sticky = ref(false)
@@ -54,12 +54,15 @@ export default {
       window.removeEventListener('scroll', recomputeSticky)
     })
 
+    const formattedDate = computed(() => formatDate(props.date))
+    const formattedDateSubtitle = computed(() => filterDaysAgo(props.date))
+
     return {
       container,
       showDateSelection,
       sticky,
-      formatDate,
-      filterDaysAgo
+      formattedDate,
+      formattedDateSubtitle
     }
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <dialog-base title="Menü-Informationen"
       :visible="meal != null" @close="$emit('update:meal', null)">
-    <template v-if="meal">
+    <template v-if="meal != null">
       <div class="name">
         {{ meal.name }}
       </div>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import { computed, ref, watchEffect } from 'vue'
+
 import api from '~/api'
 
 import DialogBase from '~/components/DialogBase'
@@ -37,38 +39,32 @@ export default {
 
   emits: ['update:meal'],
 
-  data () {
-    return {
-      legend: null
-    }
-  },
+  setup (props) {
+    const legend = ref(null)
 
-  computed: {
-    classifiersAndAdditives () {
-      if (!this.meal) {
-        return []
-      }
-      return [...new Set([...this.meal.classifiers, ...this.meal.additives])]
-    }
-  },
-
-  created () {
-    this.fetchData()
-  },
-
-  methods: {
-    async fetchData () {
+    watchEffect(async () => {
       let data
       try {
         data = await api.getLegend()
       } catch (e) {
-        this.legend = null
+        legend.value = null
         return
       }
-      this.legend = {}
+      legend.value = {}
       for (const { short, label } of data) {
-        this.legend[short] = label
+        legend.value[short] = label
       }
+    })
+
+    const classifiersAndAdditives = computed(() => {
+      return props.meal != null
+        ? [...new Set([...props.meal.classifiers, ...props.meal.additives])]
+        : []
+    })
+
+    return {
+      legend,
+      classifiersAndAdditives
     }
   }
 }

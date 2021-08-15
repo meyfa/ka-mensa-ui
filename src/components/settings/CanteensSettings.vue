@@ -1,6 +1,6 @@
 <template>
   <div class="panel">
-    <div v-if="canteens.length && !selected.length" class="warning">
+    <div v-if="canteens.length > 0 && selected.length === 0" class="warning">
       Wähle mindestens eine Mensa aus
     </div>
 
@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { computed, onMounted, ref, watch } from 'vue'
+
 import settings from '~/settings'
 import api from '~/api'
 
@@ -19,45 +21,32 @@ export default {
     SelectControl
   },
 
-  data () {
+  setup () {
+    const canteens = ref([])
+    const selected = ref(settings.canteens)
+
+    watch(selected, (value) => {
+      if (value.length > 0) {
+        settings.canteens = value
+      }
+    })
+
+    onMounted(async () => {
+      canteens.value = await api.getCanteens()
+    })
+
+    const selectControlItems = computed(() => canteens.value.reduce((map, canteen) => {
+      map[canteen.id] = {
+        label: canteen.name,
+        description: canteen.lines.map((item) => item.name).join(', ')
+      }
+      return map
+    }, {}))
+
     return {
-      canteens: [],
-      selected: settings.canteens
-    }
-  },
-
-  computed: {
-    selectControlItems () {
-      const items = {}
-      for (const canteen of this.canteens) {
-        items[canteen.id] = {
-          label: canteen.name,
-          description: this.formatLines(canteen.lines)
-        }
-      }
-      return items
-    }
-  },
-
-  watch: {
-    selected (to) {
-      if (to.length > 0) {
-        settings.canteens = to
-      }
-    }
-  },
-
-  created () {
-    this.fetchData()
-  },
-
-  methods: {
-    async fetchData () {
-      this.canteens = await api.getCanteens()
-    },
-
-    formatLines (lines) {
-      return lines.map((item) => item.name).join(', ')
+      canteens,
+      selected,
+      selectControlItems
     }
   }
 }

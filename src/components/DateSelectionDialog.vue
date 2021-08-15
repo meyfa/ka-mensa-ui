@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { computed, onMounted, ref } from 'vue'
+
 import api from '~/api'
 
 import DialogBase from '~/components/DialogBase'
@@ -32,39 +34,34 @@ export default {
 
   emits: ['select', 'update:visible'],
 
-  data () {
-    return {
-      planSummaries: []
+  setup (props, { emit }) {
+    const planSummaries = ref([])
+
+    const close = (result) => {
+      if (result != null) {
+        emit('select', result)
+      }
+      emit('update:visible', false)
     }
-  },
 
-  computed: {
-    calendarDates () {
-      return this.planSummaries.map(({ date }) => date)
-    }
-  },
-
-  created () {
-    this.fetchData()
-  },
-
-  methods: {
-    async fetchData () {
+    const fetchData = async () => {
       let data
       try {
         data = await api.getPlans()
       } catch (e) {
-        this.planSummaries = null
+        planSummaries.value = null
         return
       }
-      this.planSummaries = data
-    },
+      planSummaries.value = data
+    }
 
-    close (result) {
-      if (result) {
-        this.$emit('select', result)
-      }
-      this.$emit('update:visible', false)
+    onMounted(() => fetchData())
+
+    const calendarDates = computed(() => planSummaries.value.map(({ date }) => date))
+
+    return {
+      calendarDates,
+      close
     }
   }
 }

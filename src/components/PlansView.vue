@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+
 import api from '~/api'
 import settings from '~/settings'
 
@@ -34,51 +36,44 @@ export default {
     }
   },
 
-  data () {
-    return {
-      canteens: settings.canteens,
-      plans: [],
-      detailsDialogMeal: null
-    }
-  },
+  setup (props) {
+    const canteens = ref(settings.canteens)
+    const plans = ref([])
+    const detailsDialogMeal = ref(null)
 
-  computed: {
-    filteredPlans () {
-      return this.plans.filter((item) => {
-        return this.canteens.includes(item.canteen.id)
-      })
-    }
-  },
+    const filteredPlans = computed(() => plans.value.filter((item) => {
+      return canteens.value.includes(item.canteen.id)
+    }))
 
-  watch: {
-    date () {
-      this.fetchData()
-    }
-  },
-
-  created () {
-    if (this.date) {
-      this.fetchData()
-    }
-
-    settings.on('update', this.updateSettings)
-  },
-
-  unmounted () {
-    settings.removeListener('update', this.updateSettings)
-  },
-
-  methods: {
-    updateSettings () {
-      this.canteens = settings.canteens
-    },
-
-    async fetchData () {
+    const fetchData = async () => {
       try {
-        this.plans = await api.getPlan(this.date)
+        plans.value = await api.getPlan(props.date)
       } catch (e) {
-        this.plans = []
+        plans.value = []
       }
+    }
+
+    // trigger a fetch on date change
+    watch(() => props.date, () => fetchData())
+
+    const updateSettings = () => {
+      canteens.value = settings.canteens
+    }
+
+    onMounted(() => {
+      if (props.date != null) {
+        fetchData()
+      }
+      settings.on('update', updateSettings)
+    })
+
+    onUnmounted(() => {
+      settings.off('update', updateSettings)
+    })
+
+    return {
+      filteredPlans,
+      detailsDialogMeal
     }
   }
 }

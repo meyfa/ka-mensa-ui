@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { onUnmounted, ref } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 import settingsPulse from '~/settings-pulse'
 
@@ -26,10 +26,8 @@ export default {
       unseenSettingsAvailable.value = !settingsPulse.isCurrent
     }
 
-    settingsPulse.on('mark', updateSettingsPulse)
-    onUnmounted(() => {
-      settingsPulse.removeListener('mark', updateSettingsPulse)
-    })
+    onMounted(() => settingsPulse.on('mark', updateSettingsPulse))
+    onUnmounted(() => settingsPulse.off('mark', updateSettingsPulse))
 
     const openSettings = () => {
       emit('settings-open')

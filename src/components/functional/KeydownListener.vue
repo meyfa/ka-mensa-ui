@@ -21,13 +21,8 @@ export default {
       }
     }
 
-    onMounted(() => {
-      window.addEventListener(EVENT_NAME, handleEvent)
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener(EVENT_NAME, handleEvent)
-    })
+    onMounted(() => window.addEventListener(EVENT_NAME, handleEvent))
+    onUnmounted(() => window.removeEventListener(EVENT_NAME, handleEvent))
 
     // do not render anything
     return () => null
