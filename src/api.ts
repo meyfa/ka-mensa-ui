@@ -1,4 +1,4 @@
-import { formatDate } from '~/util/date'
+import { formatDate, DateSpec } from './util/date'
 
 // CLASS DEFINITION
 
@@ -6,12 +6,14 @@ import { formatDate } from '~/util/date'
  * API client class.
  */
 class API {
+  private readonly endpoint: string
+
   /**
    * Create a new API client for the given endpoint URL.
    *
    * @param {string} endpoint The endpoint URL to use.
    */
-  constructor (endpoint) {
+  constructor (endpoint: string) {
     if (typeof endpoint !== 'string' || endpoint.length <= 0) {
       throw new TypeError('expected endpoint parameter')
     }
@@ -21,7 +23,7 @@ class API {
     this.endpoint = endpoint
   }
 
-  async _fetchApi (path) {
+  private async _fetchApi (path: string) {
     const response = await fetch(this.endpoint + path)
     if (!response.ok) {
       throw new Error(response.statusText)
@@ -66,13 +68,15 @@ class API {
    * @param {object} date A date object.
    * @returns {Promise} Resolves to an array of plans.
    */
-  async getPlan (date) {
+  async getPlan (date: DateSpec) {
     const dateStr = formatDate(date)
     return await this._fetchApi(`plans/${dateStr}`)
   }
 }
 
 // EXPORT
+
+declare const API_ENDPOINT: string
 
 // API_ENDPOINT is configurable (config.api.endpoint) and defined via webpack
 export default new API(API_ENDPOINT)

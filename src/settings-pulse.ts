@@ -20,7 +20,7 @@ class SettingsPulse extends EventEmitter {
    */
   get isCurrent () {
     const value = localStorage.getItem(LOCALSTORAGE_KEY)
-    return parseInt(value, 10) === VERSION
+    return value != null && parseInt(value, 10) === VERSION
   }
 
   /**

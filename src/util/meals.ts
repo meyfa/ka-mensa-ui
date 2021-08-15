@@ -14,7 +14,7 @@ const CLASSIFIER_VEGAN = 'VG'
  * @param {object} meal The meal.
  * @returns {boolean} Whether the meal is vegetarian.
  */
-export function isVegetarian (meal) {
+export function isVegetarian (meal: any) {
   return meal.classifiers.includes(CLASSIFIER_VEGETARIAN)
 }
 
@@ -24,7 +24,7 @@ export function isVegetarian (meal) {
  * @param {object} meal The meal.
  * @returns {boolean} Whether the meal is vegan.
  */
-export function isVegan (meal) {
+export function isVegan (meal: any) {
   return meal.classifiers.includes(CLASSIFIER_VEGAN)
 }
 
@@ -34,6 +34,6 @@ export function isVegan (meal) {
  * @param {object} meal The meal.
  * @returns {boolean} Whether the meal is informational.
  */
-export function isInfo (meal) {
+export function isInfo (meal: any) {
   return meal.classifiers.length === 0 && meal.additives.length === 0
 }

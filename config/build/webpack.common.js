@@ -18,20 +18,25 @@ const DST_DIR = path.join(BASE_DIR, 'dist')
 module.exports = {
   context: BASE_DIR,
   entry: {
-    app: [path.join(SRC_DIR, 'main.js')]
+    app: [path.join(SRC_DIR, 'main.ts')]
   },
   output: {
     path: DST_DIR,
     filename: '[name].[contenthash].js'
   },
   resolve: {
-    extensions: ['.js', '.json', '.vue']
+    extensions: ['.ts', '.js', '.json', '.vue']
   },
   module: {
     rules: [
       {
         test: /\.vue$/,
         use: 'vue-loader'
+      },
+      {
+        test: /\.ts/,
+        exclude: /node_modules/,
+        use: 'ts-loader'
       },
       {
         test: /\.js$/,
