@@ -11,15 +11,15 @@ const LOCALSTORAGE_KEY = 'mensa-ui.settings'
  *
  * @returns {object} The data.
  */
-function readLocalStorage () {
+function readLocalStorage (): Record<string, any> | undefined {
   const json = localStorage.getItem(LOCALSTORAGE_KEY)
-  if (json) {
+  if (json != null) {
     try {
       return JSON.parse(json)
     } catch (e) {
     }
   }
-  return null
+  return undefined
 }
 
 /**
@@ -28,7 +28,7 @@ function readLocalStorage () {
  * @param {object} data The data.
  * @returns {void}
  */
-function writeLocalStorage (data: Record<string, any>) {
+function writeLocalStorage (data: Record<string, any>): void {
   const json = JSON.stringify(data)
   localStorage.setItem(LOCALSTORAGE_KEY, json)
 }
@@ -63,9 +63,9 @@ class Settings extends EventEmitter {
    * @access private
    * @returns {boolean} Success value.
    */
-  load () {
+  load (): boolean {
     const stored = readLocalStorage()
-    if (stored) {
+    if (stored != null) {
       this._data = stored
       this.emit('update')
       return true
@@ -79,7 +79,7 @@ class Settings extends EventEmitter {
    * @access private
    * @returns {void}
    */
-  save () {
+  save (): void {
     writeLocalStorage(this._data)
     this.emit('update')
   }
@@ -87,11 +87,11 @@ class Settings extends EventEmitter {
   /**
    * @returns {string} The page theme ('light', 'dark' or 'auto').
    */
-  get theme () {
-    return this._data.theme || 'auto'
+  get theme (): string {
+    return this._data.theme ?? 'auto'
   }
 
-  set theme (value) {
+  set theme (value: string) {
     this._data.theme = value
     this.save()
   }
@@ -99,8 +99,10 @@ class Settings extends EventEmitter {
   /**
    * @returns {string[]} The canteens selected for display.
    */
-  get canteens () {
-    return this._data.canteens ? [...this._data.canteens] : ['adenauerring']
+  get canteens (): string[] {
+    return this._data.canteens != null
+      ? [...this._data.canteens]
+      : ['adenauerring']
   }
 
   set canteens (value: string[]) {
@@ -112,13 +114,13 @@ class Settings extends EventEmitter {
   /**
    * @returns {boolean} Whether canteen lines with no meals should be hidden.
    */
-  get hideEmptyLines () {
+  get hideEmptyLines (): boolean {
     return typeof this._data.hideEmptyLines === 'boolean'
       ? this._data.hideEmptyLines
       : true
   }
 
-  set hideEmptyLines (value) {
+  set hideEmptyLines (value: boolean) {
     this._data.hideEmptyLines = value
     this.save()
   }
@@ -126,8 +128,8 @@ class Settings extends EventEmitter {
   /**
    * @returns {string} The eating habits ('all' or 'vegetarian').
    */
-  get eatingHabits () {
-    return this._data.eatingHabits || 'all'
+  get eatingHabits (): string {
+    return this._data.eatingHabits ?? 'all'
   }
 
   set eatingHabits (value) {
@@ -138,13 +140,13 @@ class Settings extends EventEmitter {
   /**
    * @returns {boolean} Whether to highlight vegetarian + vegan menus.
    */
-  get enableHighlights () {
+  get enableHighlights (): boolean {
     return typeof this._data.enableHighlights === 'boolean'
       ? this._data.enableHighlights
       : true
   }
 
-  set enableHighlights (value) {
+  set enableHighlights (value: boolean) {
     this._data.enableHighlights = value
     this.save()
   }
