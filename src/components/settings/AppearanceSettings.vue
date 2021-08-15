@@ -17,43 +17,46 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { ref, watch } from 'vue'
+
 import settings from '~/settings'
 
 import ChoiceControl from '~/components/controls/ChoiceControl'
 import CheckControl from '~/components/controls/CheckControl'
 
-export default defineComponent({
+export default {
   components: {
     ChoiceControl,
     CheckControl
   },
 
-  data () {
+  setup () {
+    const theme = ref(settings.theme)
+    const hideEmptyLines = ref(settings.hideEmptyLines)
+    const enableHighlights = ref(settings.enableHighlights)
+
+    watch(theme, (value) => {
+      settings.theme = value
+    })
+
+    watch(hideEmptyLines, (value) => {
+      settings.hideEmptyLines = value
+    })
+
+    watch(enableHighlights, (value) => {
+      settings.enableHighlights = value
+    })
+
     return {
       themes: {
         light: 'hell',
         dark: 'dunkel',
         auto: 'an Systemeinstellungen anpassen'
       },
-      theme: settings.theme,
-      hideEmptyLines: settings.hideEmptyLines,
-      enableHighlights: settings.enableHighlights
-    }
-  },
-
-  watch: {
-    theme (to) {
-      settings.theme = to
-    },
-
-    hideEmptyLines (to) {
-      settings.hideEmptyLines = to
-    },
-
-    enableHighlights (to) {
-      settings.enableHighlights = to
+      theme,
+      hideEmptyLines,
+      enableHighlights
     }
   }
-})
+}
 </script>

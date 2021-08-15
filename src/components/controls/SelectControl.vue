@@ -31,24 +31,27 @@ export default {
 
   emits: ['update:selection'],
 
-  methods: {
-    isSelected (value) {
-      return this.selection.includes(value)
-    },
+  setup (props, { emit }) {
+    const isSelected = (value) => props.selection.includes(value)
 
-    setSelected (value, select) {
-      const currentlySelected = this.isSelected(value)
+    const setSelected = (value, select) => {
+      const currentlySelected = isSelected(value)
       // only allow toggling
       if (select === currentlySelected) {
         return
       }
-      const newSelection = [...this.selection]
+      const newSelection = [...props.selection]
       if (currentlySelected) {
         newSelection.splice(newSelection.indexOf(value), 1)
       } else {
         newSelection.push(value)
       }
-      this.$emit('update:selection', newSelection)
+      emit('update:selection', newSelection)
+    }
+
+    return {
+      isSelected,
+      setSelected
     }
   }
 }

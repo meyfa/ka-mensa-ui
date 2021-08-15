@@ -1,4 +1,6 @@
 <script>
+import { onMounted, onUnmounted } from 'vue'
+
 const EVENT_NAME = 'keydown'
 
 export default {
@@ -11,25 +13,24 @@ export default {
 
   emits: ['triggered'],
 
-  mounted () {
-    window.addEventListener(EVENT_NAME, this.handleEvent)
-  },
-
-  unmounted () {
-    window.removeEventListener(EVENT_NAME, this.handleEvent)
-  },
-
-  methods: {
-    handleEvent (event) {
-      if (!this.keys || !this.keys.length || this.keys.includes(event.keyCode)) {
+  setup (props, { emit }) {
+    const handleEvent = (event) => {
+      if (!props.keys || !props.keys.length || props.keys.includes(event.keyCode)) {
         event.preventDefault()
-        this.$emit('triggered', event)
+        emit('triggered', event)
       }
     }
-  },
 
-  render () {
-    return null
+    onMounted(() => {
+      window.addEventListener(EVENT_NAME, handleEvent)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener(EVENT_NAME, handleEvent)
+    })
+
+    // do not render anything
+    return () => null
   }
 }
 </script>

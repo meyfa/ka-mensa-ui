@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { computed } from 'vue'
+
 import { isVegetarian, isVegan } from '~/util/meals'
 
 export default {
@@ -28,17 +30,21 @@ export default {
 
   emits: ['click'],
 
-  computed: {
-    classifiersAndAdditives () {
-      return [...new Set([...this.meal.classifiers, ...this.meal.additives])]
-    },
+  setup (props) {
+    const classifiersAndAdditives = computed(() => [...new Set([
+      ...props.meal.classifiers,
+      ...props.meal.additives
+    ])])
 
-    mealClasses () {
-      return {
-        highlight: this.highlight,
-        vegetarian: isVegetarian(this.meal),
-        vegan: isVegan(this.meal)
-      }
+    const mealClasses = computed(() => ({
+      highlight: props.highlight,
+      vegetarian: isVegetarian(props.meal),
+      vegan: isVegan(props.meal)
+    }))
+
+    return {
+      classifiersAndAdditives,
+      mealClasses
     }
   }
 }

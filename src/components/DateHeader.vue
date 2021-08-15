@@ -4,7 +4,7 @@
       <button type="button" class="dir-btn" @click="$emit('previous')">❮</button>
       <button class="date" @click="showDateSelection = true">
         <h2 class="date-title">{{ formatDate(date) }}</h2>
-        <div class="date-subtitle">{{ daysAgo(date) }}</div>
+        <div class="date-subtitle">{{ filterDaysAgo(date) }}</div>
       </button>
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import { onMounted, onUnmounted, ref } from 'vue'
+
 import DateSelectionDialog from '~/components/DateSelectionDialog'
 
 import { formatDate } from '../util/date'
@@ -34,27 +36,30 @@ export default {
 
   emits: ['next', 'previous', 'select'],
 
-  data () {
-    return {
-      showDateSelection: false,
-      sticky: false,
-      formatDate,
-      daysAgo: filterDaysAgo
+  setup () {
+    const container = ref(null)
+    const showDateSelection = ref(false)
+    const sticky = ref(false)
+
+    const recomputeSticky = () => {
+      sticky.value = container.value != null && container.value.getBoundingClientRect().top < 0
     }
-  },
 
-  mounted () {
-    this.recomputeSticky()
-    window.addEventListener('scroll', this.recomputeSticky)
-  },
+    onMounted(() => {
+      recomputeSticky()
+      window.addEventListener('scroll', recomputeSticky)
+    })
 
-  unmounted () {
-    window.removeEventListener('scroll', this.recomputeSticky)
-  },
+    onUnmounted(() => {
+      window.removeEventListener('scroll', recomputeSticky)
+    })
 
-  methods: {
-    recomputeSticky () {
-      this.sticky = this.$refs.container.getBoundingClientRect().top < 0
+    return {
+      container,
+      showDateSelection,
+      sticky,
+      formatDate,
+      filterDaysAgo
     }
   }
 }

@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  data () {
+  setup () {
     return {
       // PRIVACY_POLICY_URL is configurable (config.site.privacyPolicyUrl)
       // and defined via webpack
