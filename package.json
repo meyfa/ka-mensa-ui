@@ -28,7 +28,6 @@
   "homepage": "https://github.com/meyfa/ka-mensa-ui",
   "dependencies": {
     "@babel/runtime": "^7.13.9",
-    "axios": "^0.21.1",
     "moment": "^2.29.1",
     "typeface-nunito": "^1.1.13",
     "vue": "^2.6.12"
