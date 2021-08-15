@@ -1,7 +1,7 @@
 <template>
   <div class="select">
     <check-control v-for="(item, itemKey) in items" :key="itemKey" class="select-item"
-        :value="isSelected(itemKey)" @input="setSelected(itemKey, $event)">
+        :model-value="isSelected(itemKey)" @update:model-value="setSelected(itemKey, $event)">
       {{ item.label }}
       <div class="select-description">
         {{ item.description }}
@@ -28,6 +28,8 @@ export default {
       required: true
     }
   },
+
+  emits: ['update:selection'],
 
   methods: {
     isSelected (value) {

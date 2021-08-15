@@ -39,7 +39,9 @@ export default {
     visible: {
       type: Boolean
     }
-  }
+  },
+
+  emits: ['update:visible']
 }
 </script>
 

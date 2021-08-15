@@ -1,6 +1,6 @@
 <template>
   <dialog-base title="Menü-Informationen"
-      :visible="Boolean(meal)" @close="$emit('update:meal', null)">
+      :visible="meal != null" @close="$emit('update:meal', null)">
     <template v-if="meal">
       <div class="name">
         {{ meal.name }}
@@ -34,6 +34,8 @@ export default {
       default: null
     }
   },
+
+  emits: ['update:meal'],
 
   data () {
     return {

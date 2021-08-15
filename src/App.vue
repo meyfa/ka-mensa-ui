@@ -6,7 +6,7 @@
         @select="selectDate"></date-header>
     <plans-view :date="date"></plans-view>
 
-    <settings-dialog :visible.sync="showSettings"></settings-dialog>
+    <settings-dialog :visible="showSettings" @update:visible="showSettings = $event"></settings-dialog>
 
     <app-footer class="footer"></app-footer>
   </div>
@@ -59,7 +59,7 @@ export default {
     this.date = date
   },
 
-  destroyed () {
+  unmounted () {
     settings.removeListener('update', this.updateSettings)
 
     if (prefersDarkScheme) {

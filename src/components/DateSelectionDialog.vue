@@ -30,6 +30,8 @@ export default {
     }
   },
 
+  emits: ['select', 'update:visible'],
+
   data () {
     return {
       planSummaries: []

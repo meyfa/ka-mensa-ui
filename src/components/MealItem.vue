@@ -26,6 +26,8 @@ export default {
     }
   },
 
+  emits: ['click'],
+
   computed: {
     classifiersAndAdditives () {
       return [...new Set([...this.meal.classifiers, ...this.meal.additives])]

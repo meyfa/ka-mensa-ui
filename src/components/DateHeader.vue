@@ -3,19 +3,22 @@
     <div class="panel" :class="{ sticky }">
       <button type="button" class="dir-btn" @click="$emit('previous')">❮</button>
       <button class="date" @click="showDateSelection = true">
-        <h2 class="date-title">{{ date | date }}</h2>
-        <div class="date-subtitle">{{ date | daysAgo }}</div>
+        <h2 class="date-title">{{ formatDate(date) }}</h2>
+        <div class="date-subtitle">{{ daysAgo(date) }}</div>
       </button>
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
 
-    <date-selection-dialog :visible.sync="showDateSelection" :current="date"
+    <date-selection-dialog :current="date" :visible="showDateSelection" @update:visible="showDateSelection = $event"
         @select="$emit('select', $event)"></date-selection-dialog>
   </div>
 </template>
 
 <script>
 import DateSelectionDialog from '~/components/DateSelectionDialog'
+
+import { formatDate } from '../util/date'
+import { filterDaysAgo } from '../filters/days-ago'
 
 export default {
   components: {
@@ -29,10 +32,14 @@ export default {
     }
   },
 
+  emits: ['next', 'previous', 'select'],
+
   data () {
     return {
       showDateSelection: false,
-      sticky: false
+      sticky: false,
+      formatDate,
+      daysAgo: filterDaysAgo
     }
   },
 
@@ -41,7 +48,7 @@ export default {
     window.addEventListener('scroll', this.recomputeSticky)
   },
 
-  destroyed () {
+  unmounted () {
     window.removeEventListener('scroll', this.recomputeSticky)
   },
 

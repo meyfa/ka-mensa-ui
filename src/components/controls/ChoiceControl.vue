@@ -1,8 +1,8 @@
 <template>
   <div class="choice">
     <label v-for="(optionLabel, optionKey) in options" :key="optionKey" class="choice-item">
-      <input type="radio" class="choice-input" :checked="value === optionKey"
-          @change="$emit('input', optionKey)" />
+      <input type="radio" class="choice-input" :checked="modelValue === optionKey"
+          @change="$emit('update:modelValue', optionKey)" />
       <span class="choice-box"></span>
       {{ optionLabel }}
     </label>
@@ -16,11 +16,13 @@ export default {
       type: Object,
       required: true
     },
-    value: {
+    modelValue: {
       type: String,
       required: true
     }
-  }
+  },
+
+  emits: ['update:modelValue']
 }
 </script>
 

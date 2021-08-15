@@ -48,6 +48,8 @@ export default {
     }
   },
 
+  emits: ['close'],
+
   data () {
     return {
       closeKeys: [ESCAPE_KEY, ENTER_KEY]
@@ -68,7 +70,7 @@ export default {
   transition: all 0.3s;
 }
 
-.fadein-enter,
+.fadein-enter-from,
 .fadein-leave-to {
   opacity: 0;
 }
@@ -119,7 +121,7 @@ export default {
   transition: all 0.2s 0.1s;
 }
 
-.fadein-enter > .inner,
+.fadein-enter-from > .inner,
 .fadein-leave-to > .inner {
   transform: translate(-50%, -50%) scale(0.5);
   opacity: 0;

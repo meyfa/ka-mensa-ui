@@ -15,6 +15,8 @@
 import settingsPulse from '~/settings-pulse'
 
 export default {
+  emits: ['settings-open'],
+
   data () {
     return {
       unseenSettingsAvailable: false
@@ -26,7 +28,7 @@ export default {
     settingsPulse.on('mark', this.updateSettingsPulse)
   },
 
-  destroyed () {
+  unmounted () {
     settingsPulse.removeListener('mark', this.updateSettingsPulse)
   },
 

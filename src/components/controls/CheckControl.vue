@@ -1,7 +1,7 @@
 <template>
   <label class="check">
-    <input type="checkbox" class="check-input" :checked="value"
-        @change="$emit('input', $event.target.checked)" />
+    <input type="checkbox" class="check-input" :checked="modelValue"
+        @change="$emit('update:modelValue', $event.target.checked)" />
     <span class="check-box"></span>
     <slot></slot>
   </label>
@@ -10,7 +10,7 @@
 <script>
 export default {
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       required: true
     }
