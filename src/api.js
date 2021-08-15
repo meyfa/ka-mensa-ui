@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import { formatDate } from '~/util/date'
 
 // CLASS DEFINITION
@@ -23,17 +21,25 @@ class API {
     this.endpoint = endpoint
   }
 
+  async _fetchApi (path) {
+    const response = await fetch(this.endpoint + path)
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+    const body = await response.json()
+    if (!body.success) {
+      throw new Error(body.error)
+    }
+    return body.data
+  }
+
   /**
    * Fetch the set of available canteens.
    *
    * @returns {Promise} Resolves to an array of canteen objects.
    */
   async getCanteens () {
-    const { data } = await axios.get(this.endpoint + 'canteens')
-    if (!data.success) {
-      throw new Error(data.error)
-    }
-    return data.data
+    return await this._fetchApi('canteens')
   }
 
   /**
@@ -42,11 +48,7 @@ class API {
    * @returns {Promise} Resolves to an array of legend objects.
    */
   async getLegend () {
-    const { data } = await axios.get(this.endpoint + 'meta/legend')
-    if (!data.success) {
-      throw new Error(data.error)
-    }
-    return data.data
+    return await this._fetchApi('meta/legend')
   }
 
   /**
@@ -55,11 +57,7 @@ class API {
    * @returns {Promise} Resolves to an array of plan summary objects.
    */
   async getPlans () {
-    const { data } = await axios.get(this.endpoint + 'plans')
-    if (!data.success) {
-      throw new Error(data.error)
-    }
-    return data.data
+    return await this._fetchApi('plans')
   }
 
   /**
@@ -70,11 +68,7 @@ class API {
    */
   async getPlan (date) {
     const dateStr = formatDate(date)
-    const { data } = await axios.get(this.endpoint + 'plans/' + dateStr)
-    if (!data.success) {
-      throw new Error(data.error)
-    }
-    return data.data
+    return await this._fetchApi(`plans/${dateStr}`)
   }
 }
 
