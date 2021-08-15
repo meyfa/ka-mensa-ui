@@ -1,3 +1,26 @@
 extends:
-  - standard
-  - "plugin:jsdoc/recommended"
+  - standard-with-typescript
+  - plugin:jsdoc/recommended
+  - plugin:vue/recommended
+
+parser: vue-eslint-parser
+parserOptions:
+  parser: '@typescript-eslint/parser'
+  extraFileExtensions: ['.vue']
+
+overrides:
+  - files: '**/*.ts'
+    parserOptions:
+      project: './tsconfig.json'
+
+globals:
+  API_ENDPOINT: readonly
+  PRIVACY_POLICY_URL: readonly
+
+rules:
+  vue/html-indent: ['error', 2, { attribute: 2, baseIndent: 1, closeBracket: 0, alignAttributesVertically: false }]
+  vue/max-attributes-per-line: 0
+  vue/singleline-html-element-content-newline: 0
+  vue/html-closing-bracket-newline: 0
+  vue/html-self-closing: [2, { html: { void: always, normal: never, component: never } }]
+  vue/component-name-in-template-casing: [2, kebab-case]
