@@ -1,3 +1,5 @@
+import { CanteenMeal } from '../types/canteen-plan'
+
 // CONSTANTS
 
 const CLASSIFIER_VEGETARIAN = 'VEG'
@@ -14,7 +16,7 @@ const CLASSIFIER_VEGAN = 'VG'
  * @param meal The meal.
  * @returns Whether the meal is vegetarian.
  */
-export function isVegetarian (meal: any): boolean {
+export function isVegetarian (meal: CanteenMeal): boolean {
   return meal.classifiers.includes(CLASSIFIER_VEGETARIAN)
 }
 
@@ -24,7 +26,7 @@ export function isVegetarian (meal: any): boolean {
  * @param meal The meal.
  * @returns Whether the meal is vegan.
  */
-export function isVegan (meal: any): boolean {
+export function isVegan (meal: CanteenMeal): boolean {
   return meal.classifiers.includes(CLASSIFIER_VEGAN)
 }
 
@@ -34,6 +36,6 @@ export function isVegan (meal: any): boolean {
  * @param meal The meal.
  * @returns Whether the meal is informational.
  */
-export function isInfo (meal: any): boolean {
+export function isInfo (meal: CanteenMeal): boolean {
   return meal.classifiers.length === 0 && meal.additives.length === 0
 }

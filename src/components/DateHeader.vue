@@ -15,12 +15,13 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
 
-import DateSelectionDialog from './DateSelectionDialog.vue'
-
+import { DateSpec } from '../types/date-spec'
 import { formatDate } from '../util/date'
 import { filterDaysAgo } from '../filters/days-ago'
+
+import DateSelectionDialog from './DateSelectionDialog.vue'
 
 export default defineComponent({
   components: {
@@ -29,7 +30,7 @@ export default defineComponent({
 
   props: {
     date: {
-      type: Object,
+      type: Object as PropType<DateSpec>,
       required: true
     }
   },
@@ -59,7 +60,7 @@ export default defineComponent({
       window.removeEventListener('scroll', recomputeSticky)
     })
 
-    const formattedDate = computed(() => formatDate(props.date as any))
+    const formattedDate = computed(() => formatDate(props.date))
     const formattedDateSubtitle = computed(() => filterDaysAgo(props.date))
 
     return {

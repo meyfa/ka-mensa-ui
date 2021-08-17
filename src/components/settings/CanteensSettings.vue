@@ -11,6 +11,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 
+import { Canteen } from '../../types/canteen'
 import settings from '../../settings'
 import api from '../../api'
 
@@ -22,7 +23,7 @@ export default defineComponent({
   },
 
   setup () {
-    const canteens = ref([])
+    const canteens = ref<Canteen[]>([])
     const selected = ref(settings.canteens)
 
     watch(selected, (value) => {
@@ -35,10 +36,10 @@ export default defineComponent({
       canteens.value = await api.getCanteens()
     })
 
-    const selectControlItems = computed(() => canteens.value.reduce((map: Record<string, any>, canteen: any) => {
+    const selectControlItems = computed(() => canteens.value.reduce((map: Record<string, any>, canteen: Canteen) => {
       map[canteen.id] = {
         label: canteen.name,
-        description: canteen.lines.map((item: any) => item.name).join(', ')
+        description: canteen.lines.map((item) => item.name).join(', ')
       }
       return map
     }, {}))

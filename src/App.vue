@@ -16,8 +16,9 @@ import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
 import 'typeface-nunito'
 
+import { DateSpec } from './types/date-spec'
 import settings from './settings'
-import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday, DateSpec } from './util/date'
+import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from './util/date'
 
 import AppHeader from './components/AppHeader.vue'
 import AppFooter from './components/AppFooter.vue'
@@ -25,7 +26,7 @@ import DateHeader from './components/DateHeader.vue'
 import PlansView from './components/PlansView.vue'
 import SettingsDialog from './components/SettingsDialog.vue'
 
-const prefersDarkScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null
+const prefersDarkScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : undefined
 
 export default defineComponent({
   name: 'App',
@@ -44,13 +45,13 @@ export default defineComponent({
       currentDate = getNextWeekday(currentDate)
     }
 
-    const showSettings = ref<undefined>()
+    const showSettings = ref(false)
     const date = ref(getCurrentDate())
 
     const updateSettings = () => {
       let darkTheme = settings.theme === 'dark'
       if (settings.theme === 'auto') {
-        darkTheme = prefersDarkScheme != null ? prefersDarkScheme.matches : false
+        darkTheme = prefersDarkScheme?.matches ?? false
       }
       document.documentElement.classList.toggle('theme-dark', darkTheme)
     }
@@ -58,18 +59,12 @@ export default defineComponent({
     onMounted(() => {
       updateSettings()
       settings.on('update', updateSettings)
-
-      if (prefersDarkScheme != null) {
-        prefersDarkScheme.addEventListener('change', updateSettings)
-      }
+      prefersDarkScheme?.addEventListener('change', updateSettings)
     })
 
     onUnmounted(() => {
       settings.off('update', updateSettings)
-
-      if (prefersDarkScheme != null) {
-        prefersDarkScheme.removeEventListener('change', updateSettings)
-      }
+      prefersDarkScheme?.removeEventListener('change', updateSettings)
     })
 
     const nextDate = () => {

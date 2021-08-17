@@ -14,8 +14,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, PropType, ref, watch } from 'vue'
 
+import { DateSpec } from '../types/date-spec'
+import { CanteenMeal, CanteenPlan } from '../types/canteen-plan'
 import api from '../api'
 import settings from '../settings'
 
@@ -30,23 +32,23 @@ export default defineComponent({
 
   props: {
     date: {
-      type: Object,
+      type: Object as PropType<DateSpec>,
       required: true
     }
   },
 
   setup (props) {
     const canteens = ref(settings.canteens)
-    const plans = ref([])
-    const detailsDialogMeal = ref(null)
+    const plans = ref<CanteenPlan[]>([])
+    const detailsDialogMeal = ref<CanteenMeal | undefined>()
 
-    const filteredPlans = computed(() => plans.value.filter((item: any) => {
+    const filteredPlans = computed(() => plans.value.filter((item) => {
       return canteens.value.includes(item.canteen.id)
     }))
 
     const fetchData = async () => {
       try {
-        plans.value = await api.getPlan(props.date as any)
+        plans.value = await api.getPlan(props.date)
       } catch (e) {
         plans.value = []
       }

@@ -24,8 +24,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
 
+import { CanteenLine, CanteenMeal } from '../types/canteen-plan'
 import settings from '../settings'
 import { isVegetarian, isVegan, isInfo } from '../util/meals'
 
@@ -38,7 +39,7 @@ export default defineComponent({
 
   props: {
     lines: {
-      type: Array,
+      type: Array as PropType<CanteenLine[]>,
       required: true
     }
   },
@@ -59,7 +60,7 @@ export default defineComponent({
     onMounted(() => settings.on('update', updateSettings))
     onUnmounted(() => settings.off('update', updateSettings))
 
-    const isMealVisible = (meal: any) => {
+    const isMealVisible = (meal: CanteenMeal) => {
       if (isInfo(meal)) {
         return true
       }
@@ -73,9 +74,9 @@ export default defineComponent({
       return true
     }
 
-    const hasAnyMeal = computed(() => props.lines.some((line: any) => line.meals.length > 0))
+    const hasAnyMeal = computed(() => props.lines.some((line) => line.meals.length > 0))
 
-    const filteredLines = computed(() => props.lines.map((line: any) => {
+    const filteredLines = computed(() => props.lines.map((line) => {
       return {
         ...line,
         meals: line.meals.filter(isMealVisible)

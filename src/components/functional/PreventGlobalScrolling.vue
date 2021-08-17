@@ -32,13 +32,6 @@ function decrement (): void {
 }
 
 export default defineComponent({
-  props: {
-    keys: {
-      type: Array,
-      default: null
-    }
-  },
-
   setup () {
     onMounted(() => increment())
     onUnmounted(() => decrement())
