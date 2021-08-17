@@ -9,7 +9,7 @@
       </div>
       <div class="classifiers">
         <div v-for="classifier in classifiersAndAdditives" :key="classifier" class="classifiers-item">
-          ({{ classifier }}) {{ legend ? legend[classifier] : '' }}
+          ({{ classifier }}) {{ legend.get(classifier) ?? '' }}
         </div>
       </div>
     </template>
@@ -17,8 +17,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, watchEffect } from 'vue'
+import { computed, defineComponent, PropType, ref, watchEffect } from 'vue'
 
+import { CanteenMeal } from '../types/canteen-plan'
 import api from '../api'
 
 import DialogBase from './DialogBase.vue'
@@ -30,7 +31,7 @@ export default defineComponent({
 
   props: {
     meal: {
-      type: Object,
+      type: Object as PropType<CanteenMeal | undefined | null>,
       default: null
     }
   },
@@ -38,20 +39,21 @@ export default defineComponent({
   emits: ['update:meal'],
 
   setup (props) {
-    const legend = ref<Record<string, string>>()
+    const legend = ref(new Map<string, string>())
 
     watchEffect(async () => {
       let data
       try {
         data = await api.getLegend()
       } catch (e) {
-        legend.value = undefined
+        legend.value = new Map()
         return
       }
-      legend.value = {}
+      const map = new Map<string, string>()
       for (const { short, label } of data) {
-        legend.value[short] = label
+        map.set(short, label)
       }
+      legend.value = map
     })
 
     const classifiersAndAdditives = computed(() => {

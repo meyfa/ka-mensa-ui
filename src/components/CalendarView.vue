@@ -28,18 +28,19 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
-
+import { computed, defineComponent, PropType, ref } from 'vue'
 import moment from 'moment'
+
+import { DateSpec } from '../types/date-spec'
 
 export default defineComponent({
   props: {
     dates: {
-      type: Array,
+      type: Array as PropType<DateSpec[]>,
       default: () => []
     },
     current: {
-      type: Object,
+      type: Object as PropType<DateSpec | undefined | null>,
       default: null
     }
   },
@@ -54,13 +55,13 @@ export default defineComponent({
     const formattedMonth = computed(() => moment([year.value, month.value]).format('MMMM'))
 
     const hasPreviousMonth = computed(() => {
-      return props.dates.some((date: any) => {
+      return props.dates.some((date) => {
         return date.year < year.value || (date.year === year.value && date.month < month.value)
       })
     })
 
     const hasNextMonth = computed(() => {
-      return props.dates.some((date: any) => {
+      return props.dates.some((date) => {
         return date.year > year.value || (date.year === year.value && date.month > month.value)
       })
     })
@@ -76,7 +77,7 @@ export default defineComponent({
       for (const cursor = first.clone(); last.isSameOrAfter(cursor); cursor.add(1, 'd')) {
         rows[Math.trunc(offset / 7)][offset % 7] = {
           day: cursor.date(),
-          enabled: props.dates.some((item: any) => cursor.isSame(moment(item), 'day')),
+          enabled: props.dates.some((item) => cursor.isSame(moment(item), 'day')),
           current: cursor.isSame(current, 'day')
         }
         ++offset

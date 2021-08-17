@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { getCurrentDate } from '../util/date'
+import { DateSpec } from '../types/date-spec'
 
 /**
  * Given a date specification, this returns a string representing that date relative
@@ -8,8 +9,8 @@ import { getCurrentDate } from '../util/date'
  * @param value The date value.
  * @returns The formatted relative date.
  */
-export function filterDaysAgo (value: any): string {
-  if (value != null && value !== '') {
+export function filterDaysAgo (value: DateSpec): string {
+  if (value != null) {
     const mnt = moment(value)
     const calStr = mnt.calendar({
       sameDay: '[heute] (dddd)',

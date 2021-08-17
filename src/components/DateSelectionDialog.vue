@@ -7,10 +7,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from 'vue'
+import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
 
+import { DateSpec } from '../types/date-spec'
+import { CanteenPlanSummary } from '../types/canteen-plan'
 import api from '../api'
-import { DateSpec } from '../util/date'
 
 import DialogBase from './DialogBase.vue'
 import CalendarView from './CalendarView.vue'
@@ -26,7 +27,7 @@ export default defineComponent({
       type: Boolean
     },
     current: {
-      type: Object,
+      type: Object as PropType<DateSpec | undefined | null>,
       default: null
     }
   },
@@ -34,7 +35,7 @@ export default defineComponent({
   emits: ['select', 'update:visible'],
 
   setup (props, { emit }) {
-    const planSummaries = ref<any[] | undefined>([])
+    const planSummaries = ref<CanteenPlanSummary[] | undefined>([])
 
     const close = (result?: DateSpec) => {
       if (result != null) {

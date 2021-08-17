@@ -12,14 +12,15 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 
+import { CanteenMeal } from '../types/canteen-plan'
 import { isVegetarian, isVegan } from '../util/meals'
 
 export default defineComponent({
   props: {
     meal: {
-      type: Object,
+      type: Object as PropType<CanteenMeal>,
       required: true
     },
     highlight: {

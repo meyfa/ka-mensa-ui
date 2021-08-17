@@ -1,4 +1,8 @@
-import { formatDate, DateSpec } from './util/date'
+import { DateSpec } from './types/date-spec'
+import { formatDate } from './util/date'
+import { CanteenPlan } from './types/canteen-plan'
+import { Canteen } from './types/canteen'
+import { LegendItem } from './types/legend'
 
 // CLASS DEFINITION
 
@@ -40,7 +44,7 @@ class API {
    *
    * @returns Resolves to an array of canteen objects.
    */
-  async getCanteens (): Promise<any> {
+  async getCanteens (): Promise<Canteen[]> {
     return await this.fetchApi('canteens')
   }
 
@@ -49,7 +53,7 @@ class API {
    *
    * @returns Resolves to an array of legend objects.
    */
-  async getLegend (): Promise<any> {
+  async getLegend (): Promise<LegendItem[]> {
     return await this.fetchApi('meta/legend')
   }
 
@@ -58,7 +62,7 @@ class API {
    *
    * @returns Resolves to an array of plan summary objects.
    */
-  async getPlans (): Promise<any> {
+  async getPlans (): Promise<CanteenPlan[]> {
     return await this.fetchApi('plans')
   }
 
@@ -68,7 +72,7 @@ class API {
    * @param date A date object.
    * @returns Resolves to an array of plans.
    */
-  async getPlan (date: DateSpec): Promise<any> {
+  async getPlan (date: DateSpec): Promise<CanteenPlan[]> {
     const dateStr = formatDate(date)
     return await this.fetchApi(`plans/${dateStr}`)
   }

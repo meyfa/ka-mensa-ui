@@ -1,4 +1,5 @@
 import moment, { Moment } from 'moment'
+import { DateSpec } from '../types/date-spec'
 
 // CONSTANTS
 
@@ -24,15 +25,6 @@ function toMoment (date: DateSpec): Moment {
 }
 
 // EXPORTS
-
-/**
- * Standard date specification used in this application.
- */
-export interface DateSpec {
-  year: number
-  month: number
-  day: number
-}
 
 /**
  * Get a date object for the current date.

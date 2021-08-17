@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, PropType } from 'vue'
 
 import CheckControl from './CheckControl.vue'
 
@@ -22,11 +22,11 @@ export default defineComponent({
 
   props: {
     items: {
-      type: Object,
+      type: Object as PropType<Record<string, { label: string, description: string }>>,
       required: true
     },
     selection: {
-      type: Array,
+      type: Array as PropType<string[]>,
       required: true
     }
   },
