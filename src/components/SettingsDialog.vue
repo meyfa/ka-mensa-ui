@@ -21,11 +21,11 @@
 </template>
 
 <script>
-import DialogBase from '~/components/DialogBase'
+import DialogBase from './DialogBase'
 
-import CanteensSettings from '~/components/settings/CanteensSettings'
-import FilterSettings from '~/components/settings/FilterSettings'
-import AppearanceSettings from '~/components/settings/AppearanceSettings'
+import CanteensSettings from './settings/CanteensSettings'
+import FilterSettings from './settings/FilterSettings'
+import AppearanceSettings from './settings/AppearanceSettings'
 
 export default {
   components: {

@@ -24,11 +24,12 @@
 </template>
 
 <script>
-import settings from '~/settings'
-import { isVegetarian, isVegan, isInfo } from '~/util/meals'
-
-import MealItem from '~/components/MealItem'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
+
+import settings from '../settings'
+import { isVegetarian, isVegan, isInfo } from '../util/meals'
+
+import MealItem from './MealItem'
 
 export default {
   components: {

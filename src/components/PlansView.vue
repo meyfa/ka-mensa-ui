@@ -16,11 +16,11 @@
 <script>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 
-import api from '~/api'
-import settings from '~/settings'
+import api from '../api'
+import settings from '../settings'
 
-import CanteenLines from '~/components/CanteenLines'
-import MealDetailsDialog from '~/components/MealDetailsDialog'
+import CanteenLines from './CanteenLines'
+import MealDetailsDialog from './MealDetailsDialog'
 
 export default {
   components: {

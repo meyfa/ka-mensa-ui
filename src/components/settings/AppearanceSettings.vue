@@ -18,10 +18,10 @@
 <script>
 import { ref, watch } from 'vue'
 
-import settings from '~/settings'
+import settings from '../../settings'
 
-import ChoiceControl from '~/components/controls/ChoiceControl'
-import CheckControl from '~/components/controls/CheckControl'
+import ChoiceControl from '../controls/ChoiceControl'
+import CheckControl from '../controls/CheckControl'
 
 export default {
   components: {

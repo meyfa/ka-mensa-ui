@@ -19,9 +19,9 @@
 <script>
 import { computed, ref, watchEffect } from 'vue'
 
-import api from '~/api'
+import api from '../api'
 
-import DialogBase from '~/components/DialogBase'
+import DialogBase from './DialogBase'
 
 export default {
   components: {
