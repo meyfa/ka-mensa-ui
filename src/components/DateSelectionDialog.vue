@@ -9,10 +9,10 @@
 <script>
 import { computed, onMounted, ref } from 'vue'
 
-import api from '~/api'
+import api from '../api'
 
-import DialogBase from '~/components/DialogBase'
-import CalendarView from '~/components/CalendarView'
+import DialogBase from './DialogBase'
+import CalendarView from './CalendarView'
 
 export default {
   components: {

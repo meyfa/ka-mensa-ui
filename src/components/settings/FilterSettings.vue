@@ -9,9 +9,9 @@
 <script>
 import { ref, watch } from 'vue'
 
-import settings from '~/settings'
+import settings from '../../settings'
 
-import ChoiceControl from '~/components/controls/ChoiceControl'
+import ChoiceControl from '../controls/ChoiceControl'
 
 export default {
   components: {

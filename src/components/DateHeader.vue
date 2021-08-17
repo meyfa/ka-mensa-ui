@@ -17,7 +17,7 @@
 <script>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 
-import DateSelectionDialog from '~/components/DateSelectionDialog'
+import DateSelectionDialog from './DateSelectionDialog'
 
 import { formatDate } from '../util/date'
 import { filterDaysAgo } from '../filters/days-ago'

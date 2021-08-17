@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import CheckControl from '~/components/controls/CheckControl'
+import CheckControl from './CheckControl'
 
 export default {
   components: {

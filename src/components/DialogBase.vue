@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import PreventGlobalScrolling from '~/components/functional/PreventGlobalScrolling'
-import KeydownListener from '~/components/functional/KeydownListener'
+import PreventGlobalScrolling from './functional/PreventGlobalScrolling'
+import KeydownListener from './functional/KeydownListener'
 
 const ESCAPE_KEY = 27
 const ENTER_KEY = 13

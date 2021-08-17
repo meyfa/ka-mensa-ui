@@ -14,7 +14,7 @@
 <script>
 import { computed } from 'vue'
 
-import { isVegetarian, isVegan } from '~/util/meals'
+import { isVegetarian, isVegan } from '../util/meals'
 
 export default {
   props: {

@@ -16,14 +16,14 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 import 'typeface-nunito'
 
-import settings from '~/settings'
-import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from '~/util/date'
+import settings from './settings'
+import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from './util/date'
 
-import AppHeader from '~/components/AppHeader'
-import AppFooter from '~/components/AppFooter'
-import DateHeader from '~/components/DateHeader'
-import PlansView from '~/components/PlansView'
-import SettingsDialog from '~/components/SettingsDialog'
+import AppHeader from './components/AppHeader'
+import AppFooter from './components/AppFooter'
+import DateHeader from './components/DateHeader'
+import PlansView from './components/PlansView'
+import SettingsDialog from './components/SettingsDialog'
 
 const prefersDarkScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null
 

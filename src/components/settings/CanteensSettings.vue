@@ -11,10 +11,10 @@
 <script>
 import { computed, onMounted, ref, watch } from 'vue'
 
-import settings from '~/settings'
-import api from '~/api'
+import settings from '../../settings'
+import api from '../../api'
 
-import SelectControl from '~/components/controls/SelectControl'
+import SelectControl from '../controls/SelectControl'
 
 export default {
   components: {
