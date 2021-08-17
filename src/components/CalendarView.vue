@@ -27,12 +27,12 @@
   </div>
 </template>
 
-<script>
-import { computed, ref } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, ref } from 'vue'
 
 import moment from 'moment'
 
-export default {
+export default defineComponent({
   props: {
     dates: {
       type: Array,
@@ -54,13 +54,13 @@ export default {
     const formattedMonth = computed(() => moment([year.value, month.value]).format('MMMM'))
 
     const hasPreviousMonth = computed(() => {
-      return props.dates.some((date) => {
-        return date.year < year.value || (date.year === year && date.month < month.value)
+      return props.dates.some((date: any) => {
+        return date.year < year.value || (date.year === year.value && date.month < month.value)
       })
     })
 
     const hasNextMonth = computed(() => {
-      return props.dates.some((date) => {
+      return props.dates.some((date: any) => {
         return date.year > year.value || (date.year === year.value && date.month > month.value)
       })
     })
@@ -76,7 +76,7 @@ export default {
       for (const cursor = first.clone(); last.isSameOrAfter(cursor); cursor.add(1, 'd')) {
         rows[Math.trunc(offset / 7)][offset % 7] = {
           day: cursor.date(),
-          enabled: props.dates.some(item => cursor.isSame(moment(item), 'day')),
+          enabled: props.dates.some((item: any) => cursor.isSame(moment(item), 'day')),
           current: cursor.isSame(current, 'day')
         }
         ++offset
@@ -85,7 +85,7 @@ export default {
       return rows
     })
 
-    const clickDate = (day) => {
+    const clickDate = (day: number) => {
       emit('select', { year: year.value, month: month.value, day })
     }
 
@@ -117,7 +117,7 @@ export default {
       weekdays: moment.weekdaysMin(true)
     }
   }
-}
+})
 </script>
 
 <style scoped>

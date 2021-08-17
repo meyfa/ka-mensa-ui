@@ -15,15 +15,15 @@
   </div>
 </template>
 
-<script>
-import { ref, watch } from 'vue'
+<script lang="ts">
+import { defineComponent, ref, watch } from 'vue'
 
 import settings from '../../settings'
 
-import ChoiceControl from '../controls/ChoiceControl'
-import CheckControl from '../controls/CheckControl'
+import ChoiceControl from '../controls/ChoiceControl.vue'
+import CheckControl from '../controls/CheckControl.vue'
 
-export default {
+export default defineComponent({
   components: {
     ChoiceControl,
     CheckControl
@@ -57,5 +57,5 @@ export default {
       enableHighlights
     }
   }
-}
+})
 </script>

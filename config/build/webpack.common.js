@@ -30,13 +30,16 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.vue$/,
-        use: 'vue-loader'
-      },
-      {
         test: /\.ts/,
         exclude: /node_modules/,
-        use: 'ts-loader'
+        options: {
+          appendTsSuffixTo: [/\.vue$/]
+        },
+        loader: 'ts-loader'
+      },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -74,7 +77,7 @@ module.exports = {
     new DefinePlugin({
       API_ENDPOINT: JSON.stringify(config.api.endpoint),
       PRIVACY_POLICY_URL: JSON.stringify(config.site.privacyPolicyUrl),
-      __VUE_OPTIONS_API__: true,
+      __VUE_OPTIONS_API__: false,
       __VUE_PROD_DEVTOOLS__: false
     }),
     new HtmlWebpackPreconnectPlugin(),

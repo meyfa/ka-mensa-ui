@@ -1,13 +1,13 @@
-<script>
+<script lang="ts">
 // global counter for the number of prevent requests active (to allow for layered dialogs etc.)
-import { onMounted, onUnmounted } from 'vue'
+import { defineComponent, onMounted, onUnmounted } from 'vue'
 
 let preventCount = 0
 
 /**
  * Increment the prevention counter.
  */
-function increment () {
+function increment (): void {
   ++preventCount
   // if this is the first instance, activate prevention
   if (preventCount === 1) {
@@ -22,7 +22,7 @@ function increment () {
 /**
  * Decrement the prevention counter. If it reaches 0, scrolling will be allowed again.
  */
-function decrement () {
+function decrement (): void {
   --preventCount
   // if this was the last instance, deactivate prevention
   if (preventCount === 0) {
@@ -31,7 +31,7 @@ function decrement () {
   }
 }
 
-export default {
+export default defineComponent({
   props: {
     keys: {
       type: Array,
@@ -46,5 +46,5 @@ export default {
     // do not render anything
     return () => null
   }
-}
+})
 </script>

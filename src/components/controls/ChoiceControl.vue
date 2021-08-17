@@ -9,8 +9,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   props: {
     options: {
       type: Object,
@@ -23,7 +25,7 @@ export default {
   },
 
   emits: ['update:modelValue']
-}
+})
 </script>
 
 <style scoped>

@@ -11,23 +11,23 @@
   </div>
 </template>
 
-<script>
-import { onMounted, onUnmounted, ref } from 'vue'
+<script lang="ts">
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
 import 'typeface-nunito'
 
 import settings from './settings'
-import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from './util/date'
+import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday, DateSpec } from './util/date'
 
-import AppHeader from './components/AppHeader'
-import AppFooter from './components/AppFooter'
-import DateHeader from './components/DateHeader'
-import PlansView from './components/PlansView'
-import SettingsDialog from './components/SettingsDialog'
+import AppHeader from './components/AppHeader.vue'
+import AppFooter from './components/AppFooter.vue'
+import DateHeader from './components/DateHeader.vue'
+import PlansView from './components/PlansView.vue'
+import SettingsDialog from './components/SettingsDialog.vue'
 
 const prefersDarkScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null
 
-export default {
+export default defineComponent({
   name: 'App',
 
   components: {
@@ -44,8 +44,8 @@ export default {
       currentDate = getNextWeekday(currentDate)
     }
 
-    const showSettings = ref(false)
-    const date = ref(currentDate)
+    const showSettings = ref<undefined>()
+    const date = ref(getCurrentDate())
 
     const updateSettings = () => {
       let darkTheme = settings.theme === 'dark'
@@ -80,7 +80,7 @@ export default {
       date.value = getPreviousWeekday(date.value)
     }
 
-    const selectDate = (selected) => {
+    const selectDate = (selected: DateSpec) => {
       if (selected != null) {
         date.value = selected
       }
@@ -94,7 +94,7 @@ export default {
       selectDate
     }
   }
-}
+})
 </script>
 
 <style>
