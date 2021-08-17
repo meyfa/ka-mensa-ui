@@ -11,8 +11,8 @@ const CLASSIFIER_VEGAN = 'VG'
  *
  * This returns false for vegan meals.
  *
- * @param {object} meal The meal.
- * @returns {boolean} Whether the meal is vegetarian.
+ * @param meal The meal.
+ * @returns Whether the meal is vegetarian.
  */
 export function isVegetarian (meal: any): boolean {
   return meal.classifiers.includes(CLASSIFIER_VEGETARIAN)
@@ -21,8 +21,8 @@ export function isVegetarian (meal: any): boolean {
 /**
  * Determine whether the given meal is strictly vegan.
  *
- * @param {object} meal The meal.
- * @returns {boolean} Whether the meal is vegan.
+ * @param meal The meal.
+ * @returns Whether the meal is vegan.
  */
 export function isVegan (meal: any): boolean {
   return meal.classifiers.includes(CLASSIFIER_VEGAN)
@@ -31,8 +31,8 @@ export function isVegan (meal: any): boolean {
 /**
  * Determine whether the given meal is an informational entry, i.e. not a meal.
  *
- * @param {object} meal The meal.
- * @returns {boolean} Whether the meal is informational.
+ * @param meal The meal.
+ * @returns Whether the meal is informational.
  */
 export function isInfo (meal: any): boolean {
   return meal.classifiers.length === 0 && meal.additives.length === 0

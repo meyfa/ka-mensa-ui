@@ -7,16 +7,16 @@ const DATE_FORMAT = 'YYYY-MM-DD'
 // HELPER METHODS
 
 /**
- * @param {object} mnt The moment to convert to a date object.
- * @returns {object} The conversion result.
+ * @param mnt The moment to convert to a date object.
+ * @returns The conversion result.
  */
 function fromMoment (mnt: Moment): DateSpec {
   return { year: mnt.year(), month: mnt.month(), day: mnt.date() }
 }
 
 /**
- * @param {object} date The date object to convert to a moment.
- * @returns {object} The moment.
+ * @param date The date object to convert to a moment.
+ * @returns The moment.
  */
 function toMoment (date: DateSpec): Moment {
   // moment supports parse via object with compatible schema
@@ -25,6 +25,9 @@ function toMoment (date: DateSpec): Moment {
 
 // EXPORTS
 
+/**
+ * Standard date specification used in this application.
+ */
 export interface DateSpec {
   year: number
   month: number
@@ -34,7 +37,7 @@ export interface DateSpec {
 /**
  * Get a date object for the current date.
  *
- * @returns {object} A date object containing year, month, day properties.
+ * @returns A date object containing year, month, day properties.
  */
 export function getCurrentDate (): DateSpec {
   return fromMoment(moment())
@@ -43,8 +46,8 @@ export function getCurrentDate (): DateSpec {
 /**
  * Format the date object YYYY-MM-DD.
  *
- * @param {object} date The date.
- * @returns {string} The formatted string.
+ * @param date The date.
+ * @returns The formatted string.
  */
 export function formatDate (date: DateSpec): string {
   return toMoment(date).format(DATE_FORMAT)
@@ -53,8 +56,8 @@ export function formatDate (date: DateSpec): string {
 /**
  * Check whether the given date is a weekday (Mo - Fr).
  *
- * @param {object} date The date.
- * @returns {boolean} Whether the date is a weekday.
+ * @param date The date.
+ * @returns Whether the date is a weekday.
  */
 export function isWeekday (date: DateSpec): boolean {
   return toMoment(date).isoWeekday() <= 5
@@ -63,8 +66,8 @@ export function isWeekday (date: DateSpec): boolean {
 /**
  * Get the first weekday after the given date.
  *
- * @param {object} date The date.
- * @returns {object} The date of the next weekday.
+ * @param date The date.
+ * @returns The date of the next weekday.
  */
 export function getNextWeekday (date: DateSpec): DateSpec {
   // get moment for next day
@@ -80,8 +83,8 @@ export function getNextWeekday (date: DateSpec): DateSpec {
 /**
  * Get the first weekday before the given date.
  *
- * @param {object} date The date.
- * @returns {object} The date of the previous weekday.
+ * @param date The date.
+ * @returns The date of the previous weekday.
  */
 export function getPreviousWeekday (date: DateSpec): DateSpec {
   // get moment for next day

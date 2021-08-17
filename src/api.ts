@@ -11,7 +11,7 @@ class API {
   /**
    * Create a new API client for the given endpoint URL.
    *
-   * @param {string} endpoint The endpoint URL to use.
+   * @param endpoint The endpoint URL to use.
    */
   constructor (endpoint: string) {
     if (typeof endpoint !== 'string' || endpoint.length <= 0) {
@@ -38,7 +38,7 @@ class API {
   /**
    * Fetch the set of available canteens.
    *
-   * @returns {Promise} Resolves to an array of canteen objects.
+   * @returns Resolves to an array of canteen objects.
    */
   async getCanteens (): Promise<any> {
     return await this._fetchApi('canteens')
@@ -47,7 +47,7 @@ class API {
   /**
    * Fetch the set of legend entries containing 'short' and 'label' strings.
    *
-   * @returns {Promise} Resolves to an array of legend objects.
+   * @returns Resolves to an array of legend objects.
    */
   async getLegend (): Promise<any> {
     return await this._fetchApi('meta/legend')
@@ -56,7 +56,7 @@ class API {
   /**
    * Fetch the set of plan summaries.
    *
-   * @returns {Promise} Resolves to an array of plan summary objects.
+   * @returns Resolves to an array of plan summary objects.
    */
   async getPlans (): Promise<any> {
     return await this._fetchApi('plans')
@@ -65,8 +65,8 @@ class API {
   /**
    * Fetch the set of plans for the given date.
    *
-   * @param {object} date A date object.
-   * @returns {Promise} Resolves to an array of plans.
+   * @param date A date object.
+   * @returns Resolves to an array of plans.
    */
   async getPlan (date: DateSpec): Promise<any> {
     const dateStr = formatDate(date)
