@@ -16,7 +16,7 @@ const VERSION = 2
  */
 class SettingsPulse extends EventEmitter {
   /**
-   * @returns {boolean} Whether the user has seen the most recent settings.
+   * @returns Whether the user has seen the most recent settings.
    */
   get isCurrent (): boolean {
     const value = localStorage.getItem(LOCALSTORAGE_KEY)
@@ -25,8 +25,6 @@ class SettingsPulse extends EventEmitter {
 
   /**
    * Mark the current settings version as having been seen by the user.
-   *
-   * @returns {void}
    */
   markCurrent (): void {
     localStorage.setItem(LOCALSTORAGE_KEY, VERSION.toString())

@@ -5,8 +5,8 @@ import { getCurrentDate } from '../util/date'
  * Given a date specification, this returns a string representing that date relative
  * to the current date.
  *
- * @param {object} value The date value.
- * @returns {string} The formatted relative date.
+ * @param value The date value.
+ * @returns The formatted relative date.
  */
 export function filterDaysAgo (value: any): string {
   if (value != null && value !== '') {

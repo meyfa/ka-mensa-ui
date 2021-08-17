@@ -9,7 +9,7 @@ const LOCALSTORAGE_KEY = 'mensa-ui.settings'
 /**
  * Read the settings data from persistent storage.
  *
- * @returns {object} The data.
+ * @returns The data.
  */
 function readLocalStorage (): Record<string, any> | undefined {
   const json = localStorage.getItem(LOCALSTORAGE_KEY)
@@ -25,8 +25,7 @@ function readLocalStorage (): Record<string, any> | undefined {
 /**
  * Write settings data to persistent storage.
  *
- * @param {object} data The data.
- * @returns {void}
+ * @param data The data.
  */
 function writeLocalStorage (data: Record<string, any>): void {
   const json = JSON.stringify(data)
@@ -61,7 +60,7 @@ class Settings extends EventEmitter {
    * Re-load settings data from persistent storage.
    *
    * @access private
-   * @returns {boolean} Success value.
+   * @returns Success value.
    */
   load (): boolean {
     const stored = readLocalStorage()
@@ -77,7 +76,6 @@ class Settings extends EventEmitter {
    * Write settings data to persistent storage.
    *
    * @access private
-   * @returns {void}
    */
   save (): void {
     writeLocalStorage(this._data)
@@ -85,7 +83,7 @@ class Settings extends EventEmitter {
   }
 
   /**
-   * @returns {string} The page theme ('light', 'dark' or 'auto').
+   * @returns The page theme ('light', 'dark' or 'auto').
    */
   get theme (): string {
     return this._data.theme ?? 'auto'
@@ -97,7 +95,7 @@ class Settings extends EventEmitter {
   }
 
   /**
-   * @returns {string[]} The canteens selected for display.
+   * @returns The canteens selected for display.
    */
   get canteens (): string[] {
     return this._data.canteens != null
@@ -112,7 +110,7 @@ class Settings extends EventEmitter {
   }
 
   /**
-   * @returns {boolean} Whether canteen lines with no meals should be hidden.
+   * @returns Whether canteen lines with no meals should be hidden.
    */
   get hideEmptyLines (): boolean {
     return typeof this._data.hideEmptyLines === 'boolean'
@@ -126,7 +124,7 @@ class Settings extends EventEmitter {
   }
 
   /**
-   * @returns {string} The eating habits ('all' or 'vegetarian').
+   * @returns The eating habits ('all' or 'vegetarian').
    */
   get eatingHabits (): string {
     return this._data.eatingHabits ?? 'all'
@@ -138,7 +136,7 @@ class Settings extends EventEmitter {
   }
 
   /**
-   * @returns {boolean} Whether to highlight vegetarian + vegan menus.
+   * @returns Whether to highlight vegetarian + vegan menus.
    */
   get enableHighlights (): boolean {
     return typeof this._data.enableHighlights === 'boolean'
