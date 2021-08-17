@@ -23,7 +23,7 @@ class API {
     this.endpoint = endpoint
   }
 
-  private async _fetchApi (path: string): Promise<any> {
+  private async fetchApi (path: string): Promise<any> {
     const response = await fetch(this.endpoint + path)
     if (!response.ok) {
       throw new Error(response.statusText)
@@ -41,7 +41,7 @@ class API {
    * @returns Resolves to an array of canteen objects.
    */
   async getCanteens (): Promise<any> {
-    return await this._fetchApi('canteens')
+    return await this.fetchApi('canteens')
   }
 
   /**
@@ -50,7 +50,7 @@ class API {
    * @returns Resolves to an array of legend objects.
    */
   async getLegend (): Promise<any> {
-    return await this._fetchApi('meta/legend')
+    return await this.fetchApi('meta/legend')
   }
 
   /**
@@ -59,7 +59,7 @@ class API {
    * @returns Resolves to an array of plan summary objects.
    */
   async getPlans (): Promise<any> {
-    return await this._fetchApi('plans')
+    return await this.fetchApi('plans')
   }
 
   /**
@@ -70,7 +70,7 @@ class API {
    */
   async getPlan (date: DateSpec): Promise<any> {
     const dateStr = formatDate(date)
-    return await this._fetchApi(`plans/${dateStr}`)
+    return await this.fetchApi(`plans/${dateStr}`)
   }
 }
 

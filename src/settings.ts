@@ -38,7 +38,7 @@ function writeLocalStorage (data: Record<string, any>): void {
  * Settings manager that persists user settings to local storage.
  */
 class Settings extends EventEmitter {
-  private _data: Record<string, any> = {}
+  private data: Record<string, any> = {}
 
   /**
    * Create a new settings manager. Data will be ready immediately.
@@ -59,13 +59,12 @@ class Settings extends EventEmitter {
   /**
    * Re-load settings data from persistent storage.
    *
-   * @access private
    * @returns Success value.
    */
-  load (): boolean {
+  private load (): boolean {
     const stored = readLocalStorage()
     if (stored != null) {
-      this._data = stored
+      this.data = stored
       this.emit('update')
       return true
     }
@@ -74,11 +73,9 @@ class Settings extends EventEmitter {
 
   /**
    * Write settings data to persistent storage.
-   *
-   * @access private
    */
-  save (): void {
-    writeLocalStorage(this._data)
+  private save (): void {
+    writeLocalStorage(this.data)
     this.emit('update')
   }
 
@@ -86,11 +83,11 @@ class Settings extends EventEmitter {
    * @returns The page theme ('light', 'dark' or 'auto').
    */
   get theme (): string {
-    return this._data.theme ?? 'auto'
+    return this.data.theme ?? 'auto'
   }
 
   set theme (value: string) {
-    this._data.theme = value
+    this.data.theme = value
     this.save()
   }
 
@@ -98,14 +95,14 @@ class Settings extends EventEmitter {
    * @returns The canteens selected for display.
    */
   get canteens (): string[] {
-    return this._data.canteens != null
-      ? [...this._data.canteens]
+    return this.data.canteens != null
+      ? [...this.data.canteens]
       : ['adenauerring']
   }
 
   set canteens (value: string[]) {
     // remove duplicates
-    this._data.canteens = Array.from(new Set(value))
+    this.data.canteens = Array.from(new Set(value))
     this.save()
   }
 
@@ -113,13 +110,13 @@ class Settings extends EventEmitter {
    * @returns Whether canteen lines with no meals should be hidden.
    */
   get hideEmptyLines (): boolean {
-    return typeof this._data.hideEmptyLines === 'boolean'
-      ? this._data.hideEmptyLines
+    return typeof this.data.hideEmptyLines === 'boolean'
+      ? this.data.hideEmptyLines
       : true
   }
 
   set hideEmptyLines (value: boolean) {
-    this._data.hideEmptyLines = value
+    this.data.hideEmptyLines = value
     this.save()
   }
 
@@ -127,11 +124,11 @@ class Settings extends EventEmitter {
    * @returns The eating habits ('all' or 'vegetarian').
    */
   get eatingHabits (): string {
-    return this._data.eatingHabits ?? 'all'
+    return this.data.eatingHabits ?? 'all'
   }
 
   set eatingHabits (value) {
-    this._data.eatingHabits = value
+    this.data.eatingHabits = value
     this.save()
   }
 
@@ -139,13 +136,13 @@ class Settings extends EventEmitter {
    * @returns Whether to highlight vegetarian + vegan menus.
    */
   get enableHighlights (): boolean {
-    return typeof this._data.enableHighlights === 'boolean'
-      ? this._data.enableHighlights
+    return typeof this.data.enableHighlights === 'boolean'
+      ? this.data.enableHighlights
       : true
   }
 
   set enableHighlights (value: boolean) {
-    this._data.enableHighlights = value
+    this.data.enableHighlights = value
     this.save()
   }
 }
