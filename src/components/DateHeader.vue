@@ -14,15 +14,15 @@
   </div>
 </template>
 
-<script>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
-import DateSelectionDialog from './DateSelectionDialog'
+import DateSelectionDialog from './DateSelectionDialog.vue'
 
 import { formatDate } from '../util/date'
 import { filterDaysAgo } from '../filters/days-ago'
 
-export default {
+export default defineComponent({
   components: {
     DateSelectionDialog
   },
@@ -37,12 +37,17 @@ export default {
   emits: ['next', 'previous', 'select'],
 
   setup (props) {
-    const container = ref(null)
+    const container = ref<Element>()
     const showDateSelection = ref(false)
     const sticky = ref(false)
 
     const recomputeSticky = () => {
-      sticky.value = container.value != null && container.value.getBoundingClientRect().top < 0
+      const element = container.value
+      if (element == null) {
+        sticky.value = false
+        return
+      }
+      sticky.value = element.getBoundingClientRect().top < 0
     }
 
     onMounted(() => {
@@ -54,7 +59,7 @@ export default {
       window.removeEventListener('scroll', recomputeSticky)
     })
 
-    const formattedDate = computed(() => formatDate(props.date))
+    const formattedDate = computed(() => formatDate(props.date as any))
     const formattedDateSubtitle = computed(() => filterDaysAgo(props.date))
 
     return {
@@ -65,7 +70,7 @@ export default {
       formattedDateSubtitle
     }
   }
-}
+})
 </script>
 
 <style scoped>

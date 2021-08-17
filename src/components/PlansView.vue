@@ -13,16 +13,16 @@
   </div>
 </template>
 
-<script>
-import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 
 import api from '../api'
 import settings from '../settings'
 
-import CanteenLines from './CanteenLines'
-import MealDetailsDialog from './MealDetailsDialog'
+import CanteenLines from './CanteenLines.vue'
+import MealDetailsDialog from './MealDetailsDialog.vue'
 
-export default {
+export default defineComponent({
   components: {
     CanteenLines,
     MealDetailsDialog
@@ -40,13 +40,13 @@ export default {
     const plans = ref([])
     const detailsDialogMeal = ref(null)
 
-    const filteredPlans = computed(() => plans.value.filter((item) => {
+    const filteredPlans = computed(() => plans.value.filter((item: any) => {
       return canteens.value.includes(item.canteen.id)
     }))
 
     const fetchData = async () => {
       try {
-        plans.value = await api.getPlan(props.date)
+        plans.value = await api.getPlan(props.date as any)
       } catch (e) {
         plans.value = []
       }
@@ -75,7 +75,7 @@ export default {
       detailsDialogMeal
     }
   }
-}
+})
 </script>
 
 <style scoped>

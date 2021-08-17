@@ -16,14 +16,14 @@
   </DialogBase>
 </template>
 
-<script>
-import { computed, ref, watchEffect } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, ref, watchEffect } from 'vue'
 
 import api from '../api'
 
-import DialogBase from './DialogBase'
+import DialogBase from './DialogBase.vue'
 
-export default {
+export default defineComponent({
   components: {
     DialogBase
   },
@@ -38,14 +38,14 @@ export default {
   emits: ['update:meal'],
 
   setup (props) {
-    const legend = ref(null)
+    const legend = ref<Record<string, string>>()
 
     watchEffect(async () => {
       let data
       try {
         data = await api.getLegend()
       } catch (e) {
-        legend.value = null
+        legend.value = undefined
         return
       }
       legend.value = {}
@@ -56,7 +56,7 @@ export default {
 
     const classifiersAndAdditives = computed(() => {
       return props.meal != null
-        ? [...new Set([...props.meal.classifiers, ...props.meal.additives])]
+        ? Array.from(new Set([...props.meal.classifiers, ...props.meal.additives]))
         : []
     })
 
@@ -65,7 +65,7 @@ export default {
       classifiersAndAdditives
     }
   }
-}
+})
 </script>
 
 <style scoped>

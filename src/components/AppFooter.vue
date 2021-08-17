@@ -9,17 +9,20 @@
   </footer>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+// PRIVACY_POLICY_URL is configurable (config.site.privacyPolicyUrl) and defined via webpack
+declare const PRIVACY_POLICY_URL: string
+
+export default defineComponent({
   setup () {
     return {
-      // PRIVACY_POLICY_URL is configurable (config.site.privacyPolicyUrl)
-      // and defined via webpack
       privacyPolicyUrl: PRIVACY_POLICY_URL,
       url: 'https://github.com/meyfa/ka-mensa-ui'
     }
   }
-}
+})
 </script>
 
 <style scoped>

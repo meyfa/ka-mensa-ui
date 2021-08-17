@@ -10,10 +10,12 @@
   </div>
 </template>
 
-<script>
-import CheckControl from './CheckControl'
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-export default {
+import CheckControl from './CheckControl.vue'
+
+export default defineComponent({
   components: {
     CheckControl
   },
@@ -32,9 +34,9 @@ export default {
   emits: ['update:selection'],
 
   setup (props, { emit }) {
-    const isSelected = (value) => props.selection.includes(value)
+    const isSelected = (value: string) => props.selection.includes(value)
 
-    const setSelected = (value, select) => {
+    const setSelected = (value: string, select: boolean) => {
       // only allow toggling
       if (select !== isSelected(value)) {
         const newSelection = [...props.selection]
@@ -52,7 +54,7 @@ export default {
       setSelected
     }
   }
-}
+})
 </script>
 
 <style scoped>

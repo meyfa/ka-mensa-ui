@@ -1,9 +1,9 @@
-<script>
-import { onMounted, onUnmounted } from 'vue'
+<script lang="ts">
+import { defineComponent, onMounted, onUnmounted } from 'vue'
 
 const EVENT_NAME = 'keydown'
 
-export default {
+export default defineComponent({
   props: {
     keys: {
       type: Array,
@@ -14,8 +14,8 @@ export default {
   emits: ['triggered'],
 
   setup (props, { emit }) {
-    const handleEvent = (event) => {
-      if (!props.keys || !props.keys.length || props.keys.includes(event.keyCode)) {
+    const handleEvent = (event: KeyboardEvent) => {
+      if (!props.keys || !props.keys.length || props.keys.includes(event.key)) {
         event.preventDefault()
         emit('triggered', event)
       }
@@ -27,5 +27,5 @@ export default {
     // do not render anything
     return () => null
   }
-}
+})
 </script>

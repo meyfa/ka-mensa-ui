@@ -6,14 +6,14 @@
   </div>
 </template>
 
-<script>
-import { ref, watch } from 'vue'
+<script lang="ts">
+import { defineComponent, ref, watch } from 'vue'
 
 import settings from '../../settings'
 
-import ChoiceControl from '../controls/ChoiceControl'
+import ChoiceControl from '../controls/ChoiceControl.vue'
 
-export default {
+export default defineComponent({
   components: {
     ChoiceControl
   },
@@ -33,5 +33,5 @@ export default {
       eatingHabits
     }
   }
-}
+})
 </script>

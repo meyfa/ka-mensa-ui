@@ -20,14 +20,16 @@
   </DialogBase>
 </template>
 
-<script>
-import DialogBase from './DialogBase'
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-import CanteensSettings from './settings/CanteensSettings'
-import FilterSettings from './settings/FilterSettings'
-import AppearanceSettings from './settings/AppearanceSettings'
+import DialogBase from './DialogBase.vue'
 
-export default {
+import CanteensSettings from './settings/CanteensSettings.vue'
+import FilterSettings from './settings/FilterSettings.vue'
+import AppearanceSettings from './settings/AppearanceSettings.vue'
+
+export default defineComponent({
   components: {
     DialogBase,
     CanteensSettings,
@@ -42,7 +44,7 @@ export default {
   },
 
   emits: ['update:visible']
-}
+})
 </script>
 
 <style scoped>

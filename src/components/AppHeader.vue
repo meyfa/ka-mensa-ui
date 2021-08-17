@@ -10,12 +10,12 @@
   </header>
 </template>
 
-<script>
-import { onMounted, onUnmounted, ref } from 'vue'
+<script lang="ts">
+import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
 import settingsPulse from '../settings-pulse'
 
-export default {
+export default defineComponent({
   emits: ['settings-open'],
 
   setup (props, { emit }) {
@@ -38,7 +38,7 @@ export default {
       openSettings
     }
   }
-}
+})
 </script>
 
 <style scoped>

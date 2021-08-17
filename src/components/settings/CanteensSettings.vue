@@ -8,15 +8,15 @@
   </div>
 </template>
 
-<script>
-import { computed, onMounted, ref, watch } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 
 import settings from '../../settings'
 import api from '../../api'
 
-import SelectControl from '../controls/SelectControl'
+import SelectControl from '../controls/SelectControl.vue'
 
-export default {
+export default defineComponent({
   components: {
     SelectControl
   },
@@ -35,10 +35,10 @@ export default {
       canteens.value = await api.getCanteens()
     })
 
-    const selectControlItems = computed(() => canteens.value.reduce((map, canteen) => {
+    const selectControlItems = computed(() => canteens.value.reduce((map: Record<string, any>, canteen: any) => {
       map[canteen.id] = {
         label: canteen.name,
-        description: canteen.lines.map((item) => item.name).join(', ')
+        description: canteen.lines.map((item: any) => item.name).join(', ')
       }
       return map
     }, {}))
@@ -49,7 +49,7 @@ export default {
       selectControlItems
     }
   }
-}
+})
 </script>
 
 <style scoped>

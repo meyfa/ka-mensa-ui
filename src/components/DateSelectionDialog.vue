@@ -6,15 +6,16 @@
   </DialogBase>
 </template>
 
-<script>
-import { computed, onMounted, ref } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, onMounted, ref } from 'vue'
 
 import api from '../api'
+import { DateSpec } from '../util/date'
 
-import DialogBase from './DialogBase'
-import CalendarView from './CalendarView'
+import DialogBase from './DialogBase.vue'
+import CalendarView from './CalendarView.vue'
 
-export default {
+export default defineComponent({
   components: {
     DialogBase,
     CalendarView
@@ -33,9 +34,9 @@ export default {
   emits: ['select', 'update:visible'],
 
   setup (props, { emit }) {
-    const planSummaries = ref([])
+    const planSummaries = ref<any[] | undefined>([])
 
-    const close = (result) => {
+    const close = (result?: DateSpec) => {
       if (result != null) {
         emit('select', result)
       }
@@ -47,7 +48,7 @@ export default {
       try {
         data = await api.getPlans()
       } catch (e) {
-        planSummaries.value = null
+        planSummaries.value = undefined
         return
       }
       planSummaries.value = data
@@ -55,12 +56,12 @@ export default {
 
     onMounted(() => fetchData())
 
-    const calendarDates = computed(() => planSummaries.value.map(({ date }) => date))
+    const calendarDates = computed(() => (planSummaries.value ?? []).map(({ date }) => date))
 
     return {
       calendarDates,
       close
     }
   }
-}
+})
 </script>

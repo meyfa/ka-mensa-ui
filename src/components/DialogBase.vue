@@ -17,16 +17,18 @@
   </transition>
 </template>
 
-<script>
-import PreventGlobalScrolling from './functional/PreventGlobalScrolling'
-import KeydownListener from './functional/KeydownListener'
+<script lang="ts">
+import { defineComponent } from 'vue'
 
-const ESCAPE_KEY = 27
-const ENTER_KEY = 13
+import PreventGlobalScrolling from './functional/PreventGlobalScrolling.vue'
+import KeydownListener from './functional/KeydownListener.vue'
+
+const ESCAPE_KEY = 'Escape'
+const ENTER_KEY = 'Enter'
 
 const SIZE_OPTIONS = ['default', 'full', 'grow']
 
-export default {
+export default defineComponent({
   components: {
     PreventGlobalScrolling,
     KeydownListener
@@ -43,7 +45,7 @@ export default {
     size: {
       type: String,
       default: SIZE_OPTIONS[0],
-      validator: (value) => SIZE_OPTIONS.includes(value)
+      validator: (value: string) => SIZE_OPTIONS.includes(value)
     }
   },
 
@@ -55,7 +57,7 @@ export default {
       close: () => emit('close', false)
     }
   }
-}
+})
 </script>
 
 <style scoped>

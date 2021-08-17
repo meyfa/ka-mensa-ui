@@ -23,15 +23,15 @@
   </div>
 </template>
 
-<script>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+<script lang="ts">
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
 import settings from '../settings'
 import { isVegetarian, isVegan, isInfo } from '../util/meals'
 
-import MealItem from './MealItem'
+import MealItem from './MealItem.vue'
 
-export default {
+export default defineComponent({
   components: {
     MealItem
   },
@@ -59,7 +59,7 @@ export default {
     onMounted(() => settings.on('update', updateSettings))
     onUnmounted(() => settings.off('update', updateSettings))
 
-    const isMealVisible = (meal) => {
+    const isMealVisible = (meal: any) => {
       if (isInfo(meal)) {
         return true
       }
@@ -73,9 +73,9 @@ export default {
       return true
     }
 
-    const hasAnyMeal = computed(() => props.lines.some(line => line.meals.length > 0))
+    const hasAnyMeal = computed(() => props.lines.some((line: any) => line.meals.length > 0))
 
-    const filteredLines = computed(() => props.lines.map(line => {
+    const filteredLines = computed(() => props.lines.map((line: any) => {
       return {
         ...line,
         meals: line.meals.filter(isMealVisible)
@@ -88,7 +88,7 @@ export default {
       filteredLines
     }
   }
-}
+})
 </script>
 
 <style scoped>

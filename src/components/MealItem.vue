@@ -11,12 +11,12 @@
   </button>
 </template>
 
-<script>
-import { computed } from 'vue'
+<script lang="ts">
+import { computed, defineComponent } from 'vue'
 
 import { isVegetarian, isVegan } from '../util/meals'
 
-export default {
+export default defineComponent({
   props: {
     meal: {
       type: Object,
@@ -31,10 +31,10 @@ export default {
   emits: ['click'],
 
   setup (props) {
-    const classifiersAndAdditives = computed(() => [...new Set([
+    const classifiersAndAdditives = computed(() => Array.from(new Set([
       ...props.meal.classifiers,
       ...props.meal.additives
-    ])])
+    ])))
 
     const mealClasses = computed(() => ({
       highlight: props.highlight,
@@ -47,7 +47,7 @@ export default {
       mealClasses
     }
   }
-}
+})
 </script>
 
 <style scoped>
