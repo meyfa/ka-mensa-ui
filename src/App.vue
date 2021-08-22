@@ -46,7 +46,7 @@ export default defineComponent({
     }
 
     const showSettings = ref(false)
-    const date = ref(getCurrentDate())
+    const date = ref(currentDate)
 
     const updateSettings = () => {
       let darkTheme = settings.theme === 'dark'
