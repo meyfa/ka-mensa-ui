@@ -120,18 +120,18 @@ export default defineComponent({
 }
 
 :root.theme-dark {
-  --color-page-background: #000;
-  --color-header-background: #222;
-  --color-footer-background: #101010;
+  --color-page-background: #141416;
+  --color-header-background: #292928;
+  --color-footer-background: #060809;
   --color-footer-text: #888;
   --color-footer-link: #48d;
   --color-dialog-veil: rgba(4, 4, 4, 0.8);
   --color-dialog-background: #222;
-  --color-card-background: #1a1a1a;
+  --color-card-background: #282828;
   --color-text: #fff;
   --color-text-lighter: #999;
   --color-button-background: #1a1b1c;
-  --color-button-border: #444;
+  --color-button-border: #666;
   --color-divider: #000;
   --color-warn-background: #422;
   --color-warn-text: #fab;
@@ -139,9 +139,9 @@ export default defineComponent({
   --color-date-current: #8cf;
   --color-date-current-text: #000;
   --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.75);
-  --color-meal-vegetarian: #504028;
-  --color-meal-vegan: #084824;
-  --meal-item-shadow: 0 0 8px 0 rgba(0, 0, 0, 1);
+  --color-meal-vegetarian: #574730;
+  --color-meal-vegan: #0f4f2b;
+  --meal-item-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75);
 }
 
 *,
