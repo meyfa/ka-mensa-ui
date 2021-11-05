@@ -18,9 +18,6 @@ class API {
    * @param endpoint The endpoint URL to use.
    */
   constructor (endpoint: string) {
-    if (typeof endpoint !== 'string' || endpoint.length <= 0) {
-      throw new TypeError('expected endpoint parameter')
-    }
     if (endpoint.charAt(endpoint.length - 1) !== '/') {
       throw new Error('expected endpoint URL to end with slash character')
     }
@@ -83,4 +80,21 @@ class API {
 // API_ENDPOINT is configurable (config.api.endpoint) and defined via webpack
 declare const API_ENDPOINT: string
 
-export default new API(API_ENDPOINT)
+/**
+ * Ensure the given parameter is a trimmed string ending with a slash.
+ *
+ * @param url The input URL.
+ * @returns The fixed URL.
+ */
+function sanitizeUrl (url: any): string {
+  if (typeof url !== 'string') {
+    throw new TypeError('expected the API endpoint to be a string')
+  }
+  const trimmed = url.trim()
+  if (trimmed.length <= 0) {
+    throw new TypeError('expected the API endpoint to not be empty')
+  }
+  return trimmed.endsWith('/') ? trimmed : `${trimmed}/`
+}
+
+export default new API(sanitizeUrl(API_ENDPOINT))
