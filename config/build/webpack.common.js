@@ -80,6 +80,7 @@ module.exports = {
       name: 'KA Mensa',
       description: 'Mensaplan für Karlsruhe',
       scope: '/',
+      publicPath: './',
       start_url: '/?source=pwa',
       display: 'standalone',
       orientation: 'portrait',
