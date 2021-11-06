@@ -1,3 +1,4 @@
+import env from './env'
 import { DateSpec } from './types/date-spec'
 import { formatDate } from './util/date'
 import { CanteenPlan } from './types/canteen-plan'
@@ -77,9 +78,6 @@ class API {
 
 // EXPORT
 
-// API_ENDPOINT is configurable (config.api.endpoint) and defined via webpack
-declare const API_ENDPOINT: string
-
 /**
  * Ensure the given parameter is a trimmed string ending with a slash.
  *
@@ -97,4 +95,4 @@ function sanitizeUrl (url: any): string {
   return trimmed.endsWith('/') ? trimmed : `${trimmed}/`
 }
 
-export default new API(sanitizeUrl(API_ENDPOINT))
+export default new API(sanitizeUrl(env.API_ENDPOINT))
