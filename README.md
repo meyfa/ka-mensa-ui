@@ -60,8 +60,8 @@ docker run \
 ```
 
 It's as simple as that! Note that specifying `API_ENDPOINT` is mandatory. The
-environment variables MUST NOT contain single quotes or backslashes unless
-escaped with a backslash (i.e. `\'` and `\\`, respectively).
+environment variables MUST NOT contain single quotes, double quotes or
+backslashes, unless you want to figure out how to escape them properly.
 
 (Internally, there is some magic that injects these environment variables into
 the nginx config, which then injects them into the page.)
