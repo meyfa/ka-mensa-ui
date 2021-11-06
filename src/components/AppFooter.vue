@@ -11,14 +11,12 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-
-// PRIVACY_POLICY_URL is configurable (config.site.privacyPolicyUrl) and defined via webpack
-declare const PRIVACY_POLICY_URL: string
+import env from '../env'
 
 export default defineComponent({
   setup () {
     return {
-      privacyPolicyUrl: PRIVACY_POLICY_URL,
+      privacyPolicyUrl: env.PRIVACY_POLICY_URL,
       url: 'https://github.com/meyfa/ka-mensa-ui'
     }
   }

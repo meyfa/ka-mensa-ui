@@ -29,16 +29,42 @@ The entire project is written in JavaScript+TypeScript and is composed as follow
 
 Make sure to have a `ka-mensa-api` server running and publicly accessible.
 If on another domain, you have to configure your server to set CORS headers.
+Now you've got two choices: You can clone this repository via Git, build
+manually and use your own web server; or you can use a pre-built Docker image
+based on Nginx.
 
-Then, clone this repository somewhere. Run `npm install` (Node and npm must be
-installed on your system!).
+### The Git Way
+
+Clone this repository somewhere. Make sure Node and npm are installed on your
+system. Then run `npm install`.
 
 Open up `config.js` and configure to your liking. Pay special attention to
 setting the API endpoint so that requests can be sent to your API server.
 
 If you now run `npm run build`, the frontend will be compiled with the
 configured options and the result placed in the `dist` directory. Throw it on a
-webserver and load it up to see a fancy canteen plan UI.
+webserver and you're good to go!
+
+### The Docker Way
+
+To start a webserver linked to your API instance, simply run the Docker
+container and pass in config options via environment variables:
+
+```sh
+docker run \
+        --name mensa-ui \
+        -p <host-port>:8080 \
+        -e API_ENDPOINT=https://my-ka-mensa-api.example.com \
+        -e PRIVACY_POLICY_URL=https://example.com/privacy \
+        -d meyfa/ka-mensa-ui
+```
+
+It's as simple as that! Note that specifying `API_ENDPOINT` is mandatory. The
+environment variables MUST NOT contain single quotes or backslashes unless
+escaped with a backslash (i.e. `\'` and `\\`, respectively).
+
+(Internally, there is some magic that injects these environment variables into
+the nginx config, which then injects them into the page.)
 
 
 ## Development
