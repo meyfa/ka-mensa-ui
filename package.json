@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "description": "Karlsruhe (KIT) Mensa meal plan UI for use with ka-mensa-api",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./config/build/webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.prod.js",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint ./src",
     "lint-fix": "eslint --fix --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint --fix ./src",
     "test": "npm run lint",
-    "dev": "cross-env NODE_ENV=development webpack serve --config ./config/build/webpack.dev.js"
+    "dev": "cross-env NODE_ENV=development webpack serve --config ./webpack/webpack.dev.js"
   },
   "repository": {
     "type": "git",

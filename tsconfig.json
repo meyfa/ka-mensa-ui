@@ -14,7 +14,6 @@
     "strict": true
   },
   "include": [
-    "src",
-    "config"
+    "src"
   ]
 }

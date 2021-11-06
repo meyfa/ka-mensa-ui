@@ -2,7 +2,7 @@
 
 const path = require('path')
 
-const config = require('../')
+const config = require('../config')
 
 const { IgnorePlugin, DefinePlugin } = require('webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -11,7 +11,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const HtmlWebpackPreconnectPlugin = require('html-webpack-preconnect-plugin')
 const WebpackPwaManifest = require('webpack-pwa-manifest')
 
-const BASE_DIR = path.join(__dirname, '../..')
+const BASE_DIR = path.join(__dirname, '..')
 const SRC_DIR = path.join(BASE_DIR, 'src')
 const DST_DIR = path.join(BASE_DIR, 'dist')
 

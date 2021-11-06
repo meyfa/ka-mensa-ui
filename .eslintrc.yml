@@ -3,11 +3,13 @@ extends:
   - plugin:jsdoc/recommended
   - plugin:vue/recommended
 
-parser: vue-eslint-parser
-parserOptions:
-  parser: '@typescript-eslint/parser'
-  extraFileExtensions: ['.vue']
-  project: './tsconfig.json'
+overrides:
+  - files: ['*.ts', '*.vue']
+    parser: vue-eslint-parser
+    parserOptions:
+      parser: '@typescript-eslint/parser'
+      extraFileExtensions: ['.vue']
+      project: './tsconfig.json'
 
 globals:
   API_ENDPOINT: readonly
@@ -20,7 +22,7 @@ rules:
   vue/html-closing-bracket-newline: 0
   vue/component-name-in-template-casing: [2, PascalCase]
   # require JSDoc on every standard location, and also on classes, interfaces and enums
-  jsdoc/require-jsdoc: [ 'error', { contexts: [ 'ClassDeclaration', 'TSInterfaceDeclaration', 'TSEnumDeclaration' ] } ]
+  jsdoc/require-jsdoc: ['error', { contexts: [ 'ClassDeclaration', 'TSInterfaceDeclaration', 'TSEnumDeclaration' ] }]
   jsdoc/require-param-type: off
   jsdoc/require-returns-type: off
   jsdoc/no-types: error

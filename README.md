@@ -33,7 +33,7 @@ If on another domain, you have to configure your server to set CORS headers.
 Then, clone this repository somewhere. Run `npm install` (Node and npm must be
 installed on your system!).
 
-Open up `config/index.js` and configure to your liking. Pay special attention to
+Open up `config.js` and configure to your liking. Pay special attention to
 setting the API endpoint so that requests can be sent to your API server.
 
 If you now run `npm run build`, the frontend will be compiled with the
