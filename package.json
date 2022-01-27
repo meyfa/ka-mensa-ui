@@ -29,11 +29,11 @@
   "dependencies": {
     "moment": "2.29.1",
     "typeface-nunito": "1.1.13",
-    "vue": "3.2.20"
+    "vue": "3.2.29"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.33.0",
-    "@vue/compiler-sfc": "3.2.20",
+    "@vue/compiler-sfc": "3.2.29",
     "clean-webpack-plugin": "4.0.0",
     "cross-env": "7.0.3",
     "css-loader": "6.5.1",
@@ -54,8 +54,8 @@
     "stylelint-config-standard": "22.0.0",
     "ts-loader": "9.2.6",
     "typescript": "4.4.4",
-    "vue-eslint-parser": "8.0.0",
-    "vue-loader": "16.8.1",
+    "vue-eslint-parser": "8.2.0",
+    "vue-loader": "16.8.3",
     "webpack": "5.67.0",
     "webpack-cli": "4.9.2",
     "webpack-dev-server": "4.7.3",
