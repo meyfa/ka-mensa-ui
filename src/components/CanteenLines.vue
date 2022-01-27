@@ -103,7 +103,7 @@ export default defineComponent({
 .line {
   display: inline-block;
   width: 320px;
-  margin: 0 4px 8px 4px;
+  margin: 0 4px 8px;
   padding: 16px 8px;
   background: var(--color-card-background);
   border-radius: 4px;

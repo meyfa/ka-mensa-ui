@@ -1,4 +1,7 @@
-extends: stylelint-config-standard
-ignoreFiles:
-  - "**/*.ico"
-  - "**/*.png"
+extends: stylelint-config-standard-vue
+
+rules:
+  string-quotes: single
+  no-duplicate-selectors: true
+  color-hex-case: lower
+  font-family-name-quotes: always-unless-keyword
