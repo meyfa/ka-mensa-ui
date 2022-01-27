@@ -91,12 +91,12 @@ export default defineComponent({
   animation-duration: 1.2s;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  box-shadow: 0 0 0 0 rgba(60, 120, 240, 0.75);
+  box-shadow: 0 0 0 0 rgb(60 120 240 / 75%);
 }
 
 @keyframes settings-pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(60, 120, 240, 0.75);
+    box-shadow: 0 0 0 0 rgb(60 120 240 / 75%);
   }
 
   40% {

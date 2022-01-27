@@ -100,7 +100,7 @@ export default defineComponent({
   --color-footer-background: #333;
   --color-footer-text: #bbb;
   --color-footer-link: #6af;
-  --color-dialog-veil: rgba(30, 30, 30, 0.8);
+  --color-dialog-veil: rgb(30 30 30 / 80%);
   --color-dialog-background: #fff;
   --color-card-background: #fff;
   --color-text: #000;
@@ -113,10 +113,10 @@ export default defineComponent({
   --color-date-available: #bdf;
   --color-date-current: #26f;
   --color-date-current-text: #fff;
-  --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.3);
+  --header-shadow: 0 0 12px 0 rgb(0 0 0 / 30%);
   --color-meal-vegetarian: #fff4cc;
   --color-meal-vegan: #cfc;
-  --meal-item-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+  --meal-item-shadow: 0 0 8px 0 rgb(0 0 0 / 25%);
 }
 
 :root.theme-dark {
@@ -125,7 +125,7 @@ export default defineComponent({
   --color-footer-background: #060809;
   --color-footer-text: #888;
   --color-footer-link: #48d;
-  --color-dialog-veil: rgba(4, 4, 4, 0.8);
+  --color-dialog-veil: rgb(4 4 4 / 80%);
   --color-dialog-background: #222;
   --color-card-background: #282828;
   --color-text: #fff;
@@ -138,10 +138,10 @@ export default defineComponent({
   --color-date-available: #248;
   --color-date-current: #8cf;
   --color-date-current-text: #000;
-  --header-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.75);
+  --header-shadow: 0 0 12px 0 rgb(0 0 0 / 75%);
   --color-meal-vegetarian: #574730;
   --color-meal-vegan: #0f4f2b;
-  --meal-item-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.75);
+  --meal-item-shadow: 0 0 8px 0 rgb(0 0 0 / 75%);
 }
 
 *,
