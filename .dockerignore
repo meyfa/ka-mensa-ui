@@ -1,0 +1,14 @@
+# exclude everything
+*
+
+# include what we need
+!LICENSE
+!package.json
+!package-lock.json
+!src
+!webpack
+!tsconfig.json
+!.eslintrc.yml
+!.stylelintrc.yml
+!config.js
+!docker-nginx-template.conf
