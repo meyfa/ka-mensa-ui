@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      manifestFilename: 'manifest.json',
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
