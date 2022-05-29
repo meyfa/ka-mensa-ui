@@ -36,10 +36,9 @@ based on Nginx.
 ### The Git Way
 
 Clone this repository somewhere. Make sure Node and npm are installed on your
-system. Then run `npm install`.
-
-Open up `config.js` and configure to your liking. Pay special attention to
-setting the API endpoint so that requests can be sent to your API server.
+system. Then run `npm install`. For configuration, see the `.env` file.
+Pay special attention to setting the API endpoint so that requests can be sent
+to your API server.
 
 If you now run `npm run build`, the frontend will be compiled with the
 configured options and the result placed in the `dist` directory. Throw it on a
@@ -53,7 +52,7 @@ container and pass in config options via environment variables:
 ```sh
 docker run \
         --name mensa-ui \
-        -p <host-port>:8080 \
+        -p <host-port>:80 \
         -e API_ENDPOINT=https://my-ka-mensa-api.example.com \
         -e PRIVACY_POLICY_URL=https://example.com/privacy \
         -d meyfa/ka-mensa-ui

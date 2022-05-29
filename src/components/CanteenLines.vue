@@ -3,7 +3,8 @@
     <div v-for="line in filteredLines" :key="line.id" class="line">
       <h3 class="line-title">{{ line.name }}</h3>
 
-      <MealItem v-for="(meal, index) in line.meals" :key="index"
+      <MealItem
+          v-for="(meal, index) in line.meals" :key="index"
           :meal="meal" :highlight="enableHighlights"
           @click="$emit('details', meal)" />
 
@@ -24,9 +25,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import type { PropType } from 'vue'
 
-import { CanteenLine, CanteenMeal } from '../types/canteen-plan'
+import type { CanteenLine, CanteenMeal } from '../types/canteen-plan'
 import settings from '../settings'
 import { isVegetarian, isVegan, isInfo } from '../util/meals'
 

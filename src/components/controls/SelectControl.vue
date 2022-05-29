@@ -1,6 +1,7 @@
 <template>
   <div class="select">
-    <CheckControl v-for="(item, itemKey) in items" :key="itemKey" class="select-item"
+    <CheckControl
+        v-for="(item, itemKey) in items" :key="itemKey" class="select-item"
         :model-value="isSelected(itemKey)" @update:model-value="setSelected(itemKey, $event)">
       {{ item.label }}
       <div class="select-description">
@@ -11,7 +12,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 import CheckControl from './CheckControl.vue'
 

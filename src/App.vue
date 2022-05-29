@@ -16,7 +16,7 @@ import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
 import 'typeface-nunito'
 
-import { DateSpec } from './types/date-spec'
+import type { DateSpec } from './types/date-spec'
 import settings from './settings'
 import { getCurrentDate, isWeekday, getPreviousWeekday, getNextWeekday } from './util/date'
 

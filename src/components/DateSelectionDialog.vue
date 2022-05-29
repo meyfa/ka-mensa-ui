@@ -7,10 +7,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, PropType, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import type { PropType } from 'vue'
 
-import { DateSpec } from '../types/date-spec'
-import { CanteenPlanSummary } from '../types/canteen-plan'
+import type { DateSpec } from '../types/date-spec'
+import type { CanteenPlanSummary } from '../types/canteen-plan'
 import api from '../api'
 
 import DialogBase from './DialogBase.vue'

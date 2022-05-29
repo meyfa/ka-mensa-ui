@@ -4,11 +4,11 @@
   "version": "0.0.0",
   "description": "Karlsruhe (KIT) Mensa meal plan UI for use with ka-mensa-api",
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack --config ./webpack/webpack.prod.js",
+    "build": "vite build",
     "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint \"./src/**/*.{css,vue}\"",
     "lint-fix": "eslint --fix --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint --fix \"./src/**/*.{css,vue}\"",
     "test": "npm run lint",
-    "dev": "cross-env NODE_ENV=development webpack serve --config ./webpack/webpack.dev.js"
+    "dev": "vite serve"
   },
   "repository": {
     "type": "git",
@@ -27,17 +27,17 @@
   },
   "homepage": "https://github.com/meyfa/ka-mensa-ui",
   "dependencies": {
+    "events": "3.3.0",
     "moment": "2.29.3",
     "typeface-nunito": "1.1.13",
     "vue": "3.2.31"
   },
   "devDependencies": {
+    "@types/events": "3.0.0",
     "@typescript-eslint/eslint-plugin": "4.33.0",
-    "@vue/compiler-sfc": "3.2.31",
-    "clean-webpack-plugin": "4.0.0",
+    "@vitejs/plugin-vue": "2.3.3",
+    "@vue/tsconfig": "0.1.3",
     "cross-env": "7.0.3",
-    "css-loader": "6.7.1",
-    "css-minimizer-webpack-plugin": "3.4.1",
     "eslint": "7.32.0",
     "eslint-config-standard-with-typescript": "21.0.1",
     "eslint-plugin-import": "2.26.0",
@@ -45,23 +45,11 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.2.0",
     "eslint-plugin-vue": "8.7.1",
-    "file-loader": "6.2.0",
-    "html-webpack-plugin": "5.5.0",
-    "html-webpack-preconnect-plugin": "1.2.1",
-    "mini-css-extract-plugin": "2.6.0",
-    "postcss-html": "1.3.0",
-    "style-loader": "3.3.1",
     "stylelint": "14.7.1",
     "stylelint-config-standard-vue": "1.0.0",
-    "ts-loader": "9.2.8",
     "typescript": "4.6.4",
-    "vue-eslint-parser": "8.3.0",
-    "vue-loader": "17.0.0",
-    "webpack": "5.72.1",
-    "webpack-cli": "4.9.2",
-    "webpack-dev-server": "4.8.1",
-    "webpack-merge": "5.8.0",
-    "webpack-pwa-manifest": "4.3.0",
-    "workbox-webpack-plugin": "6.5.3"
+    "vite": "2.9.9",
+    "vite-plugin-pwa": "0.12.0",
+    "vue-eslint-parser": "8.3.0"
   }
 }

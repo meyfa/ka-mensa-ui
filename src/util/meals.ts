@@ -1,4 +1,4 @@
-import { CanteenMeal } from '../types/canteen-plan'
+import type { CanteenMeal } from '../types/canteen-plan'
 
 // CONSTANTS
 

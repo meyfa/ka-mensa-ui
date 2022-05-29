@@ -1,9 +1,9 @@
 import env from './env'
-import { DateSpec } from './types/date-spec'
+import type { DateSpec } from './types/date-spec'
 import { formatDate } from './util/date'
-import { CanteenPlan } from './types/canteen-plan'
-import { Canteen } from './types/canteen'
-import { LegendItem } from './types/legend'
+import type { CanteenPlan } from './types/canteen-plan'
+import type { Canteen } from './types/canteen'
+import type { LegendItem } from './types/legend'
 
 // CLASS DEFINITION
 

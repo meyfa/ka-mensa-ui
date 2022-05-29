@@ -17,9 +17,10 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref, watchEffect } from 'vue'
+import { computed, defineComponent, ref, watchEffect } from 'vue'
+import type { PropType } from 'vue'
 
-import { CanteenMeal } from '../types/canteen-plan'
+import type { CanteenMeal } from '../types/canteen-plan'
 import api from '../api'
 
 import DialogBase from './DialogBase.vue'

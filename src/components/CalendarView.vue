@@ -16,7 +16,8 @@
       </tr>
       <tr v-for="(row, rowIndex) in rows" :key="'row' + rowIndex" class="cal-row">
         <td v-for="(col, colIndex) in row" :key="'col' + colIndex">
-          <button v-if="col" class="cal-btn" :class="{ current: col.current }"
+          <button
+              v-if="col" class="cal-btn" :class="{ current: col.current }"
               :disabled="!col.enabled" @click="clickDate(col.day)">
             {{ col.day }}
           </button>
@@ -28,10 +29,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType, ref } from 'vue'
+import { computed, defineComponent, ref } from 'vue'
 import moment from 'moment'
+import type { PropType } from 'vue'
 
-import { DateSpec } from '../types/date-spec'
+import type { DateSpec } from '../types/date-spec'
 
 export default defineComponent({
   props: {
