@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
-      injectRegister: 'inline',
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
@@ -27,6 +26,12 @@ export default defineConfig({
           {
             src: 'icon-512.png',
             sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'icon-1024.png',
+            sizes: '1024x1024',
             type: 'image/png',
             purpose: 'any maskable'
           }
