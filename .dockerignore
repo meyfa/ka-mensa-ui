@@ -9,6 +9,7 @@
 !public
 !index.html
 !tsconfig.json
+!tsconfig.eslint.json
 !.eslintrc.yml
 !.stylelintrc.yml
 !vite.config.ts
