@@ -1,5 +1,6 @@
 <script lang="ts">
-import { defineComponent, onMounted, onUnmounted, PropType } from 'vue'
+import { defineComponent, onMounted, onUnmounted } from 'vue'
+import type { PropType } from 'vue'
 
 const EVENT_NAME = 'keydown'
 

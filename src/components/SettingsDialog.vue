@@ -1,5 +1,6 @@
 <template>
-  <DialogBase title="Optionen" size="full"
+  <DialogBase
+      title="Optionen" size="full"
       :visible="visible" @close="$emit('update:visible', false)">
     <div class="columns">
       <div class="column">

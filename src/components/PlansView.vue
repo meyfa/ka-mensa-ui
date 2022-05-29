@@ -14,10 +14,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, PropType, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
+import type { PropType } from 'vue'
 
-import { DateSpec } from '../types/date-spec'
-import { CanteenMeal, CanteenPlan } from '../types/canteen-plan'
+import type { DateSpec } from '../types/date-spec'
+import type { CanteenMeal, CanteenPlan } from '../types/canteen-plan'
 import api from '../api'
 import settings from '../settings'
 

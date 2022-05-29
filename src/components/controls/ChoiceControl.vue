@@ -1,7 +1,8 @@
 <template>
   <div class="choice">
     <label v-for="(optionLabel, optionKey) in options" :key="optionKey" class="choice-item">
-      <input type="radio" class="choice-input" :checked="modelValue === optionKey"
+      <input
+          type="radio" class="choice-input" :checked="modelValue === optionKey"
           @change="$emit('update:modelValue', optionKey)">
       <span class="choice-box" />
       {{ optionLabel }}
@@ -10,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 export default defineComponent({
   props: {

@@ -6,9 +6,10 @@
 !package.json
 !package-lock.json
 !src
-!webpack
+!public
+!index.html
 !tsconfig.json
 !.eslintrc.yml
 !.stylelintrc.yml
-!config.js
+!vite.config.ts
 !docker-nginx-template.conf

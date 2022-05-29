@@ -1,16 +1,11 @@
 import { createApp } from 'vue'
-import App from './App.vue'
-
+import { registerSW } from 'virtual:pwa-register'
 import moment from 'moment'
-import 'moment/locale/de'
+import 'moment/dist/locale/de'
+import App from './App.vue'
 
 moment.locale('de')
 
-createApp(App).mount('body')
+createApp(App).mount('#app')
 
-if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    navigator.serviceWorker.register('/service-worker.js')
-  })
-}
+registerSW()

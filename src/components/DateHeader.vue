@@ -9,15 +9,17 @@
       <button type="button" class="dir-btn" @click="$emit('next')">❯</button>
     </div>
 
-    <DateSelectionDialog :current="date" :visible="showDateSelection" @update:visible="showDateSelection = $event"
+    <DateSelectionDialog
+        :current="date" :visible="showDateSelection" @update:visible="showDateSelection = $event"
         @select="$emit('select', $event)" />
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, PropType, ref } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
+import type { PropType } from 'vue'
 
-import { DateSpec } from '../types/date-spec'
+import type { DateSpec } from '../types/date-spec'
 import { formatDate } from '../util/date'
 import { filterDaysAgo } from '../filters/days-ago'
 

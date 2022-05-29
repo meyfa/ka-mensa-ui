@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { getCurrentDate } from '../util/date'
-import { DateSpec } from '../types/date-spec'
+import type { DateSpec } from '../types/date-spec'
 
 /**
  * Given a date specification, this returns a string representing that date relative

@@ -12,10 +12,6 @@ export interface Env {
   PRIVACY_POLICY_URL: string
 }
 
-// webpack definitions
-declare const API_ENDPOINT: string
-declare const PRIVACY_POLICY_URL: string
-
 // environment variables on window object
 declare global {
   /**
@@ -42,8 +38,8 @@ function resolve<K extends keyof Env> (key: K, fallback: string): string {
 }
 
 const computedEnv: Env = {
-  API_ENDPOINT: resolve('API_ENDPOINT', API_ENDPOINT),
-  PRIVACY_POLICY_URL: resolve('PRIVACY_POLICY_URL', PRIVACY_POLICY_URL)
+  API_ENDPOINT: resolve('API_ENDPOINT', import.meta.env.VITE_API_ENDPOINT),
+  PRIVACY_POLICY_URL: resolve('PRIVACY_POLICY_URL', import.meta.env.VITE_PRIVACY_POLICY_URL)
 }
 
 /**

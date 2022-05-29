@@ -11,7 +11,7 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 
-import { Canteen } from '../../types/canteen'
+import type { Canteen } from '../../types/canteen'
 import settings from '../../settings'
 import api from '../../api'
 
