@@ -11,6 +11,7 @@ export default defineConfig({
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
       manifest: {
         name: 'KA Mensa',
+        short_name: 'KA Mensa',
         description: 'Mensaplan für Karlsruhe',
         lang: 'de',
         scope: '/',
