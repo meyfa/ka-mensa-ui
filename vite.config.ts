@@ -40,12 +40,12 @@ function injectPageMeta (manifest: PageMeta): PluginOption {
         },
         {
           tag: 'meta',
-          attrs: { name: 'description', value: manifest.description },
+          attrs: { name: 'description', content: manifest.description },
           injectTo: 'head'
         },
         {
           tag: 'meta',
-          attrs: { name: 'theme-color', value: manifest.theme_color },
+          attrs: { name: 'theme-color', content: manifest.theme_color },
           injectTo: 'head'
         }
       ]
