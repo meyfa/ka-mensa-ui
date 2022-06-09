@@ -30,7 +30,7 @@
     "events": "3.3.0",
     "moment": "2.29.3",
     "typeface-nunito": "1.1.13",
-    "vue": "3.2.36"
+    "vue": "3.2.37"
   },
   "devDependencies": {
     "@types/events": "3.0.0",
