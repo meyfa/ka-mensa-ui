@@ -20,8 +20,8 @@
 import { computed, defineComponent, ref, watchEffect } from 'vue'
 import type { PropType } from 'vue'
 
-import type { CanteenMeal } from '../types/canteen-plan'
-import api from '../api'
+import type { CanteenMeal } from '../types/canteen-plan.js'
+import api from '../api.js'
 
 import DialogBase from './DialogBase.vue'
 

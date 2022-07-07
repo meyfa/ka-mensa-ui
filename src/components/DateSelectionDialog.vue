@@ -10,9 +10,9 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import type { PropType } from 'vue'
 
-import type { DateSpec } from '../types/date-spec'
-import type { CanteenPlanSummary } from '../types/canteen-plan'
-import api from '../api'
+import type { DateSpec } from '../types/date-spec.js'
+import type { CanteenPlanSummary } from '../types/canteen-plan.js'
+import api from '../api.js'
 
 import DialogBase from './DialogBase.vue'
 import CalendarView from './CalendarView.vue'

@@ -28,9 +28,9 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import type { PropType } from 'vue'
 
-import type { CanteenLine, CanteenMeal } from '../types/canteen-plan'
-import settings from '../settings'
-import { isVegetarian, isVegan, isInfo } from '../util/meals'
+import type { CanteenLine, CanteenMeal } from '../types/canteen-plan.js'
+import settings from '../settings.js'
+import { isVegetarian, isVegan, isInfo } from '../util/meals.js'
 
 import MealItem from './MealItem.vue'
 

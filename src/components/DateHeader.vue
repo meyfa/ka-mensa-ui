@@ -19,9 +19,9 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref } from 'vue'
 import type { PropType } from 'vue'
 
-import type { DateSpec } from '../types/date-spec'
-import { formatDate } from '../util/date'
-import { filterDaysAgo } from '../filters/days-ago'
+import type { DateSpec } from '../types/date-spec.js'
+import { formatDate } from '../util/date.js'
+import { filterDaysAgo } from '../filters/days-ago.js'
 
 import DateSelectionDialog from './DateSelectionDialog.vue'
 
