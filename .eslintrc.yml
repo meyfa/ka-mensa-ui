@@ -1,7 +1,7 @@
 extends:
-  - standard-with-typescript
-  - plugin:jsdoc/recommended
-  - plugin:vue/recommended
+  - '@meyfa/eslint-config'
+  - 'plugin:jsdoc/recommended'
+  - 'plugin:vue/recommended'
 
 overrides:
   - files: ['*.ts', '*.vue']
