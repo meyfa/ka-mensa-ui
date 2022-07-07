@@ -1,9 +1,9 @@
-import env from './env'
-import type { DateSpec } from './types/date-spec'
-import { formatDate } from './util/date'
-import type { CanteenPlan } from './types/canteen-plan'
-import type { Canteen } from './types/canteen'
-import type { LegendItem } from './types/legend'
+import env from './env.js'
+import type { DateSpec } from './types/date-spec.js'
+import { formatDate } from './util/date.js'
+import type { CanteenPlan } from './types/canteen-plan.js'
+import type { Canteen } from './types/canteen.js'
+import type { LegendItem } from './types/legend.js'
 
 // CLASS DEFINITION
 

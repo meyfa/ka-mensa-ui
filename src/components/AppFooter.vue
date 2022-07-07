@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import env from '../env'
+import env from '../env.js'
 
 export default defineComponent({
   setup () {

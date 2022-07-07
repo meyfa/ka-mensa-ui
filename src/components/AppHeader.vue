@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
-import settingsPulse from '../settings-pulse'
+import settingsPulse from '../settings-pulse.js'
 
 export default defineComponent({
   emits: ['settings-open'],

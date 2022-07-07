@@ -15,8 +15,8 @@
 import { computed, defineComponent } from 'vue'
 import type { PropType } from 'vue'
 
-import type { CanteenMeal } from '../types/canteen-plan'
-import { isVegetarian, isVegan } from '../util/meals'
+import type { CanteenMeal } from '../types/canteen-plan.js'
+import { isVegetarian, isVegan } from '../util/meals.js'
 
 export default defineComponent({
   props: {

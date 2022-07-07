@@ -17,10 +17,10 @@
 import { computed, defineComponent, onMounted, onUnmounted, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 
-import type { DateSpec } from '../types/date-spec'
-import type { CanteenMeal, CanteenPlan } from '../types/canteen-plan'
-import api from '../api'
-import settings from '../settings'
+import type { DateSpec } from '../types/date-spec.js'
+import type { CanteenMeal, CanteenPlan } from '../types/canteen-plan.js'
+import api from '../api.js'
+import settings from '../settings.js'
 
 import CanteenLines from './CanteenLines.vue'
 import MealDetailsDialog from './MealDetailsDialog.vue'

@@ -11,9 +11,9 @@
 <script lang="ts">
 import { computed, defineComponent, onMounted, ref, watch } from 'vue'
 
-import type { Canteen } from '../../types/canteen'
-import settings from '../../settings'
-import api from '../../api'
+import type { Canteen } from '../../types/canteen.js'
+import settings from '../../settings.js'
+import api from '../../api.js'
 
 import SelectControl from '../controls/SelectControl.vue'
 

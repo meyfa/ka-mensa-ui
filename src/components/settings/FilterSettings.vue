@@ -9,7 +9,7 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue'
 
-import settings from '../../settings'
+import settings from '../../settings.js'
 
 import ChoiceControl from '../controls/ChoiceControl.vue'
 

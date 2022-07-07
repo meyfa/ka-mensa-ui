@@ -33,7 +33,7 @@ import { computed, defineComponent, ref } from 'vue'
 import moment from 'moment'
 import type { PropType } from 'vue'
 
-import type { DateSpec } from '../types/date-spec'
+import type { DateSpec } from '../types/date-spec.js'
 
 export default defineComponent({
   props: {

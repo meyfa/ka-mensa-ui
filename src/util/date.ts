@@ -1,6 +1,6 @@
 import moment from 'moment'
 import type { Moment } from 'moment'
-import type { DateSpec } from '../types/date-spec'
+import type { DateSpec } from '../types/date-spec.js'
 
 // CONSTANTS
 
