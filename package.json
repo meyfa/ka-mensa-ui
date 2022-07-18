@@ -5,8 +5,8 @@
   "description": "Karlsruhe (KIT) Mensa meal plan UI for use with ka-mensa-api",
   "scripts": {
     "build": "vite build",
-    "lint": "eslint --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint \"./src/**/*.{css,vue}\"",
-    "lint-fix": "eslint --fix --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint --fix \"./src/**/*.{css,vue}\"",
+    "lint": "tsc --noEmit -p tsconfig.lint.json && eslint --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint \"./src/**/*.{css,vue}\"",
+    "lint-fix": "tsc --noEmit -p tsconfig.lint.json && eslint --fix --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint --fix \"./src/**/*.{css,vue}\"",
     "test": "npm run lint",
     "dev": "vite serve"
   },

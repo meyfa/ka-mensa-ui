@@ -9,7 +9,7 @@ overrides:
     parserOptions:
       parser: '@typescript-eslint/parser'
       extraFileExtensions: ['.vue']
-      project: './tsconfig.eslint.json'
+      project: './tsconfig.lint.json'
 
 rules:
   vue/html-indent: ['error', 2, { attribute: 2, baseIndent: 1, closeBracket: 0, alignAttributesVertically: false }]
