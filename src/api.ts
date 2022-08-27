@@ -5,28 +5,23 @@ import type { CanteenPlan } from './types/canteen-plan.js'
 import type { Canteen } from './types/canteen.js'
 import type { LegendItem } from './types/legend.js'
 
-// CLASS DEFINITION
-
 /**
  * API client class.
  */
 class API {
-  private readonly endpoint: string
+  private readonly endpoint: URL
 
   /**
    * Create a new API client for the given endpoint URL.
    *
    * @param endpoint The endpoint URL to use.
    */
-  constructor (endpoint: string) {
-    if (endpoint.charAt(endpoint.length - 1) !== '/') {
-      throw new Error('expected endpoint URL to end with slash character')
-    }
+  constructor (endpoint: URL) {
     this.endpoint = endpoint
   }
 
   private async fetchApi (path: string): Promise<any> {
-    const response = await fetch(this.endpoint + path)
+    const response = await fetch(new URL(path, this.endpoint))
     if (!response.ok) {
       throw new Error(response.statusText)
     }
@@ -72,11 +67,9 @@ class API {
    */
   async getPlan (date: DateSpec): Promise<CanteenPlan[]> {
     const dateStr = formatDate(date)
-    return await this.fetchApi(`plans/${dateStr}`)
+    return await this.fetchApi(`plans/${encodeURIComponent(dateStr)}`)
   }
 }
-
-// EXPORT
 
 /**
  * Ensure the given parameter is a trimmed string ending with a slash.
@@ -84,7 +77,7 @@ class API {
  * @param url The input URL.
  * @returns The fixed URL.
  */
-function sanitizeUrl (url: any): string {
+function sanitizeUrl (url: any): URL {
   if (typeof url !== 'string') {
     throw new TypeError('expected the API endpoint to be a string')
   }
@@ -92,7 +85,10 @@ function sanitizeUrl (url: any): string {
   if (trimmed.length <= 0) {
     throw new TypeError('expected the API endpoint to not be empty')
   }
-  return trimmed.endsWith('/') ? trimmed : `${trimmed}/`
+  // The trailing slash is important due to relative resolution behavior.
+  // Example: new URL('foo/bar', 'https://example.com/abc').toString() === 'https://example.com/foo/bar'.
+  // We want to resolve to 'https://example.com/abc/foo/bar' in that case, though.
+  return new URL(trimmed.endsWith('/') ? trimmed : `${trimmed}/`)
 }
 
 export default new API(sanitizeUrl(env.API_ENDPOINT))
