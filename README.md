@@ -46,6 +46,8 @@ webserver and you're good to go!
 
 ### The Docker Way
 
+This project on the Docker Hub: https://hub.docker.com/r/meyfa/ka-mensa-ui
+
 To start a webserver linked to your API instance, simply run the Docker
 container and pass in config options via environment variables:
 
