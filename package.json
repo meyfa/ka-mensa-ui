@@ -30,7 +30,7 @@
     "events": "3.3.0",
     "moment": "2.29.4",
     "typeface-nunito": "1.1.13",
-    "vue": "3.2.39"
+    "vue": "3.2.45"
   },
   "devDependencies": {
     "@meyfa/eslint-config": "2.1.2",
