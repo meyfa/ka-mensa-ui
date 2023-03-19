@@ -32,8 +32,8 @@
 import { computed, defineComponent, ref } from 'vue'
 import moment from 'moment'
 import type { PropType } from 'vue'
-
 import type { DateSpec } from '../types/date-spec.js'
+import { fromMoment, getCurrentDate, isEqualDate } from '../util/date.js'
 
 export default defineComponent({
   props: {
@@ -50,9 +50,9 @@ export default defineComponent({
   emits: ['select'],
 
   setup (props, { emit }) {
-    const current = props.current != null ? moment(props.current) : moment()
-    const year = ref(current.year())
-    const month = ref(current.month())
+    const current = props.current ?? getCurrentDate()
+    const year = ref(current.year)
+    const month = ref(current.month)
 
     const formattedMonth = computed(() => moment([year.value, month.value]).format('MMMM'))
 
@@ -69,20 +69,21 @@ export default defineComponent({
     })
 
     const rows = computed(() => {
-      const first = moment([year.value, month.value])
-      const last = first.clone().endOf('month')
-
       // a calendar should always contain exactly 6 rows with 7 days each
       const rows = new Array(6).fill(null).map(() => new Array(7).fill(null))
 
-      let offset = first.isoWeekday() - 1
-      for (const cursor = first.clone(); last.isSameOrAfter(cursor); cursor.add(1, 'd')) {
-        rows[Math.trunc(offset / 7)][offset % 7] = {
-          day: cursor.date(),
-          enabled: props.dates.some((item) => cursor.isSame(moment(item), 'day')),
-          current: cursor.isSame(current, 'day')
+      const start = moment([year.value, month.value])
+      const offset = start.isoWeekday() - 1
+
+      const cursor = fromMoment(start)
+      while (cursor.day <= start.daysInMonth()) {
+        const position = offset + cursor.day - 1
+        rows[Math.trunc(position / 7)][position % 7] = {
+          day: cursor.day,
+          enabled: props.dates.some((item) => isEqualDate(item, cursor)),
+          current: isEqualDate(current, cursor)
         }
-        ++offset
+        ++cursor.day
       }
 
       return rows
