@@ -1,4 +1,4 @@
-import { defineConfig, type PluginOption } from 'vite'
+import { defineConfig, loadEnv, type PluginOption, type ServerOptions } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { VitePWA } from 'vite-plugin-pwa'
 
@@ -72,7 +72,7 @@ const manifest = {
   theme_color: '#5f9e40'
 }
 
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
   plugins: [
     vue(),
     VitePWA({
@@ -85,6 +85,48 @@ export default defineConfig({
       ...manifest,
       favicon: 'favicon.ico',
       apple_touch_icon: 'apple-touch-icon.png'
-    })
-  ]
-})
+    }),
+    // During development, inject an override for the API endpoint to proxy it via the dev server.
+    {
+      apply: 'serve', // only in dev mode
+      name: 'inject-api-endpoint',
+      transformIndexHtml: (html) => ({
+        html,
+        tags: [
+          {
+            tag: 'script',
+            children: 'window.env = { API_ENDPOINT: new URL("/api/", location.href).toString() }'
+          }
+        ]
+      })
+    }
+  ],
+  server: command === 'serve' ? getServerOptions(mode) : undefined
+}))
+
+const getServerOptions = (mode: string): ServerOptions => {
+  const env = loadEnv(mode, process.cwd())
+
+  const apiEndpoint = env?.VITE_API_ENDPOINT
+  if (apiEndpoint == null || apiEndpoint === '') {
+    throw new Error('Please set environment variable VITE_API_ENDPOINT')
+  }
+
+  return {
+    // Proxy API requests to remove CORS headers that would interfere with development on localhost.
+    proxy: {
+      '/api': {
+        target: apiEndpoint,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+        changeOrigin: true,
+        configure: (proxy) => {
+          proxy.on('proxyRes', (proxyRes) => {
+            proxyRes.headers['access-control-allow-origin'] = '*'
+            proxyRes.headers['access-control-allow-methods'] = '*'
+            proxyRes.headers['access-control-allow-headers'] = '*'
+          })
+        }
+      }
+    }
+  }
+}
