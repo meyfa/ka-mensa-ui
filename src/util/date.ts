@@ -2,17 +2,13 @@ import moment from 'moment'
 import type { Moment } from 'moment'
 import type { DateSpec } from '../types/date-spec.js'
 
-// CONSTANTS
-
 const DATE_FORMAT = 'YYYY-MM-DD'
-
-// HELPER METHODS
 
 /**
  * @param mnt The moment to convert to a date object.
  * @returns The conversion result.
  */
-function fromMoment (mnt: Moment): DateSpec {
+export function fromMoment (mnt: Moment): DateSpec {
   return { year: mnt.year(), month: mnt.month(), day: mnt.date() }
 }
 
@@ -20,12 +16,10 @@ function fromMoment (mnt: Moment): DateSpec {
  * @param date The date object to convert to a moment.
  * @returns The moment.
  */
-function toMoment (date: DateSpec): Moment {
+export function toMoment (date: DateSpec): Moment {
   // moment supports parse via object with compatible schema
   return moment(date)
 }
-
-// EXPORTS
 
 /**
  * Get a date object for the current date.
@@ -88,4 +82,15 @@ export function getPreviousWeekday (date: DateSpec): DateSpec {
   }
   // otherwise choose previous friday
   return fromMoment(mnt.isoWeekday(5))
+}
+
+/**
+ * Checks whether two DateSpec objects are equal (same year, month, and day).
+ *
+ * @param a First DateSpec object.
+ * @param b Second DateSpec object.
+ * @returns True if the DateSpec objects are equal, false otherwise.
+ */
+export function isEqualDate (a: DateSpec, b: DateSpec): boolean {
+  return a.year === b.year && a.month === b.month && a.day === b.day
 }
