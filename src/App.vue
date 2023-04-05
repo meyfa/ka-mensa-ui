@@ -14,7 +14,8 @@
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue'
 
-import 'typeface-nunito'
+import '@fontsource/nunito/400.css'
+import '@fontsource/nunito/700.css'
 
 import type { DateSpec } from './types/date-spec.js'
 import settings from './settings.js'
