@@ -68,7 +68,7 @@ export default defineComponent({
   font-weight: bold;
 }
 
-@media (max-width: 720px) {
+@media (width <= 720px) {
   .columns {
     display: block;
     padding: 8px 16px 0;

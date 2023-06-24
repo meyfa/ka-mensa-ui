@@ -99,7 +99,7 @@ export default defineComponent({
   text-align: center;
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .plan {
     margin: 24px 0 32px;
   }

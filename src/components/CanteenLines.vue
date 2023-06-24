@@ -132,7 +132,7 @@ export default defineComponent({
   border-radius: 2px;
 }
 
-@media (max-width: 500px) {
+@media (width <= 500px) {
   .lines {
     display: block;
   }
