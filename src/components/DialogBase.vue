@@ -173,7 +173,7 @@ export default defineComponent({
   height: 16px;
 }
 
-@media (max-width: 480px) {
+@media (width <= 480px) {
   .inner {
     width: calc(100% - 32px);
   }
@@ -191,7 +191,7 @@ export default defineComponent({
   }
 }
 
-@media (max-width: 720px) {
+@media (width <= 720px) {
   .size-full .inner {
     width: calc(100% - 32px);
   }
