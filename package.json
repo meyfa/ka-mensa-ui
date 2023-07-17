@@ -33,7 +33,7 @@
     "vue": "3.3.4"
   },
   "devDependencies": {
-    "@meyfa/eslint-config": "3.0.1",
+    "@meyfa/eslint-config": "4.0.0",
     "@types/events": "3.0.0",
     "@vitejs/plugin-vue": "4.2.3",
     "@vue/tsconfig": "0.4.0",
