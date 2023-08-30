@@ -39,7 +39,7 @@
     "@vue/tsconfig": "0.4.0",
     "cross-env": "7.0.3",
     "eslint": "8.48.0",
-    "eslint-plugin-jsdoc": "46.4.3",
+    "eslint-plugin-jsdoc": "46.5.1",
     "eslint-plugin-vue": "9.16.1",
     "stylelint": "15.10.3",
     "stylelint-config-standard-vue": "1.0.0",
