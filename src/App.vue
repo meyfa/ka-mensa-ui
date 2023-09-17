@@ -59,12 +59,12 @@ export default defineComponent({
 
     onMounted(() => {
       updateSettings()
-      settings.on('update', updateSettings)
+      settings.addEventListener('update', updateSettings)
       prefersDarkScheme?.addEventListener('change', updateSettings)
     })
 
     onUnmounted(() => {
-      settings.off('update', updateSettings)
+      settings.removeEventListener('update', updateSettings)
       prefersDarkScheme?.removeEventListener('change', updateSettings)
     })
 

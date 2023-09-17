@@ -25,8 +25,8 @@ export default defineComponent({
       unseenSettingsAvailable.value = !settingsPulse.isCurrent
     }
 
-    onMounted(() => settingsPulse.on('mark', updateSettingsPulse))
-    onUnmounted(() => settingsPulse.off('mark', updateSettingsPulse))
+    onMounted(() => settingsPulse.addEventListener('mark', updateSettingsPulse))
+    onUnmounted(() => settingsPulse.removeEventListener('mark', updateSettingsPulse))
 
     const openSettings = () => {
       emit('settings-open')

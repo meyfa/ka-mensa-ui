@@ -66,11 +66,11 @@ export default defineComponent({
       if (props.date != null) {
         fetchData()
       }
-      settings.on('update', updateSettings)
+      settings.addEventListener('update', updateSettings)
     })
 
     onUnmounted(() => {
-      settings.off('update', updateSettings)
+      settings.removeEventListener('update', updateSettings)
     })
 
     return {
