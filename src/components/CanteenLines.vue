@@ -59,8 +59,8 @@ export default defineComponent({
       enableHighlights.value = settings.enableHighlights
     }
 
-    onMounted(() => settings.on('update', updateSettings))
-    onUnmounted(() => settings.off('update', updateSettings))
+    onMounted(() => settings.addEventListener('update', updateSettings))
+    onUnmounted(() => settings.removeEventListener('update', updateSettings))
 
     const isMealVisible = (meal: CanteenMeal) => {
       if (isInfo(meal)) {

@@ -1,5 +1,3 @@
-import { EventEmitter } from 'events'
-
 // CONSTANTS
 
 const LOCALSTORAGE_KEY = 'mensa-ui.settings-pulse'
@@ -14,7 +12,7 @@ const VERSION = 2
  * Additionally, the version last shown to the user is stored. This object then
  * compares the two and determines whether or not there have been updates.
  */
-class SettingsPulse extends EventEmitter {
+class SettingsPulse extends EventTarget {
   /**
    * @returns Whether the user has seen the most recent settings.
    */
@@ -28,7 +26,7 @@ class SettingsPulse extends EventEmitter {
    */
   markCurrent (): void {
     localStorage.setItem(LOCALSTORAGE_KEY, VERSION.toString())
-    this.emit('mark')
+    this.dispatchEvent(new Event('mark'))
   }
 }
 

@@ -1,5 +1,3 @@
-import { EventEmitter } from 'events'
-
 // CONSTANTS
 
 const LOCALSTORAGE_KEY = 'mensa-ui.settings'
@@ -37,7 +35,7 @@ function writeLocalStorage (data: Record<string, any>): void {
 /**
  * Settings manager that persists user settings to local storage.
  */
-class Settings extends EventEmitter {
+class Settings extends EventTarget {
   private data: Record<string, any> = {}
 
   /**
@@ -65,7 +63,7 @@ class Settings extends EventEmitter {
     const stored = readLocalStorage()
     if (stored != null) {
       this.data = stored
-      this.emit('update')
+      this.dispatchEvent(new Event('update'))
       return true
     }
     return false
@@ -76,7 +74,7 @@ class Settings extends EventEmitter {
    */
   private save (): void {
     writeLocalStorage(this.data)
-    this.emit('update')
+    this.dispatchEvent(new Event('update'))
   }
 
   /**
