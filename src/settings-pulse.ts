@@ -18,7 +18,7 @@ class SettingsPulse extends EventTarget {
    */
   get isCurrent (): boolean {
     const value = localStorage.getItem(LOCALSTORAGE_KEY)
-    return value != null && parseInt(value, 10) === VERSION
+    return value != null && Number.parseInt(value, 10) === VERSION
   }
 
   /**
