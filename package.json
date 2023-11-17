@@ -3,6 +3,7 @@
   "name": "ka-mensa-ui",
   "version": "0.0.0",
   "description": "Karlsruhe (KIT) Mensa meal plan UI for use with ka-mensa-api",
+  "type": "module",
   "scripts": {
     "build": "vite build",
     "lint": "tsc --noEmit -p tsconfig.lint.json && eslint --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint \"./src/**/*.{css,vue}\"",
