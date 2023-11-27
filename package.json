@@ -43,7 +43,7 @@
     "eslint-plugin-vue": "9.18.1",
     "stylelint": "15.11.0",
     "stylelint-config-standard-vue": "1.0.0",
-    "typescript": "5.2.2",
+    "typescript": "5.3.2",
     "vite": "5.0.0",
     "vite-plugin-pwa": "0.16.7",
     "vue-eslint-parser": "9.3.2"
