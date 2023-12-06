@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/meyfa/ka-mensa-ui",
   "dependencies": {
-    "@fontsource/nunito": "5.0.13",
+    "@fontsource/nunito": "5.0.16",
     "moment": "2.29.4",
     "vue": "3.3.8"
   },
