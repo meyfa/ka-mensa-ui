@@ -41,7 +41,7 @@
     "eslint": "8.57.0",
     "eslint-plugin-jsdoc": "48.2.2",
     "eslint-plugin-vue": "9.26.0",
-    "stylelint": "15.11.0",
+    "stylelint": "16.6.1",
     "stylelint-config-standard-vue": "1.0.0",
     "typescript": "5.4.5",
     "vite": "5.3.1",
