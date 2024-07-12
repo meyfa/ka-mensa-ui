@@ -1,7 +1,5 @@
-extends: stylelint-config-standard-vue
+extends: stylelint-config-standard
 
-rules:
-  string-quotes: single
-  no-duplicate-selectors: true
-  color-hex-case: lower
-  font-family-name-quotes: always-unless-keyword
+overrides:
+  - files: ['*.vue']
+    customSyntax: postcss-html
