@@ -1,6 +1,6 @@
 extends:
   - '@meyfa/eslint-config'
-  - 'plugin:jsdoc/recommended'
+  - '@meyfa/eslint-config/jsdoc'
   - 'plugin:vue/recommended'
 
 overrides:
@@ -17,8 +17,3 @@ rules:
   vue/singleline-html-element-content-newline: 0
   vue/html-closing-bracket-newline: 0
   vue/component-name-in-template-casing: [2, PascalCase]
-  # require JSDoc on every standard location, and also on classes, interfaces and enums
-  jsdoc/require-jsdoc: ['error', { contexts: [ 'ClassDeclaration', 'TSInterfaceDeclaration', 'TSEnumDeclaration' ] }]
-  jsdoc/require-param-type: off
-  jsdoc/require-returns-type: off
-  jsdoc/no-types: error
