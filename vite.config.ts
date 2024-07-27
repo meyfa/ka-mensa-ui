@@ -104,6 +104,16 @@ export default defineConfig(({ command, mode }) => ({
   server: command === 'serve' ? getServerOptions(mode) : undefined
 }))
 
+/**
+ * Node.js process object.
+ */
+interface Process {
+  cwd: () => string
+}
+
+// Avoid including @types/node in the dependencies, as this is foremost a frontend project.
+declare const process: Process
+
 const getServerOptions = (mode: string): ServerOptions => {
   const env = loadEnv(mode, process.cwd())
 
