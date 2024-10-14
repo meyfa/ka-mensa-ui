@@ -83,7 +83,7 @@ export default defineComponent({
         ...line,
         meals: line.meals.filter(isMealVisible)
       }
-    }).filter(line => !hideEmptyLines.value || line.meals.length))
+    }).filter((line) => !hideEmptyLines.value || line.meals.length))
 
     return {
       enableHighlights,

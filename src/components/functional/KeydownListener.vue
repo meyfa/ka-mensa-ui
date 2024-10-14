@@ -16,7 +16,8 @@ export default defineComponent({
 
   setup (props, { emit }) {
     const handleEvent = (event: KeyboardEvent) => {
-      if (!props.keys || !props.keys.length || props.keys.includes(event.key)) {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+      if (props.keys == null || props.keys.length === 0 || props.keys.includes(event.key)) {
         event.preventDefault()
         emit('triggered', event)
       }

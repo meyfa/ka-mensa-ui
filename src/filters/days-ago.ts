@@ -9,7 +9,7 @@ import type { DateSpec } from '../types/date-spec.js'
  * @param value The date value.
  * @returns The formatted relative date.
  */
-export function filterDaysAgo (value: DateSpec): string {
+export function filterDaysAgo (value?: DateSpec): string {
   if (value != null) {
     const mnt = moment(value)
     const calStr = mnt.calendar({
