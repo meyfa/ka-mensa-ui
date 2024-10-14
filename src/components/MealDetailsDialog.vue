@@ -42,6 +42,7 @@ export default defineComponent({
   setup (props) {
     const legend = ref(new Map<string, string>())
 
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     watchEffect(async () => {
       let data
       try {

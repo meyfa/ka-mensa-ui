@@ -2,7 +2,7 @@
   <label class="check">
     <input
         type="checkbox" class="check-input" :checked="modelValue"
-        @change="$emit('update:modelValue', $event.target.checked)">
+        @change="$emit('update:modelValue', ($event.target as HTMLInputElement | null)?.checked)">
     <span class="check-box" />
     <slot />
   </label>
@@ -17,7 +17,9 @@ export default defineComponent({
       type: Boolean,
       required: true
     }
-  }
+  },
+
+  emits: ['update:modelValue']
 })
 </script>
 

@@ -117,7 +117,8 @@ declare const process: Process
 const getServerOptions = (mode: string): ServerOptions => {
   const env = loadEnv(mode, process.cwd())
 
-  const apiEndpoint = env?.VITE_API_ENDPOINT
+  const apiEndpoint = env.VITE_API_ENDPOINT
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   if (apiEndpoint == null || apiEndpoint === '') {
     throw new Error('Please set environment variable VITE_API_ENDPOINT')
   }

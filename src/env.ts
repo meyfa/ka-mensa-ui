@@ -29,7 +29,7 @@ declare global {
  * @param fallback The value injected via Webpack.
  * @returns The chosen option.
  */
-function resolve<K extends keyof Env> (key: K, fallback: string): string {
+function resolve (key: keyof Env, fallback: string): string {
   const valueOnWindow = window.env != null ? window.env[key] : undefined
   if (valueOnWindow != null && valueOnWindow !== '') {
     return valueOnWindow

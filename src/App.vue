@@ -27,6 +27,7 @@ import DateHeader from './components/DateHeader.vue'
 import PlansView from './components/PlansView.vue'
 import SettingsDialog from './components/SettingsDialog.vue'
 
+// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
 const prefersDarkScheme = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : undefined
 
 export default defineComponent({
@@ -77,6 +78,7 @@ export default defineComponent({
     }
 
     const selectDate = (selected: DateSpec) => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (selected != null) {
         date.value = selected
       }

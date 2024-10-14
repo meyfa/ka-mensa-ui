@@ -63,8 +63,9 @@ export default defineComponent({
     }
 
     onMounted(() => {
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
       if (props.date != null) {
-        fetchData()
+        void fetchData()
       }
       settings.addEventListener('update', updateSettings)
     })

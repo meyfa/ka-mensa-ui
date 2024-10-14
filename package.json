@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "lint": "tsc --noEmit -p tsconfig.lint.json && eslint --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint \"./src/**/*.{css,vue}\"",
-    "lint-fix": "tsc --noEmit -p tsconfig.lint.json && eslint --fix --ignore-path .gitignore --ext .ts,.js,.vue ./src && stylelint --fix \"./src/**/*.{css,vue}\"",
+    "lint": "tsc --noEmit -p tsconfig.lint.json && eslint . && stylelint \"./src/**/*.{css,vue}\"",
+    "lint-fix": "tsc --noEmit -p tsconfig.lint.json && eslint --fix . && stylelint --fix \"./src/**/*.{css,vue}\"",
     "test": "npm run lint",
     "dev": "vite serve"
   },
@@ -33,18 +33,19 @@
     "vue": "3.5.11"
   },
   "devDependencies": {
-    "@meyfa/eslint-config": "7.0.0",
+    "@meyfa/eslint-config": "8.0.0",
+    "@typescript-eslint/parser": "8.9.0",
     "@vitejs/plugin-vue": "5.1.4",
     "@vue/tsconfig": "0.5.1",
-    "eslint": "8.57.1",
-    "eslint-plugin-vue": "9.28.0",
+    "eslint": "9.12.0",
+    "eslint-plugin-vue": "9.29.0",
     "postcss-html": "1.7.0",
     "prettier": "3.3.3",
     "stylelint": "16.9.0",
     "stylelint-config-standard": "36.0.1",
     "stylelint-prettier": "5.0.2",
-    "typescript": "5.6.2",
-    "vite": "5.4.8",
+    "typescript": "5.6.3",
+    "vite": "5.4.9",
     "vite-plugin-pwa": "0.20.5",
     "vue-eslint-parser": "9.4.3"
   }

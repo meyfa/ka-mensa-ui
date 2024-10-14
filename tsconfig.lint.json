@@ -1,7 +1,11 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "checkJs": true
+  },
   "include": [
     "src",
-    "vite.config.ts"
+    "vite.config.ts",
+    "eslint.config.js"
   ]
 }
