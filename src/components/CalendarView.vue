@@ -11,19 +11,23 @@
     </div>
 
     <table class="calendar">
-      <tr class="cal-head-row">
-        <th v-for="weekday in weekdays" :key="weekday">{{ weekday }}</th>
-      </tr>
-      <tr v-for="(row, rowIndex) in rows" :key="'row' + rowIndex" class="cal-row">
-        <td v-for="(col, colIndex) in row" :key="'col' + colIndex">
-          <button
-              v-if="col" class="cal-btn" :class="{ current: col.current }"
-              :disabled="!col.enabled" @click="clickDate(col.day)">
-            {{ col.day }}
-          </button>
-          <span v-else class="cal-dummy" />
-        </td>
-      </tr>
+      <thead>
+        <tr class="cal-head-row">
+          <th v-for="weekday in weekdays" :key="weekday">{{ weekday }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(row, rowIndex) in rows" :key="'row' + rowIndex" class="cal-row">
+          <td v-for="(col, colIndex) in row" :key="'col' + colIndex">
+            <button
+                v-if="col" class="cal-btn" :class="{ current: col.current }"
+                :disabled="!col.enabled" @click="clickDate(col.day)">
+              {{ col.day }}
+            </button>
+            <span v-else class="cal-dummy" />
+          </td>
+        </tr>
+      </tbody>
     </table>
   </div>
 </template>
