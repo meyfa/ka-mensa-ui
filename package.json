@@ -46,7 +46,7 @@
     "stylelint-prettier": "5.0.3",
     "typescript": "5.8.3",
     "vite": "6.0.15",
-    "vite-plugin-pwa": "0.21.2",
+    "vite-plugin-pwa": "1.0.0",
     "vue-eslint-parser": "10.1.3"
   }
 }
