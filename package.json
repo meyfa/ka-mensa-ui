@@ -30,7 +30,7 @@
   "dependencies": {
     "@fontsource/nunito": "5.2.5",
     "moment": "2.30.1",
-    "vue": "3.5.14"
+    "vue": "3.5.22"
   },
   "devDependencies": {
     "@meyfa/eslint-config": "8.0.1",
