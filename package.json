@@ -33,7 +33,7 @@
     "vue": "3.5.22"
   },
   "devDependencies": {
-    "@meyfa/eslint-config": "8.0.1",
+    "@meyfa/eslint-config": "9.0.0",
     "@typescript-eslint/parser": "8.39.1",
     "@vitejs/plugin-vue": "6.0.1",
     "@vue/tsconfig": "0.7.0",
