@@ -131,7 +131,19 @@ const getServerOptions = (mode: string): ServerOptions => {
         rewrite: (path) => path.replace(/^\/api/, ''),
         changeOrigin: true,
         configure: (proxy) => {
-          proxy.on('proxyRes', (proxyRes) => {
+          // Vite 7's proxy typing no longer exposes `.on(...)` here.
+
+          /** Minimal proxy response type for header rewriting. */
+          interface ProxyRes {
+            headers: Record<string, string | string[] | undefined>
+          }
+
+          /** Minimal event emitter facade for http-proxy. */
+          interface ProxyWithOn {
+            on: (event: 'proxyRes', listener: (proxyRes: ProxyRes) => void) => void
+          }
+
+          ;(proxy as unknown as ProxyWithOn).on('proxyRes', (proxyRes) => {
             proxyRes.headers['access-control-allow-origin'] = '*'
             proxyRes.headers['access-control-allow-methods'] = '*'
             proxyRes.headers['access-control-allow-headers'] = '*'
