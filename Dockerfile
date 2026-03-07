@@ -1,5 +1,7 @@
+ARG BUILDPLATFORM
+
 # build
-FROM node:lts-alpine AS build
+FROM --platform=$BUILDPLATFORM node:lts-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
