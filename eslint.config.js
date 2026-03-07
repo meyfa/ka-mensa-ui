@@ -4,12 +4,28 @@ import pluginVue from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
 import typescriptParser from '@typescript-eslint/parser'
 
+const browserGlobals = {
+  window: 'readonly',
+  document: 'readonly',
+  navigator: 'readonly',
+  location: 'readonly',
+  localStorage: 'readonly',
+  sessionStorage: 'readonly',
+  fetch: 'readonly'
+}
+
 export default [
   ...eslintConfig,
   eslintConfigJsdoc,
   ...pluginVue.configs['flat/recommended'],
   {
     ignores: ['dist', '.idea', '.vscode']
+  },
+  {
+    files: ['src/**/*.{js,ts,vue}'],
+    languageOptions: {
+      globals: browserGlobals
+    }
   },
   {
     rules: {
@@ -24,6 +40,7 @@ export default [
     files: ['**/*.vue'],
     languageOptions: {
       parser: vueParser,
+      globals: browserGlobals,
       parserOptions: {
         parser: typescriptParser,
         extraFileExtensions: ['.vue'],
