@@ -12,8 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
+      - uses: actions/checkout@v6.0.3
+      - uses: actions/setup-node@v6.4.0
         with:
           node-version: 24.16.0
           cache: npm
@@ -26,14 +26,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v4
+        uses: docker/setup-buildx-action@v4.1.0
 
       - name: Build
         id: docker-build
-        uses: docker/build-push-action@v7
+        uses: docker/build-push-action@v7.2.0
         with:
           context: ./
           file: ./Dockerfile
