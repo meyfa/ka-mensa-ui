@@ -39,7 +39,7 @@
     "@vue/tsconfig": "0.9.1",
     "eslint": "9.39.5",
     "eslint-plugin-vue": "10.9.2",
-    "postcss-html": "1.8.1",
+    "postcss-html": "2.0.0",
     "prettier": "3.9.5",
     "stylelint": "17.14.0",
     "stylelint-config-standard": "40.0.0",
