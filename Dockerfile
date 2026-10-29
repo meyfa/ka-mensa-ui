@@ -1,7 +1,7 @@
 ARG BUILDPLATFORM
 
 # build
-FROM --platform=$BUILDPLATFORM node:24.22.1-alpine AS build
+FROM --platform=$BUILDPLATFORM node:24.22.2-alpine AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
